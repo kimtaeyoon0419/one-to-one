@@ -4,50 +4,44 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool instance;
+    public GameObject[] prefabs;
 
-    private List<GameObject> pooledObjects = new List<GameObject>();
-    private int amountToPool = 20;
+    List<GameObject>[] pools;
 
-    [SerializeField] private GameObject bulletPrefab;
-
-    public void Awake()
+    private void Awake()
     {
-        if(instance != null)
+        pools = new List<GameObject>[prefabs.Length];
+
+        for (int i = 0; i < pools.Length; i++)
         {
-            instance = this;
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
+            pools[i] = new List<GameObject>();
         }
     }
 
-    void Start()
+    public GameObject Get(int index, Vector3 posithon, int BulletDiv)
     {
-        for(int i = 0; i < amountToPool; i++) 
+        GameObject select = null;
+
+
+        foreach (GameObject Object in pools[index])
         {
-            GameObject obj = Instantiate(bulletPrefab);
-            obj.SetActive(false);
-            pooledObjects.Add(obj);
-        }
-    }
-    
-    public GameObject getPooledObject()
-    {
-        for (int i = 0; i < pooledObjects.Count; i++)
-        {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!Object.activeSelf)
             {
-                return pooledObjects[i];
+                select = Object;
+                select.transform.position = posithon;
+                select.SetActive(true);
+                break;
             }
         }
-        
-        return null;
-    }
+        if (!select)
+        {
+            select = Instantiate(prefabs[index], posithon, Quaternion.identity, transform);
+            //if (index == 0) select.GetComponent<Bullet>().DirVec(GameManager.instance.player.bulletDirVec);
 
-    void Update()
-    {
-        
+            pools[index].Add(select);
+        }
+
+
+        return select;
     }
 }

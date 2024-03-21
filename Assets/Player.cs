@@ -8,8 +8,10 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
+    [Header("플레이어 움직임스텟")]
     [SerializeField] float speed;
     [SerializeField] float JumpPoawer;
+
     private float horizontal;
     private float Shothorizontal;
     private bool isFacingRight = true;
@@ -17,14 +19,17 @@ public class Player : MonoBehaviour
     private bool iswallSliding;
     [SerializeField] float wallSlidingSpeed = 2f;
 
+    [Header("레이케스트")]
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("총공격 스텟")]
     [SerializeField] private Transform bulletPosition;
     [SerializeField] private float bulletshotCoolTime;
     [SerializeField] private float bulletshotCurTime;
+    [SerializeField] private int BulletDiv = 1;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
@@ -59,18 +64,19 @@ public class Player : MonoBehaviour
             Flip();
         }
 
-        fire();
+        Fire();
         wallSlide();
         WallJump();
         playerJump();
         bulletshotCurTime -= Time.deltaTime;
     }
+
+
     void playerMove()
     {
         horizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
-
 
     void playerJump()
     {
@@ -122,6 +128,7 @@ public class Player : MonoBehaviour
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
+                BulletDiv *= -1;
                 transform.localScale = localScale;
             }
 
@@ -161,18 +168,16 @@ public class Player : MonoBehaviour
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
+            BulletDiv *= -1;
             transform.localScale = localScale;
-        }
+        }    
     }
 
-    private void fire()
+    private void Fire()
     {
-            bulletshotCurTime = bulletshotCoolTime;
-            GameObject bullet = ObjectPool.instance.getPooledObject();
-            if (bullet != null)
-            {
-                bullet.transform.position = bulletPosition.position;
-                bullet.SetActive(true);
-            }
+        if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0)
+        {
+            GameManager.instance.pools.Get(0, bulletPosition.position, BulletDiv);
+        }
     }
 }
