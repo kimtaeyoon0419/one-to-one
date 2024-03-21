@@ -5,14 +5,23 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float Speed;
-    void Start()
-    {
 
+    public float dirVec;
+
+    void OnEnable()
+    {
+        if (GameManager.instance.player.playerDir == Direction.Right) DirVec((int)Direction.Right);
+        else DirVec((int)Direction.Left);
     }
 
     void Update()
     {
-        transform.Translate(transform.right * Speed * Time.deltaTime);
+        transform.Translate(Vector3.right * dirVec * Speed * Time.deltaTime);
+    }
+
+    private void DirVec(float dir)
+    {
+        dirVec = dir;
     }
 
 

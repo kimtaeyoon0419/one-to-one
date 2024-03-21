@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
-  fireVec: 0
+  playerRightScale: {x: 1, y: 0, z: 0}

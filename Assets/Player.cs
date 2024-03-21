@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float JumpPoawer;
 
+    public Direction playerDir;
     private float horizontal;
     private float Shothorizontal;
     private bool isFacingRight = true;
@@ -74,7 +75,12 @@ public class Player : MonoBehaviour
 
     void playerMove()
     {
-        horizontal = Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxis("Horizontal"); // 1, 0, -1 
+
+        // Player Direction
+        if(horizontal > 0) playerDir = Direction.Right;
+        else if(horizontal < 0) playerDir = Direction.Left;
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
