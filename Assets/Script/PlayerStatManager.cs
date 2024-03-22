@@ -11,7 +11,7 @@ public class PlayerStatManager : MonoBehaviour
     public int CurHp;
     public int AttackPower;
     public int CurBulletCount;
-    public int MaxBublletCount;
+    public int MaxBublletCount = 10;
 
 
     void Start()
@@ -31,6 +31,9 @@ public class PlayerStatManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.F)) 
+        {
+            CurBulletCount = MaxBublletCount;
+        }
     }
 }

@@ -186,9 +186,10 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0)
+        if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
         {
-            
+            PlayerStatManager.instance.CurBulletCount--;
+            Debug.Log(PlayerStatManager.instance.CurBulletCount);
             //bulletshotCurTime = bulletshotCoolTime;
             GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
         }
