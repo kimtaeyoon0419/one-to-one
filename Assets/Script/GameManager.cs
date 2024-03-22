@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ObjectPool pools;
     public Bullet Bullet;
 
+
     void Awake()
     {
         if (instance == null)

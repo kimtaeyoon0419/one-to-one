@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    public static ObjectPool instance;
     public GameObject[] prefabs;
 
     List<GameObject>[] pools;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
         pools = new List<GameObject>[prefabs.Length];
 
         for (int i = 0; i < pools.Length; i++)

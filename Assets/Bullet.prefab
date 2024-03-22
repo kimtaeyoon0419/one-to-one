@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384f4ce9fb7719f4e9de54933efc8846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  playerRightScale: {x: 1, y: 0, z: 0}
+  Speed: 10
+  dirVec: 0

@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform bulletPosition;
     [SerializeField] private float bulletshotCoolTime;
     [SerializeField] private float bulletshotCurTime;
-    [SerializeField] private int BulletDiv = 1;
+    [SerializeField] private int BulletDir = 1;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
@@ -60,15 +60,16 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+       
+        Fire();
+        wallSlide();
+        WallJump();
+        playerJump();
         if (!isWallJumping)
         {
             Flip();
         }
 
-        Fire();
-        wallSlide();
-        WallJump();
-        playerJump();
         bulletshotCurTime -= Time.deltaTime;
     }
 
@@ -125,16 +126,20 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
+            horizontal = 0;
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
+            if (playerDir < 0) playerDir = Direction.Right;
+            else if (playerDir > 0) playerDir = Direction.Left;
+
 
             if (transform.localScale.x != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
-                BulletDiv *= -1;
+                BulletDir *= -1;
                 transform.localScale = localScale;
             }
 
@@ -174,7 +179,7 @@ public class Player : MonoBehaviour
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
-            BulletDiv *= -1;
+            BulletDir *= -1;
             transform.localScale = localScale;
         }    
     }
@@ -183,7 +188,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0)
         {
-            GameManager.instance.pools.Get(0, bulletPosition.position, BulletDiv);
+            
+            //bulletshotCurTime = bulletshotCoolTime;
+            GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
         }
     }
 }
