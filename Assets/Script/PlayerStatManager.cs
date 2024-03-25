@@ -7,15 +7,26 @@ public class PlayerStatManager : MonoBehaviour
 {
     public static PlayerStatManager instance;
 
+    [Header("플레이어 움직임스텟")]
+    public float speed;
+    public float JumpPoawer;
+
+    [Header("플레이어 체력스텟")]
     public int MaxHp;
     public int CurHp;
-    public int AttackPower;
+
+    [Header("플레이어 공격스텟")]
+    public int AttackPower = 1;
     public int CurBulletCount;
     public int MaxBublletCount = 10;
-
+    public float bulletshotCoolTime;
+    public float bulletshotCurTime;
+    
 
     void Start()
     {
+        CurHp = MaxHp;
+        CurBulletCount = MaxBublletCount;
         if (instance == null)
         {
             instance = this;
@@ -31,9 +42,14 @@ public class PlayerStatManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F)) 
+        if (bulletshotCurTime > 0)
+        {
+            bulletshotCurTime -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.F)) 
         {
             CurBulletCount = MaxBublletCount;
         }
     }
+    
 }

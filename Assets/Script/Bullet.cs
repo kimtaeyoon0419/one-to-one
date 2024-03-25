@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == ("Wall"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Monster"))
         {
             gameObject.SetActive(false);
         }

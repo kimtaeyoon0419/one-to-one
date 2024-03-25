@@ -1,35 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : MonoBehaviour
 {
-    [Header("플레이어 움직임스텟")]
-    [SerializeField] float speed;
-    [SerializeField] float JumpPoawer;
-
     public Direction playerDir;
     private float horizontal;
-    private float Shothorizontal;
     private bool isFacingRight = true;
-
     private bool iswallSliding;
-    [SerializeField] float wallSlidingSpeed = 2f;
+    [SerializeField] private float wallSlidingSpeed = 2f;
 
     [Header("레이케스트")]
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask monsterLayer;
 
     [Header("총공격 스텟")]
     [SerializeField] private Transform bulletPosition;
-    [SerializeField] private float bulletshotCoolTime;
-    [SerializeField] private float bulletshotCurTime;
     [SerializeField] private int BulletDir = 1;
 
     private bool isWallJumping;
@@ -39,7 +30,6 @@ public class Player : MonoBehaviour
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(5f, 12f);
 
-    
     Rigidbody2D rb;
 
     private void Awake()
@@ -47,10 +37,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        
-    }
     void FixedUpdate()
     {
         if (!isWallJumping)
@@ -58,9 +44,9 @@ public class Player : MonoBehaviour
             playerMove();
         }
     }
+
     void Update()
     {
-       
         Fire();
         wallSlide();
         WallJump();
@@ -69,44 +55,41 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
-
-        bulletshotCurTime -= Time.deltaTime;
     }
-
 
     void playerMove()
     {
-        horizontal = Input.GetAxis("Horizontal"); // 1, 0, -1 
-
-        // Player Direction
-        if(horizontal > 0) playerDir = Direction.Right;
-        else if(horizontal < 0) playerDir = Direction.Left;
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        horizontal = Input.GetAxis("Horizontal");
+        if (horizontal > 0) playerDir = Direction.Right;
+        else if (horizontal < 0) playerDir = Direction.Left;
+        rb.velocity = new Vector2(horizontal * PlayerStatManager.instance.speed, rb.velocity.y);
     }
 
     void playerJump()
     {
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, JumpPoawer);
+            if(IsGrounded() || IsGroundedMs()) rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
         }
-
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-
     }
 
     private bool isWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
+
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+    private bool IsGroundedMs()
+    {
+        Debug.Log("응애");
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, monsterLayer);
     }
 
     private void WallJump()
@@ -116,7 +99,6 @@ public class Player : MonoBehaviour
             isWallJumping = false;
             wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
-
             CancelInvoke(nameof(StopWallJumping));
         }
         else
@@ -133,7 +115,6 @@ public class Player : MonoBehaviour
             if (playerDir < 0) playerDir = Direction.Right;
             else if (playerDir > 0) playerDir = Direction.Left;
 
-
             if (transform.localScale.x != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
@@ -146,15 +127,15 @@ public class Player : MonoBehaviour
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
+
     private void StopWallJumping()
     {
         isWallJumping = false;
     }
 
-
     private void wallSlide()
     {
-        if(isWalled() && !IsGrounded() && horizontal != 0f)
+        if (isWalled() && !IsGrounded() && horizontal != 0f)
         {
             iswallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -163,13 +144,6 @@ public class Player : MonoBehaviour
         {
             iswallSliding = false;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        Gizmos.DrawWireSphere(wallCheck.transform.position, 0.2f);
     }
 
     private void Flip()
@@ -181,16 +155,16 @@ public class Player : MonoBehaviour
             localScale.x *= -1f;
             BulletDir *= -1;
             transform.localScale = localScale;
-        }    
+        }
     }
 
     private void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
+        if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
         {
             PlayerStatManager.instance.CurBulletCount--;
-            Debug.Log(PlayerStatManager.instance.CurBulletCount);
-            //bulletshotCurTime = bulletshotCoolTime;
+            Debug.Log(("남은 탄수 : ") + PlayerStatManager.instance.CurBulletCount);
+            PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime;
             GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
         }
     }

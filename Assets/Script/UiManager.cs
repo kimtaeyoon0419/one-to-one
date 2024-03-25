@@ -17,13 +17,9 @@ public class UiManager : MonoBehaviour
     {
 
     }
-
-    public void LoadMainScene()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene("Main");
-    }
-    public void LoadStage1Scene()
-    {
-        SceneManager.LoadScene("Stage_1");
+        
+        SceneManager.LoadScene(sceneName);
     }
 }
