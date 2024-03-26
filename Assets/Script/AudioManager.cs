@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using Unity.UI;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
+
     public enum sfx
     {
         Shoot,
@@ -27,7 +30,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
         Init();
     }
 
@@ -47,7 +58,7 @@ public class AudioManager : MonoBehaviour
         sfxObject.transform.parent = transform;
         sfxPlayers = new AudioSource[channels];
 
-        for(int index = 0; index < sfxPlayers.Length; index++)
+        for (int index = 0; index < sfxPlayers.Length; index++)
         {
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
@@ -55,9 +66,21 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayBGM(bool isplay)
+    {
+        if (isplay)
+        {
+            bgmPlayer.Play();
+        }
+        else
+        {
+            bgmPlayer.Stop();
+        }
+    }
+
     public void Playsfx(sfx sfx)
     {
-        for(int index = 0; index < sfxPlayers.Length;index++)
+        for (int index = 0; index < sfxPlayers.Length; index++)
         {
             int loopindex = (index + channelIndex) % sfxPlayers.Length;
 
@@ -69,4 +92,6 @@ public class AudioManager : MonoBehaviour
             break;
         }
     }
+    
+
 }

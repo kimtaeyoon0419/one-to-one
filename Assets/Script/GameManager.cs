@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public Player player;
     public ObjectPool pools;
     public Bullet Bullet;
+    public MapMove MapMove;
 
+    private bool isMapMove = false;
 
     void Awake()
     {
@@ -22,6 +24,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+    private void OnEnable()
+    {
+        Debug.Log("¿¿æ÷");
+    }
+    void Start()
+    {
+        
     }
 
     void Update()
