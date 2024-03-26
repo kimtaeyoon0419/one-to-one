@@ -19,6 +19,12 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
+    public enum sfx
+    {
+        Shoot,
+        Jump
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -46,6 +52,21 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
             sfxPlayers[index].volume = sfxVolume;
+        }
+    }
+
+    public void Playsfx(sfx sfx)
+    {
+        for(int index = 0; index < sfxPlayers.Length;index++)
+        {
+            int loopindex = (index + channelIndex) % sfxPlayers.Length;
+
+            if (sfxPlayers[loopindex].isPlaying) continue;
+
+            channelIndex = loopindex;
+            sfxPlayers[loopindex].clip = sfxClips[(int)sfx];
+            sfxPlayers[loopindex].Play();
+            break;
         }
     }
 }

@@ -69,7 +69,11 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if(IsGrounded() || IsGroundedMs()) rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
+            if (IsGrounded() || IsGroundedMs())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
+                AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
+            }
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
@@ -114,6 +118,7 @@ public class Player : MonoBehaviour
             wallJumpingCounter = 0f;
             if (playerDir < 0) playerDir = Direction.Right;
             else if (playerDir > 0) playerDir = Direction.Left;
+            AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
 
             if (transform.localScale.x != wallJumpingDirection)
             {
@@ -162,6 +167,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
         {
+            AudioManager.Instance.Playsfx(AudioManager.sfx.Shoot);
             PlayerStatManager.instance.CurBulletCount--;
             Debug.Log(("³²Àº Åº¼ö : ") + PlayerStatManager.instance.CurBulletCount);
             PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime;
