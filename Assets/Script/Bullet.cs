@@ -9,9 +9,20 @@ public class Bullet : MonoBehaviour
     public float dirVec;
 
     void OnEnable()
-    {
-        if (GameManager.instance.player.playerDir == Direction.Right) DirVec((int)Direction.Right);
-        else DirVec((int)Direction.Left);
+    {   
+
+        AudioManager.instance.PlaySFX("Shot");
+        if (GameManager.instance.player.playerDir == Direction.Right)
+        {
+            DirVec((int)Direction.Right);
+            Debug.Log("¿À");
+        }
+            
+        else
+        {
+            DirVec((int)Direction.Left);
+            Debug.Log("¿Þ");
+        }
     }
 
     void Update()
