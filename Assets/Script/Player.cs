@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
                 AudioManager.instance.PlaySFX("Jump");
                 //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
+                Debug.Log("Jump");
             }
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
