@@ -10,18 +10,14 @@ public class Bullet : MonoBehaviour
 
     void OnEnable()
     {   
-
         AudioManager.instance.PlaySFX("Shot");
-        if (GameManager.instance.player.playerDir == Direction.Right)
+        if (PlayerBulletDir.instance.player.playerDir == Direction.Right)
         {
             DirVec((int)Direction.Right);
-            Debug.Log("¿À");
         }
-            
         else
         {
             DirVec((int)Direction.Left);
-            Debug.Log("¿Þ");
         }
     }
 
