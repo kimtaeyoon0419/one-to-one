@@ -1267,6 +1267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5318e133031684f9dc5c3def921b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HpBar:
+  - {fileID: 1260557376}
+  - {fileID: 153026941}
+  - {fileID: 1099782594}
+  - {fileID: 1207304857}
 --- !u!1 &457926131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,7 +2373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   JumpPoawer: 15
-  MaxHp: 100
   CurHp: 0
   AttackPower: 1
   CurBulletCount: 0
@@ -4327,6 +4331,7 @@ MonoBehaviour:
   pools: {fileID: 501602126}
   Bullet: {fileID: 739015622489296759, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
   MapMove: {fileID: 992868149}
+  HpBar: {fileID: 405470517}
 --- !u!4 &1662808162
 Transform:
   m_ObjectHideFlags: 0

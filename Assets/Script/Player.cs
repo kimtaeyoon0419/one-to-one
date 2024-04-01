@@ -55,6 +55,11 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerStatManager.instance.CurHp--;
+            GameManager.instance.HpBar.HpBarActive();
+        }
     }
 
     void playerMove()

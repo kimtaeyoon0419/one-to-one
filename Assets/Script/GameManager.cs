@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public ObjectPool pools;
     public Bullet Bullet;
     public MapMove MapMove;
+    public HpBarImg HpBar;
 
     private bool isMapMove = false;
 

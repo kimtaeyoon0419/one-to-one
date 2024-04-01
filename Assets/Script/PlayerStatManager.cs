@@ -12,7 +12,7 @@ public class PlayerStatManager : MonoBehaviour
     public float JumpPoawer;
 
     [Header("플레이어 체력스텟")]
-    public int MaxHp;
+    private int MaxHp = 4;
     public int CurHp;
 
     [Header("플레이어 공격스텟")]
