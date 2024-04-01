@@ -22,6 +22,9 @@ public class HpBarImg : MonoBehaviour
 
     public void HpBarActive()
     {
-        HpBar[PlayerStatManager.instance.CurHp].gameObject.SetActive(false);
+        if (PlayerStatManager.instance.CurHp >=  0)
+        {
+            HpBar[PlayerStatManager.instance.CurHp].gameObject.SetActive(false);
+        }
     }
 }

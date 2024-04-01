@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monstermovement : MonoBehaviour
@@ -37,6 +38,10 @@ public class Monstermovement : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
+            if (Health >= 0)
+            {
+                break;
+            }
             yield return new WaitForSeconds(0.1f);
             sr.color = hafpA;
             yield return new WaitForSeconds(0.1f);
