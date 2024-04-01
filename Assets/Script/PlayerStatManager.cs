@@ -18,7 +18,7 @@ public class PlayerStatManager : MonoBehaviour
     [Header("플레이어 공격스텟")]
     public int AttackPower = 1;
     public int CurBulletCount;
-    public int MaxBublletCount = 10;
+    public int MaxBublletCount;
     public float bulletshotCoolTime;
     public float bulletshotCurTime;
     

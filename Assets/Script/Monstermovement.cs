@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-
-
 
 public class Monstermovement : MonoBehaviour
 {
     [SerializeField] int Health = 10;
 
+    SpriteRenderer sr;
+    Color hafpA = new Color(255, 0, 0, 0.5f);
+    Color fullA = new Color(255, 0, 0, 1);
+
+
     void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
     }
 
 
@@ -18,12 +22,34 @@ public class Monstermovement : MonoBehaviour
     {
         
     }
+
+    public void Hunt(int damge)
+    {
+        Health -= damge;
+        Debug.Log("아파");
+        if(Health < 0)
+        {
+            gameObject.active = false;
+        }
+        StartCoroutine(isHit());
+    }
+    IEnumerator isHit()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            sr.color = hafpA;
+            yield return new WaitForSeconds(0.1f);
+            sr.color = fullA;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
         {
-            Health -= PlayerStatManager.instance.AttackPower;
-            Debug.Log(("몬스터 남은 체력 : ") + Health);
+            Hunt(PlayerStatManager.instance.AttackPower);
         }
     }
+
 }
