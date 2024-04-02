@@ -17,13 +17,13 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerStatManager.instance.CurHp <= 0)
+        if(PlayerStatManager.instance.CurHp <= 0 && SetGameOverUI == false)
         {
             StartCoroutine(GameOverUIOn());
         }
     }
 
-    IEnumerator GameOverUIOn()
+    IEnumerator GameOverUIOn() // 수정해야함
     {
         SetGameOverUI = true;
         GameOverUI[0].SetActive(true);

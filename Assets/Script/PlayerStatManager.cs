@@ -76,7 +76,7 @@ public class PlayerStatManager : MonoBehaviour
     {
         Debug.Log(scene.name);
         // 플레이어 스탯 초기화
-        if (scene.name == "Main")
+        if (scene.name == "Main" && scene.name == "Stage_1")
         {
             InitializeStats();
         }
