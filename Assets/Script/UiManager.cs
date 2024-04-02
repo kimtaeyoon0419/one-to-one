@@ -8,19 +8,31 @@ using Unity.VisualScripting;
 public class UiManager : MonoBehaviour
 {
     public GameObject SettingPanel;
+    public GameObject[] GameOverUI;
     public Slider musicSlider, sfxSlider;
 
     private bool SetPanelOnoff = false;
+    private bool SetGameOverUI = false;
 
-    void Start()
-    {
-        musicSlider.value = AudioManager.instance.musicSource.volume;
-        sfxSlider.value = AudioManager.instance.sfxSource.volume;
-    }
 
     void Update()
     {
+        if(PlayerStatManager.instance.CurHp <= 0)
+        {
+            StartCoroutine(GameOverUIOn());
+        }
+    }
 
+    IEnumerator GameOverUIOn()
+    {
+        SetGameOverUI = true;
+        GameOverUI[0].SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        GameOverUI[1].SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        GameOverUI[2].SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        GameOverUI[3].SetActive(true);
     }
 
     public void SettingPanelOnoff()
@@ -39,17 +51,23 @@ public class UiManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-        if(sceneName == ("Stage_1"))
+
+        if (SetGameOverUI != false)
         {
-            //AudioManager.Instance.PlayBGM(true);
+            for (int i = 0; i < GameOverUI.Length; i++)
+            {
+                GameOverUI[i].SetActive(false);
+            }
+            SceneManager.LoadScene(sceneName);
         }
+        else SceneManager.LoadScene(sceneName);
     }
+
     public void ToggleMusic()
     {
         AudioManager.instance.ToggleMusic();
     }
-    public void ToggleSFX() 
+    public void ToggleSFX()
     {
         AudioManager.instance.ToggleSFX();
     }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerStatManager : MonoBehaviour
 {
@@ -21,7 +23,12 @@ public class PlayerStatManager : MonoBehaviour
     public int MaxBublletCount;
     public float bulletshotCoolTime;
     public float bulletshotCurTime;
-    
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     void Start()
     {
@@ -50,6 +57,28 @@ public class PlayerStatManager : MonoBehaviour
         {
             CurBulletCount = MaxBublletCount;
         }
+        if (Input.GetKeyDown(KeyCode.S) && CurHp > 0)
+        {
+            CurHp--;
+        }
+        if (Input.GetKeyDown(KeyCode.D) && CurHp < 4)
+        {
+            CurHp++;
+        }
     }
-    
+    public void InitializeStats()
+    {
+        CurHp = MaxHp;
+        CurBulletCount = MaxBublletCount;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log(scene.name);
+        // 플레이어 스탯 초기화
+        if (scene.name == "Main")
+        {
+            InitializeStats();
+        }
+    }
 }

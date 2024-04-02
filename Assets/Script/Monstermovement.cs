@@ -32,16 +32,12 @@ public class Monstermovement : MonoBehaviour
         {
             gameObject.active = false;
         }
-        StartCoroutine(isHit());
+        else StartCoroutine(isHit());
     }
     IEnumerator isHit()
     {
         for(int i = 0; i < 3; i++)
         {
-            if (Health >= 0)
-            {
-                break;
-            }
             yield return new WaitForSeconds(0.1f);
             sr.color = hafpA;
             yield return new WaitForSeconds(0.1f);

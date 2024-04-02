@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.4f;
+    private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(5f, 12f);
 
     Rigidbody2D rb;
@@ -55,11 +55,7 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            PlayerStatManager.instance.CurHp--;
-            GameManager.instance.HpBar.HpBarActive();
-        }
+        
     }
 
     void playerMove()
@@ -78,7 +74,7 @@ public class Player : MonoBehaviour
             if (IsGrounded() || IsGroundedMs())
             {
                 rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
-                AudioManager.instance.PlaySFX("Jump");
+                AudioManager.instance.PlaySFX("Jump");  
                 //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
                 Debug.Log("Jump");
             }
