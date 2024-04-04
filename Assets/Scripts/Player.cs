@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Flip() // 가능방향 바라보기
+    private void Flip() // 가는방향 바라보기
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
