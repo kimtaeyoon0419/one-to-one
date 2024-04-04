@@ -17,23 +17,10 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerStatManager.instance.CurHp <= 0 && SetGameOverUI == false)
-        {
-            StartCoroutine(GameOverUIOn());
-        }
+        
     }
 
-    IEnumerator GameOverUIOn() // 수정해야함
-    {
-        SetGameOverUI = true;
-        GameOverUI[0].SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        GameOverUI[1].SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        GameOverUI[2].SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        GameOverUI[3].SetActive(true);
-    }
+    
 
     public void SettingPanelOnoff()
     {

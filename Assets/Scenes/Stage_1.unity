@@ -4123,6 +4123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
+  delayTime: 0.1
 --- !u!1 &1207304855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,6 +4862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
+  delayTime: 0.1
 --- !u!61 &1408476192
 BoxCollider2D:
   m_ObjectHideFlags: 0
