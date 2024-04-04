@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask monsterLayer;
 
-    [Header("총공격 스텟")]
+    [Header("총공격 방향 및 위치")]
     [SerializeField] private Transform bulletPosition;
     [SerializeField] private int BulletDir = 1;
 
@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(5f, 12f);
 
+    private bool isBoosStageGo = false; // 보스 스테이지 입장 검사
+    Vector3 originalPos; // 보스입장 할 때 원래위치
     Rigidbody2D rb;
 
     private void Awake()
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isWallJumping)
+        if (!isWallJumping && !isBoosStageGo)
         {
             playerMove();
         }
@@ -55,7 +57,6 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
-        
     }
 
     void playerMove()
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (IsGrounded() || IsGroundedMs())
+            if (IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
                 AudioManager.instance.PlaySFX("Jump");  
@@ -85,24 +86,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool isWalled()
+    private bool isWalled() // 벽확인 레이케스트
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
-    private bool IsGrounded()
+    private bool IsGrounded() // 바닥확인 레이케스트
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-    private bool IsGroundedMs()
-    {
-        Debug.Log("응애");
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, monsterLayer);
-    }
+   
 
-    private void WallJump()
+    private void WallJump() //벽점프
     {
-        if (iswallSliding)
+        if (iswallSliding) 
         {
             isWallJumping = false;
             wallJumpingDirection = -transform.localScale.x;
@@ -114,7 +111,7 @@ public class Player : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f) //벽점프 실행
         {
             horizontal = 0;
             isWallJumping = true;
@@ -142,7 +139,7 @@ public class Player : MonoBehaviour
         isWallJumping = false;
     }
 
-    private void wallSlide()
+    private void wallSlide() // 벽타기
     {
         if (isWalled() && !IsGrounded() && horizontal != 0f)
         {
@@ -155,7 +152,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Flip()
+    private void Flip() // 가능방향 바라보기
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
@@ -167,7 +164,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Fire()
+    private void Fire() // 총쏘기
     {
         if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
         {
@@ -177,4 +174,6 @@ public class Player : MonoBehaviour
             GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
         }
     }
+
+    
 }
