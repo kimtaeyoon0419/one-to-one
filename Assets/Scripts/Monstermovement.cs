@@ -16,9 +16,12 @@ public class Monstermovement : MonoBehaviour
     [SerializeField] private float delayTime;
     private WaitForSeconds waitForSeconds;
 
+    Rigidbody2D rb;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         waitForSeconds = new WaitForSeconds(delayTime);
     }
 
@@ -57,4 +60,8 @@ public class Monstermovement : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        
+    }
 }

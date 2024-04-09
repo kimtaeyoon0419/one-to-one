@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
             if (IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
-                AudioManager.instance.PlaySFX("Jump");  
+                AudioManager.instance.PlaySFX("Jump");
                 //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
                 Debug.Log("Jump");
             }
