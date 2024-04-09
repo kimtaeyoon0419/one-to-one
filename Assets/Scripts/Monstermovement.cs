@@ -60,8 +60,13 @@ public class Monstermovement : MonoBehaviour
         }
     }
 
-    private void Attack()
+    private void Attack()//레이케스트에 플레이어가 들어오면 공격!!!
     {
-        
+        Debug.DrawRay(rb.position, Vector2.right, Color.yellow);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right, 1, LayerMask.GetMask("Player"));
+        if (hit.collider != null)
+        {
+            //공격
+        }
     }
 }
