@@ -27,21 +27,24 @@ public class Player : MonoBehaviour
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.05f;
-    private Vector2 wallJumpingPower = new Vector2(5f, 12f);
+    private float wallJumpingDuration = 0.2f;
+    private Vector2 wallJumpingPower = new Vector2(8f, 12f);
 
     private bool isBoosStageGo = false; // 보스 스테이지 입장 검사
     Vector3 originalPos; // 보스입장 할 때 원래위치
     Vector2 velocity;
     Rigidbody2D rb;
 
+    // # --- Test Code 
+    private Vector3 jumpVec3;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
 
     }
-    
-    
+
+
     void FixedUpdate()
     {
         if (!isWallJumping && !isBoosStageGo)
@@ -106,15 +109,15 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
    
-
-    private void WallJump() //벽점프
+     
+    private void WallJump() // 벽점프
     {
-        if (iswallSliding) 
+        if (iswallSliding) // 벽에 타고 있는가?
         {
-            isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
-            wallJumpingCounter = wallJumpingTime;
-            CancelInvoke(nameof(StopWallJumping));
+            isWallJumping = false; // 벽에서 점프중이 아님
+            wallJumpingDirection = -transform.localScale.x; // 벽의 반대 방향으로 점프
+            wallJumpingCounter = wallJumpingTime; // wallJumpingTime 동안 벽점프를 할 수 있음 
+            //CancelInvoke(nameof(StopWallJumping));
         }
         else
         {
@@ -123,13 +126,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f) //벽점프 실행
         {
-            horizontal = 0;
+            horizontal = 0; // 플레아어 속도를 0으로 ( 수평 속도만 0 ) 안하면 점프 도중 반대방향을 바라봄
+            velocity = Vector2.zero; // 플레이어 속도를 0으로 ( 수직 수평 전부 ) 
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
-            wallJumpingCounter = 0f;
-            if (playerDir < 0) playerDir = Direction.Right;
-            else if (playerDir > 0) playerDir = Direction.Left;
-            AudioManager.instance.PlaySFX("Jump");
+            wallJumpingCounter = 0f; // 벽 점프가 끝난 이후 다시 점프 가능
+            if (playerDir == Direction.Left) playerDir = Direction.Right; 
+            else if (playerDir == Direction.Right) playerDir = Direction.Left; // 벽 점프를 했을 때 반대 방향으로 초기화 ( bullet 발사 방향 용도 )
+            AudioManager.instance.PlaySFX("Jump"); // 점프 사운드
 
             if (transform.localScale.x != wallJumpingDirection)
             {
@@ -138,9 +142,9 @@ public class Player : MonoBehaviour
                 localScale.x *= -1f;
                 BulletDir *= -1;
                 transform.localScale = localScale;
-            }
+            } // 벽점프를 했을 때 캐릭터를 반전 시킴 ( 플레이어 캐릭터 본인 방향 초기화)
 
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+            Invoke(nameof(StopWallJumping), wallJumpingDuration); // 벽 점프 상태 지속시간
         }
     }
 
