@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -6,20 +7,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Move")]
     public Direction playerDir;
     public float horizontal;
     private bool isFacingRight = true;
     private bool iswallSliding;
     [SerializeField] private float wallSlidingSpeed = 2f;
 
-    [Header("레이케스트")]
+    [Header("Raycast")]
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask monsterLayer;
 
-    [Header("총공격 방향 및 위치")]
+    [Header("Bullet Atk")]
     [SerializeField] private Transform bulletPosition;
     [SerializeField] private int BulletDir = 1;
 
@@ -34,6 +36,15 @@ public class Player : MonoBehaviour
     Vector3 originalPos; // 보스입장 할 때 원래위치
     Vector2 velocity;
     Rigidbody2D rb;
+    private CinemachineImpulseSource impulseSource;
+
+    [Header("SpriteRenderer")]
+    SpriteRenderer sr;
+    Color hafpA = new Color(0, 0, 0);
+    Color fullA = new Color(1, 1, 1);
+    [SerializeField] private float delayTime;
+    private WaitForSeconds waitForSeconds;
+
 
     // # --- Test Code 
     private Vector3 jumpVec3;
@@ -41,9 +52,15 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        sr = GetComponent<SpriteRenderer>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+        waitForSeconds = new WaitForSeconds(delayTime);
     }
 
+private void Start()
+    {
+        playerDir = Direction.Right;
+    }
 
     void FixedUpdate()
     {
@@ -64,17 +81,14 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
-    private void Start()
-    {
-        playerDir = Direction.Right;
-    }
+    
 
     void playerMove()
     {
         horizontal = Input.GetAxis("Horizontal");
         if (horizontal > 0) playerDir = Direction.Right;
         else if (horizontal < 0) playerDir = Direction.Left;
-        
+
         velocity.x = horizontal * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -108,8 +122,8 @@ public class Player : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-   
-     
+
+
     private void WallJump() // 벽점프
     {
         if (iswallSliding) // 벽에 타고 있는가?
@@ -131,7 +145,7 @@ public class Player : MonoBehaviour
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f; // 벽 점프가 끝난 이후 다시 점프 가능
-            if (playerDir == Direction.Left) playerDir = Direction.Right; 
+            if (playerDir == Direction.Left) playerDir = Direction.Right;
             else if (playerDir == Direction.Right) playerDir = Direction.Left; // 벽 점프를 했을 때 반대 방향으로 초기화 ( bullet 발사 방향 용도 )
             AudioManager.instance.PlaySFX("Jump"); // 점프 사운드
 
@@ -188,6 +202,36 @@ public class Player : MonoBehaviour
             GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
         }
     }
+    private void TakeDamage()
+    {
+        Debug.Log("데미지입음");
+        // 플레이어 hp 다운시켜주고 오른쪽 체력바 하나 깎아주고
+        // 맞았다는 표시( 사운드 or 화면 흔들림 or 광과민성 )
+        // 무적코루틴실행
+        // 밀려나는물리
+        StartCoroutine(Co_isHit());
+        CameraShakeManager.instance.CameraShake(impulseSource);
+        PlayerStatManager.instance.DownHP();
+        
+    }
 
-    
+    IEnumerator Co_isHit()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return waitForSeconds;
+            sr.color = hafpA;
+            yield return waitForSeconds;
+            sr.color = fullA;
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyAtk"))
+        {
+            TakeDamage();
+        }
+    }
 }

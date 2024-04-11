@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("ObjectPooling")]
     public ObjectPool pools;
+    [Header("Bullet")]
     public Bullet Bullet;
     public MapMove MapMove;
 

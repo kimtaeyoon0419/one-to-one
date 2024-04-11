@@ -13,22 +13,25 @@ public class HpBarImg : MonoBehaviour
     void Start()
     {
         HpBarNum = PlayerStatManager.instance.CurHp-1;
+        for(int i = 0; i < PlayerStatManager.instance.CurHp; i++)
+        {
+            HpBar[i].gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // ¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     {
-        if (HpBarNum > PlayerStatManager.instance.CurHp-1)
+        if (HpBarNum > PlayerStatManager.instance.CurHp-1 && 0 > HpBarNum)
         {
             HpBar[HpBarNum].gameObject.SetActive(false);
             HpBarNum--;
         }
-        else if(HpBarNum < PlayerStatManager.instance.CurHp-1)
+        else if(HpBarNum < PlayerStatManager.instance.CurHp-1 && HpBarNum < PlayerStatManager.instance.Max)
         {
             HpBarNum++;
             HpBar[HpBarNum].gameObject.SetActive(true);
         }
-        
     }
 
     public void HpBarActive()

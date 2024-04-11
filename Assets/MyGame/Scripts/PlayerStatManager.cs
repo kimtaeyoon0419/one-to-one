@@ -14,7 +14,7 @@ public class PlayerStatManager : MonoBehaviour
     public float JumpPoawer;
 
     [Header("플레이어 체력스텟")]
-    private int MaxHp = 4;
+    [SerializeField]public int MaxHp;
     public int CurHp;
 
     [Header("플레이어 공격스텟")]
@@ -80,5 +80,10 @@ public class PlayerStatManager : MonoBehaviour
         {
             InitializeStats();
         }
+    }
+
+    public void DownHP()
+    {
+        CurHp -= 1;
     }
 }

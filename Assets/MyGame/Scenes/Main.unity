@@ -1126,9 +1126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingPanel: {fileID: 1022312680}
-  GameOverUI: []
   musicSlider: {fileID: 1934269426}
   sfxSlider: {fileID: 1561839221}
+  GameOverUI: []
 --- !u!95 &558606084
 Animator:
   serializedVersion: 5
@@ -1590,10 +1590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9e871844323fc46913d32f9dee7fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingPanel: {fileID: 0}
+  SettingPanel: {fileID: 1022312680}
+  musicSlider: {fileID: 1934269426}
+  sfxSlider: {fileID: 1561839221}
   GameOverUI: []
-  musicSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
 --- !u!4 &702603385
 Transform:
   m_ObjectHideFlags: 0

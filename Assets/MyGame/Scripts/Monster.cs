@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Monstermovement : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public MonsterStat stat;
     public MonsterUnitCode unitCode;
@@ -16,6 +16,7 @@ public class Monstermovement : MonoBehaviour
     Color fullA = new Color(1, 1, 1, 1);
 
     [SerializeField] private float delayTime;
+    [SerializeField] private GameObject AttackCollider;
     private WaitForSeconds waitForSeconds;
 
     Rigidbody2D rb;
@@ -39,7 +40,7 @@ public class Monstermovement : MonoBehaviour
 
     void Update()
     {
-        Attack();
+        AttackRay();
         if(stat.curAtkSpeed > 0)
         {
             stat.curAtkSpeed -= Time.deltaTime;
@@ -54,9 +55,9 @@ public class Monstermovement : MonoBehaviour
         {   
             gameObject.active = false;
         }
-        else StartCoroutine(isHit());
+        else StartCoroutine(Co_isHit());
     }
-    IEnumerator isHit()
+    IEnumerator Co_isHit()
     {
         for(int i = 0; i < 3; i++)
         {
@@ -68,7 +69,7 @@ public class Monstermovement : MonoBehaviour
     }
 
 
-    private void Attack()//레이케스트에 플레이어가 들어오면 공격!!!
+    private void AttackRay()//레이케스트에 플레이어가 들어오면 공격!!!
     {
         Debug.DrawRay(rb.position, Vector2.right * stat.atkRange, Color.yellow);
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right, stat.atkRange, LayerMask.GetMask("Player"));
@@ -77,5 +78,18 @@ public class Monstermovement : MonoBehaviour
             stat.curAtkSpeed = stat.atkSpeed;
             animator.SetTrigger("Attack");
         }
+    }
+
+    private void Attak()
+    {
+        StartCoroutine(Co_attack());
+        Debug.Log("Dd)");
+    }
+
+    private IEnumerator Co_attack()
+    {
+        AttackCollider.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        AttackCollider.SetActive(false);
     }
 }

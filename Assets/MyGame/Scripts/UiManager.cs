@@ -7,9 +7,12 @@ using Unity.VisualScripting;
 
 public class UiManager : MonoBehaviour
 {
+    [Header("Setting")]
     public GameObject SettingPanel;
-    public GameObject[] GameOverUI;
     public Slider musicSlider, sfxSlider;
+    [Header("GameOver")]
+    public GameObject[] GameOverUI;
+    
 
     private bool SetPanelOnoff = false;
     private bool SetGameOverUI = false;
