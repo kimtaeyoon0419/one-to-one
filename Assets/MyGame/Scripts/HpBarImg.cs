@@ -22,15 +22,19 @@ public class HpBarImg : MonoBehaviour
     // Update is called once per frame
     void Update() // ¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     {
-        if (HpBarNum > PlayerStatManager.instance.CurHp-1 && 0 > HpBarNum)
+        if (HpBarNum > PlayerStatManager.instance.CurHp-1 )
         {
             HpBar[HpBarNum].gameObject.SetActive(false);
             HpBarNum--;
         }
-        else if(HpBarNum < PlayerStatManager.instance.CurHp-1 && HpBarNum < PlayerStatManager.instance.Max)
+        else if(HpBarNum < PlayerStatManager.instance.CurHp-1 )   
         {
             HpBarNum++;
             HpBar[HpBarNum].gameObject.SetActive(true);
+        }
+        else if(HpBarNum <= 0)
+        {
+
         }
     }
 
