@@ -14,8 +14,7 @@ public class PlayerStatManager : MonoBehaviour
     public float JumpPoawer;
 
     [Header("플레이어 체력스텟")]
-    [SerializeField]public int MaxHp;
-    public int CurHp;
+    public int ArmorDurability = 0;
 
     [Header("플레이어 공격스텟")]
     public int AttackPower = 1;
@@ -32,7 +31,6 @@ public class PlayerStatManager : MonoBehaviour
 
     void Start()
     {
-        CurHp = MaxHp;
         CurBulletCount = MaxBublletCount;
         if (instance == null)
         {
@@ -43,7 +41,6 @@ public class PlayerStatManager : MonoBehaviour
         {
             Destroy(this);
         }
-        CurHp = MaxHp;
     }
 
 
@@ -53,22 +50,13 @@ public class PlayerStatManager : MonoBehaviour
         {
             bulletshotCurTime -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.F)) 
+        if (Input.GetKeyDown(KeyCode.F))
         {
             CurBulletCount = MaxBublletCount;
-        }
-        if (Input.GetKeyDown(KeyCode.S) && CurHp > 0)
-        {
-            CurHp--;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && CurHp < 4)
-        {
-            CurHp++;
         }
     }
     public void InitializeStats()
     {
-        CurHp = MaxHp;
         CurBulletCount = MaxBublletCount;
     }
 
@@ -82,8 +70,8 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
-    public void DownHP()
+    public void Die()
     {
-        CurHp -= 1;
+
     }
 }

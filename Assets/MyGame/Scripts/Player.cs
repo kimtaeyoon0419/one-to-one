@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool isFacingRight = true;
     private bool iswallSliding;
     [SerializeField] private float wallSlidingSpeed = 2f;
+    private bool isJumping = false;
 
     [Header("Raycast")]
     [SerializeField] private Transform wallCheck;
@@ -45,8 +46,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float delayTime;
     private WaitForSeconds waitForSeconds;
 
-
-    // # --- Test Code 
     private Vector3 jumpVec3;
 
     private void Awake()
@@ -99,10 +98,11 @@ private void Start()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (IsGrounded())
+            if (!isJumping)
             {
-                rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
+                rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
                 AudioManager.instance.PlaySFX("Jump");
+                isJumping = true;
                 //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
                 Debug.Log("Jump");
             }
@@ -118,10 +118,10 @@ private void Start()
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
-    private bool IsGrounded() // 바닥확인 레이케스트
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
+    //private bool IsGrounded() // 바닥확인 레이케스트
+    //{
+    //    return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    //}
 
 
     private void WallJump() // 벽점프
@@ -154,8 +154,8 @@ private void Start()
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
-                BulletDir *= -1;
                 transform.localScale = localScale;
+                BulletDir *= -1;
             } // 벽점프를 했을 때 캐릭터를 반전 시킴 ( 플레이어 캐릭터 본인 방향 초기화)
 
             Invoke(nameof(StopWallJumping), wallJumpingDuration); // 벽 점프 상태 지속시간
@@ -169,7 +169,7 @@ private void Start()
 
     private void wallSlide() // 벽타기
     {
-        if (isWalled() && !IsGrounded() && horizontal != 0f)
+        if (isWalled() && isJumping && horizontal != 0f)
         {
             iswallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -191,7 +191,7 @@ private void Start()
             transform.localScale = localScale;
         }
     }
-
+    
     private void Fire() // 총쏘기
     {
         if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
@@ -211,7 +211,6 @@ private void Start()
         // 밀려나는물리
         StartCoroutine(Co_isHit());
         CameraShakeManager.instance.CameraShake(impulseSource);
-        PlayerStatManager.instance.DownHP();
         
     }
 
@@ -229,9 +228,16 @@ private void Start()
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAtk"))
+        if(PlayerStatManager.instance.ArmorDurability < 0)
         {
-            TakeDamage();
+            PlayerStatManager.instance.Die();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
         }
     }
 }
