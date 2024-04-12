@@ -346,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154543888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.54017687, z: -10}
+  m_LocalPosition: {x: -0.05, y: -0.009823322, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1024,7 +1024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651981790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1483,7 +1483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903819893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.39, z: 0}
+  m_LocalPosition: {x: 0, y: 2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1766,8 +1766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   JumpPoawer: 15
-  MaxHp: 4
-  CurHp: 0
+  ArmorDurability: 0
   AttackPower: 1
   CurBulletCount: 0
   MaxBublletCount: 500
@@ -2362,7 +2361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273700172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.54017687, z: -10}
+  m_LocalPosition: {x: -0.05, y: -0.009823322, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2466,22 +2465,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDir: 0
   horizontal: 0
-  wallSlidingSpeed: 2
-  wallCheck: {fileID: 651981791}
-  wallLayer:
+  slidingSpeed: 0.5
+  wallChk: {fileID: 651981791}
+  wallchkDistance: 0.1
+  w_Layer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheck: {fileID: 1108992419}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  monsterLayer:
-    serializedVersion: 2
-    m_Bits: 128
   bulletPosition: {fileID: 490675553}
   BulletDir: 1
   delayTime: 0.1
-  hpBar: {fileID: 0}
 --- !u!61 &1351111155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2716,8 +2708,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382035331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 23.664177, z: 0}
-  m_LocalScale: {x: -20.05, y: 60, z: 1}
+  m_LocalPosition: {x: 0.0266, y: 24.116, z: 0}
+  m_LocalScale: {x: -20.104134, y: 59.094, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
