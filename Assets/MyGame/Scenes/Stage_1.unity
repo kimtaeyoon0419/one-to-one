@@ -2470,6 +2470,7 @@ MonoBehaviour:
   xWallJumpingForce: 10
   yWallJumpingForce: 10
   wallJumpTime: 0.05
+  hor: 1
   wallChk: {fileID: 651981791}
   wallchkDistance: 0.5
   w_Layer:
@@ -4231,6 +4232,8 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  _scene:
+    m_Handle: -69342
 --- !u!4 &1977623469
 Transform:
   m_ObjectHideFlags: 0
