@@ -13,24 +13,31 @@ public class Player : MonoBehaviour
     private bool isJumping = false;
 
     float isRight = 1;
+
+    [Header("WallJump")]
     bool isWall;
-    public float slidingSpeed;
+    bool isGrounded;
+    public bool isWallSliding;
+    public float wallSlidingSpeed;
+    bool isWallJumping;
+    public float xWallJumpingForce;
+    public float yWallJumpingForce;
+    public float wallJumpTime;
+    public float hor = 1;
 
     [Header("Raycast")]
     public Transform wallChk;
     public float wallchkDistance;
     public LayerMask w_Layer;
 
+    public Transform groundChk;
+    public float groundchkDistance;
+    public LayerMask g_Layer;
+
     [Header("Bullet Atk")]
     [SerializeField] private Transform bulletPosition;
     [SerializeField] private int BulletDir = 1;
 
-    private bool isWallJumping;
-    private float wallJumpingDirection;
-    private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.2f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 12f);
 
     private bool isBoosStageGo = false; // 보스 스테이지 입장 검사
     Vector3 originalPos; // 보스입장 할 때 원래위치
@@ -62,18 +69,22 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isWallJumping && !isBoosStageGo)
+        if (isWallSliding) //벽 슬라이딩 중이라면
         {
-            playerMove();
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue)); // wallSlidingSpeed만큼 느려짐
+        }
+        playerMove();
+        if (isWallJumping == true) // 벽점프 실행
+        {
+            rb.velocity = new Vector2(xWallJumpingForce * -isRight, yWallJumpingForce); // 벽의 반대편으로 점프
         }
     }
 
     void Update()
     {
-        isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
+        isWall = Physics2D.OverlapCircle(wallChk.position, wallchkDistance, w_Layer);
+        isGrounded = Physics2D.OverlapCircle(groundChk.position, groundchkDistance, g_Layer);
         Fire();
-        //wallSlide();
-        //WallJump();
         playerJump();
         if ((horizontal > 0 && isRight < 0) || (horizontal < 0 && isRight > 0))
         {
@@ -81,12 +92,26 @@ public class Player : MonoBehaviour
         }
         else if (horizontal == 0)
         {
-            
+            hor = 0;
         }
-        if (isWall)
+        if (isWall && !isGrounded && horizontal != 0)
         {
-            wallSlide();
+            isWallSliding = true;
         }
+        else
+        {
+            isWallSliding = false;
+        }
+        if(Input.GetButtonDown("Jump") && isWallSliding == true)
+        {
+            isWallJumping = true;
+            Invoke("SetWallJumpingToFalse", wallJumpTime);
+        }
+        
+    }
+    void SetWallJumpingToFalse()
+    {
+        isWallJumping = false;
     }
 
     void playerMove()
@@ -109,16 +134,13 @@ public class Player : MonoBehaviour
 
     void playerJump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            if (!isJumping)
-            {
-                rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
-                AudioManager.instance.PlaySFX("Jump");
-                isJumping = true;
-                //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
-                Debug.Log("Jump");
-            }
+            rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
+            AudioManager.instance.PlaySFX("Jump");
+            isJumping = true;
+            //AudioManager.Instance.Playsfx(AudioManager.sfx.Jump);
+            Debug.Log("Jump");
         }
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
@@ -126,22 +148,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void wallSlide()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(wallChk.position, Vector2.right * isRight * wallchkDistance);
-    }
-
     private void Flip() // 가는방향 바라보기
     {
-            BulletDir *= -1;
-            transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
-            isRight = isRight * -1;
+        BulletDir *= -1;
+        transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
+        isRight = isRight * -1;
     }
 
     private void Fire() // 총쏘기

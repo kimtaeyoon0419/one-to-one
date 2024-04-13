@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   JumpPoawer: 15
-  CurHp: 0
+  ArmorDurability: 0
   AttackPower: 1
   CurBulletCount: 0
   MaxBublletCount: 500
@@ -3086,7 +3086,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

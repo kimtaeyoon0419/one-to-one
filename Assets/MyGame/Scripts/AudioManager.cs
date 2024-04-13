@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
+        MusicVolume(0.5f);
+        SFXVolume(0.5f);
         PlayMusic("Theme");
     }
 
