@@ -69,9 +69,4 @@ public class PlayerStatManager : MonoBehaviour
             InitializeStats();
         }
     }
-
-    public void Die()
-    {
-
-    }
 }
