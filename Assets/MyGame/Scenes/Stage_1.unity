@@ -363,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157478191}
   m_Layer: 0
-  m_Name: ---------Object---------
+  m_Name: -------------Object---------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,7 +640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418025127}
   m_Layer: 0
-  m_Name: ---------Camera---------
+  m_Name: -----------Camera----------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,7 +1766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   JumpPoawer: 15
-  ArmorDurability: 0
+  ArmorDurability: 5
   AttackPower: 1
   CurBulletCount: 0
   MaxBublletCount: 500
@@ -2445,6 +2445,7 @@ GameObject:
   - component: {fileID: 1351111162}
   - component: {fileID: 1351111163}
   - component: {fileID: 1351111164}
+  - component: {fileID: 1351111165}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2695,6 +2696,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPos: {fileID: 490675553}
+--- !u!114 &1351111165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351111153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8658b85acc01d345b7f3bb0f0e09881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 0.1
+  hitDelay: 0.2
 --- !u!1 &1382035331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,7 +3696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834109351}
   m_Layer: 0
-  m_Name: ---------Canvas---------
+  m_Name: ------------Canvas---------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3950,7 +3965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922735976}
   m_Layer: 0
-  m_Name: ---------Managers---------
+  m_Name: ----------Managers---------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
