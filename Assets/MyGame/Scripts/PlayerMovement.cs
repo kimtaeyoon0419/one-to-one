@@ -17,14 +17,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
 
     [Header("WallJump")]
-    private bool iswallSliding;
-    private bool isWallJumping;
-    private float wallSlidingSpeed = 2f;
-    private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter;
-    private float wallJumpingDiration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(18f, 16f);
+    private bool iswallSliding; // 현재 벽을 타고 있는지
+    private bool isWallJumping; // 현재 벽점프 중인지
+    private float wallSlidingSpeed = 2f; // 벽 타고 내려오는 속도
+    private float wallJumpingTime = 0.2f; // 벽에서 떨어진 이후 벽점프가 가능한 시간
+    private float wallJumpingCounter; // 벽점프가 가능한 시간
+    private float wallJumpingDirection; // 벽점프 방향
+    private float wallJumpingDuration = 0.2f; // 벽점프 지속시간
+    private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기
 
+    [Header("Move")]
+    public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private bool isFacingRight = true; // Flip 용도
 
@@ -33,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        playerDir = Direction.Right;
     }
 
     private void Update()
@@ -58,6 +66,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move() // 플레이어 움직임
     {
+        if(hor > 0)
+        {
+            playerDir = Direction.Right; // 공격 방향 초기화 ( 오른쪽 )
+        }
+        else if(hor < 0)
+        {
+            playerDir = Direction.Left; // 공격 방향 초기화 ( 왼쪽 )
+        }
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -107,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         if (iswallSliding)
         {
             isWallJumping = false;
-            wallJumpingDiration = -transform.localScale.x;
+            wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -120,10 +136,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDiration * wallJumpingPower.x, wallJumpingPower.y);
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
 
-            if (transform.localScale.x != wallJumpingDiration)
+            if (transform.localScale.x != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
@@ -131,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = localScale;
             }
 
-            Invoke(nameof(StopWallJumping), wallJumpingDiration);
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
 

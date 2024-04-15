@@ -2070,7 +2070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108992418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.346, z: 0}
+  m_LocalPosition: {x: 0, y: -0.495, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2439,11 +2439,12 @@ GameObject:
   - component: {fileID: 1351111158}
   - component: {fileID: 1351111156}
   - component: {fileID: 1351111155}
-  - component: {fileID: 1351111154}
   - component: {fileID: 1351111160}
   - component: {fileID: 1351111159}
   - component: {fileID: 1351111161}
   - component: {fileID: 1351111162}
+  - component: {fileID: 1351111163}
+  - component: {fileID: 1351111164}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2451,39 +2452,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1351111154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351111153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d30230f65d6c845acbfdade3409086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDir: 0
-  horizontal: 0
-  isWallSliding: 0
-  wallSlidingSpeed: 0.7
-  xWallJumpingForce: 10
-  yWallJumpingForce: 10
-  wallJumpTime: 0.05
-  hor: 1
-  wallChk: {fileID: 651981791}
-  wallchkDistance: 0.5
-  w_Layer:
-    serializedVersion: 2
-    m_Bits: 8
-  groundChk: {fileID: 1108992419}
-  groundchkDistance: 0.5
-  g_Layer:
-    serializedVersion: 2
-    m_Bits: 64
-  bulletPosition: {fileID: 490675553}
-  BulletDir: 1
-  delayTime: 0.1
 --- !u!61 &1351111155
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2692,6 +2660,41 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: -0.2, y: 0, z: 0}
+--- !u!114 &1351111163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351111153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a227d39737ed45f4880ad66842460e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  groundChk: {fileID: 1108992419}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallChk: {fileID: 651981791}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  playerDir: 0
+--- !u!114 &1351111164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351111153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94412cca7f2782648810c69fb8885f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackPos: {fileID: 490675553}
 --- !u!1 &1382035331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,7 +3924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17fe79c0d7027a49a7ad2e068c77320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1351111154}
+  playerMovement: {fileID: 1351111163}
 --- !u!4 &1902350149
 Transform:
   m_ObjectHideFlags: 0
@@ -4159,81 +4162,6 @@ MonoBehaviour:
   m_Script: {fileID: -1774853514, guid: ebe26e22332665d4c8332b2a624e5e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rules:
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 1351111153}
-    Ordinal: 0
-    Priority: 0
-    IconType: 104500
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 4000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 1922735975}
-    Ordinal: 1
-    Priority: 0
-    IconType: 103000
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 20000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 2141094311}
-    Ordinal: 2
-    Priority: 0
-    IconType: 18000
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 16000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 1834109350}
-    Ordinal: 3
-    Priority: 0
-    IconType: 14000
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 8000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 418025126}
-    Ordinal: 4
-    Priority: 0
-    IconType: 17000
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 1000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 0
-    Name: 
-    GameObject: {fileID: 157478190}
-    Ordinal: 5
-    Priority: 0
-    IconType: 108000
-    IconTexture: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 3000
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  _scene:
-    m_Handle: -69342
 --- !u!4 &1977623469
 Transform:
   m_ObjectHideFlags: 0

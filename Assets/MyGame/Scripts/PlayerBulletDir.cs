@@ -6,11 +6,11 @@ public class PlayerBulletDir : MonoBehaviour
 {
     public static PlayerBulletDir instance;
 
-    public Player player;
+    public PlayerMovement playerMovement;
 
     private void Awake()
     {
-        instance = this; 
+        instance = this; //플레이어 인스턴스화
     }
 
     void Start()

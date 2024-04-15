@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
             PlayerStatManager.instance.CurBulletCount--;
             Debug.Log(("³²Àº Åº¼ö : ") + PlayerStatManager.instance.CurBulletCount);
             PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime;
-            GameManager.instance.pools.Get(0, bulletPosition.position, BulletDir);
+            GameManager.instance.pools.Get(0, bulletPosition.position);
         }
     }
     private void TakeDamage()

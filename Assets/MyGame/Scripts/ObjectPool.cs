@@ -28,7 +28,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject Get(int index, Vector3 posithon, int BulletDiv)
+    public GameObject Get(int index, Vector3 posithon)
     {
         GameObject select = null;
 
