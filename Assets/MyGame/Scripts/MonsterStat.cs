@@ -37,7 +37,7 @@ public class MonsterStat
         switch (unitCode)
         {
             case MonsterUnitCode.Vampire:
-                status = new MonsterStat(unitCode, "뱀파이어", 1, 10, 1f, 8f, 2); 
+                status = new MonsterStat(unitCode, "뱀파이어", 1, 10, 1f, 32f, 2); 
                 break;
             case MonsterUnitCode.slime:
                 status = new MonsterStat(unitCode, "슬라임", 100, 10, 1.5f, 2f, 1.5f);

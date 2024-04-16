@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Monster")) // 만약 몬스터와 부딪혔다면
             {
-                collision.GetComponent<Monster>().TakeDmg(PlayerStatManager.instance.AttackPower); // 플레이어스텟매니저의 어택파워만큼 피해를 입힘
+                collision.GetComponent<Slime>().TakeDmg(PlayerStatManager.instance.AttackPower); // 플레이어스텟매니저의 어택파워만큼 피해를 입힘
             }
             gameObject.SetActive(false);
         }

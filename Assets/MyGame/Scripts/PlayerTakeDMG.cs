@@ -11,23 +11,15 @@ public class PlayerTakeDMG : MonoBehaviour
     Color hafpA = new Color(0, 0, 0);
     Color fullA = new Color(1, 1, 1);
     [SerializeField] private float delayTime = 0.1f;
-    [SerializeField] private float hitDelay = 0.2f;
+    [SerializeField] private float hitDelay;
+    [SerializeField] private bool isHit = false;
     private CinemachineImpulseSource impulseSource;
     
-
     private void Awake()
     {
         waitForSeconds = new WaitForSeconds(delayTime);
         sr = GetComponent<SpriteRenderer>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
-    }
-
-    private void Update()
-    {
-        if(hitDelay >= 0)
-        {
-            hitDelay--;
-        }
     }
 
     void TakeDMG()
@@ -43,14 +35,10 @@ public class PlayerTakeDMG : MonoBehaviour
             Die();
         }
     }
-    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void HitOn()
     {
-        if (collision.CompareTag("EnemyAtk") && hitDelay <= 0)
-        {
-            TakeDMG();
-        }
+        isHit = false;
     }
 
     IEnumerator Co_isHit()
@@ -62,11 +50,25 @@ public class PlayerTakeDMG : MonoBehaviour
             yield return waitForSeconds;
             sr.color = fullA;
         }
-
     }
 
     private void Die()
     {
         Debug.Log("으앙 주거써");
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyAtk"))
+        {
+            if (isHit == false)
+            {
+                Debug.Log("처 맞음");
+                isHit = true;
+                TakeDMG();
+                Invoke("HitOn", hitDelay);
+            }
+        }
     }
 }

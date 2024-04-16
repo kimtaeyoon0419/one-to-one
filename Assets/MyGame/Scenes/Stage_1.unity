@@ -2709,7 +2709,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 0.1
-  hitDelay: 0.2
+  hitDelay: 0.5
+  isHit: 0
 --- !u!1 &1382035331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2860,8 @@ MonoBehaviour:
   unitCode: 0
   delayTime: 0.1
   AttackCollider: {fileID: 0}
+  nextMove: 0
+  isFacingRight: 0
 --- !u!61 &1408476192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3996,10 +3999,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1946182773}
   - component: {fileID: 1946182772}
-  - component: {fileID: 1946182771}
   - component: {fileID: 1946182770}
   - component: {fileID: 1946182769}
   - component: {fileID: 1946182774}
+  - component: {fileID: 1946182775}
   m_Layer: 7
   m_Name: Monster
   m_TagString: Monster
@@ -4020,8 +4023,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06, y: 0}
-  m_Size: {x: 0.4, y: 0.55}
+  m_Offset: {x: 0.060000002, y: 0.0039133234}
+  m_Size: {x: 0.40000004, y: 0.46390676}
   m_Direction: 0
 --- !u!50 &1946182770
 Rigidbody2D:
@@ -4044,21 +4047,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1946182771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946182768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616ecb7a90099b543a4a504a3e8a9d36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitCode: 0
-  delayTime: 0.1
-  AttackCollider: {fileID: 1888385981}
 --- !u!212 &1946182772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4119,7 +4107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946182768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.39, y: -3.1117387, z: 0}
+  m_LocalPosition: {x: -2.39, y: -3.56, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4148,6 +4136,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1946182775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946182768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616ecb7a90099b543a4a504a3e8a9d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitCode: 0
+  delayTime: 0.1
+  AttackCollider: {fileID: 1888385981}
+  nextMove: 0
+  isFacingRight: 0
 --- !u!1 &1977623467
 GameObject:
   m_ObjectHideFlags: 0
