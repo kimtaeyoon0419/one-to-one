@@ -10,6 +10,7 @@ public class Slime : MonoBehaviour
     public MonsterStat stat; // 몬스터의 스텟
     public MonsterUnitCode unitCode;
 
+    MonsterMove monsterMove;
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sr;
@@ -34,7 +35,7 @@ public class Slime : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         waitForSeconds = new WaitForSeconds(delayTime);
-
+        monsterMove = GetComponent<MonsterMove>();
     }
 
     void Start()
@@ -46,7 +47,7 @@ public class Slime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MonsterMove();
+        monsterMove.Move(nextMove, stat.moveSpeed);
 
         Vector2 frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // 몬스터의 정면
         Debug.DrawRay(frontVec, Vector2.down, new Color(0,1,0)); 
@@ -110,15 +111,6 @@ public class Slime : MonoBehaviour
             sr.color = fullA;
         }
     }
-
-    private void MonsterMove()
-    {
-        velocity.x = stat.moveSpeed * Time.deltaTime * nextMove;
-        velocity.y = rb.velocity.y;
-
-        rb.velocity = velocity;
-    }
-
     private void AttackRay() //레이케스트에 플레이어가 들어오면 공격!!!
     {
         Debug.DrawRay(rb.position, Vector2.right * stat.atkRange, Color.yellow);
