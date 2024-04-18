@@ -15,6 +15,8 @@ public class MonsterStat
     public float moveSpeed { get; set; } // 이동속도
     public float atkRange { get; set; } // 사거리 
 
+    private Rigidbody2D rb;
+
     public MonsterStat()
     {
     }

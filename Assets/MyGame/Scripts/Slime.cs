@@ -10,7 +10,6 @@ public class Slime : MonoBehaviour
     public MonsterStat stat; // 몬스터의 스텟
     public MonsterUnitCode unitCode;
 
-    MonsterMove monsterMove;
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sr;
@@ -26,6 +25,7 @@ public class Slime : MonoBehaviour
 
     public int nextMove;
     public bool isFacingRight;
+    public float speed;
 
     private void Awake()
     {
@@ -35,7 +35,6 @@ public class Slime : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         waitForSeconds = new WaitForSeconds(delayTime);
-        monsterMove = GetComponent<MonsterMove>();
     }
 
     void Start()
@@ -47,14 +46,17 @@ public class Slime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        monsterMove.Move(nextMove, stat.moveSpeed);
+        print("호출");
+        Vector2 DirVec = new Vector2(nextMove * speed, rb.velocity.y); // 방향 설정
+        rb.velocity = DirVec; // 방향으로 이동
 
-        Vector2 frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // 몬스터의 정면
-        Debug.DrawRay(frontVec, Vector2.down, new Color(0,1,0)); 
-        RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector2.down, 1f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
-        if(rayHit.collider == null)
+        Vector2 frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
+        Debug.DrawRay(frontVec, Vector2.down, new Color(0, 1, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 1f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
+        if (rayHit.collider == null) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
         {
             Turn();
+            Invoke("Think", 1f);
         }
     }
     void Update()
@@ -71,23 +73,18 @@ public class Slime : MonoBehaviour
     void Think()
     {
         //Set next Acrive
-        nextMove = Random.Range(-1, 2);
+        nextMove = Random.Range(-1, 2); // -1, 0, 1
         
-
         //Recursive
         float nextThinkTime = Random.Range(2f, 5f);
         Invoke("Think", nextThinkTime);
 
     }
+
     void Turn()
     {
-        if (isFacingRight && nextMove < 0f || !isFacingRight && nextMove > 0)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
-            transform.localScale = localScale;
-        }
+        nextMove *= -1;
+        CancelInvoke();
     }
 
     public void TakeDmg(int damge) // 몬스터 피격
@@ -128,7 +125,7 @@ public class Slime : MonoBehaviour
         Debug.Log("Dd)");
     }
 
-    private IEnumerator Co_attack()
+    private IEnumerator Co_attack() // 공격 코루틴
     {
         AttackCollider.SetActive(true);
         yield return new WaitForSeconds(0.1f);

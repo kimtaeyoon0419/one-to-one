@@ -6,7 +6,12 @@ using UnityEngine;
 public class MonsterMove : MonoBehaviour
 {
     Rigidbody2D rb;
-    
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         
