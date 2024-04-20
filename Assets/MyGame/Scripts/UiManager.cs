@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEditor.Purchasing;
 
 public class UiManager : MonoBehaviour
 {
@@ -17,15 +18,7 @@ public class UiManager : MonoBehaviour
     private bool SetPanelOnoff = false;
     private bool SetGameOverUI = false;
 
-
-    void Update()
-    {
-        
-    }
-
-    
-
-    public void SettingPanelOnoff()
+    public void SettingPanelOnoff() // ¼³Á¤ ÆÐ³Î on / off
     {
         if (SetPanelOnoff == false)
         {
@@ -39,7 +32,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName) // ¾À ·Îµå
     {
 
         if (SetGameOverUI != false)
@@ -53,20 +46,25 @@ public class UiManager : MonoBehaviour
         else SceneManager.LoadScene(sceneName);
     }
 
-    public void ToggleMusic()
+    public void ToggleMusic() // À½¾Ç on / off
     {
         AudioManager.instance.ToggleMusic();
     }
-    public void ToggleSFX()
+    public void ToggleSFX() // È¿°úÀ½ on / off
     {
         AudioManager.instance.ToggleSFX();
     }
-    public void MusicVolume()
+    public void MusicVolume() // À½¾Ç º¼·ý
     {
         AudioManager.instance.MusicVolume(musicSlider.value);
     }
-    public void SFXVolume()
+    public void SFXVolume() // È¿°úÀ½ º¼·ý
     {
         AudioManager.instance.SFXVolume(sfxSlider.value);
+    }
+
+    public void GameOff() // °ÔÀÓ Á¾·á
+    {
+        Application.Quit();
     }
 }
