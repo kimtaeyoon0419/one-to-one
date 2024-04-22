@@ -115,21 +115,17 @@ public class Slime : MonoBehaviour
         if (hit.collider != null && stat.curAtkSpeed <= 0)
         {
             stat.curAtkSpeed = stat.atkSpeed;
+            Attack();
+            Invoke("Think", 2f);
             animator.SetTrigger("Attack");
         }
     }
 
-    private void Attak() // 애니메이터에서 호출
+    private void Attack() // 몬스터 공격
     {
-        StartCoroutine(Co_attack());
-        Debug.Log("Dd)");
-    }
-
-    private IEnumerator Co_attack() // 공격 코루틴
-    {
-        AttackCollider.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        AttackCollider.SetActive(false);
+        Debug.Log("공격!!!");
+        CancelInvoke(); // 방향이 바뀌지 않게 캔슬
+        rb.AddForce(Vector2.up * stat.atkRange, ForceMode2D.Impulse); // 점프 공격
     }
 }
 
