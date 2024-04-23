@@ -943,7 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: d6a835bce2a007645bfe698ece030dc1, type: 3}
+    clip: {fileID: 8300000, guid: 196c4b2eaa0be9941b45f7c4324dbc9d, type: 3}
   sfxSounds:
   - name: Jump
     clip: {fileID: 8300000, guid: d22b241e75927e54289022aaabc8ec3a, type: 3}
@@ -2919,7 +2919,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

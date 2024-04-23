@@ -109,7 +109,6 @@ public class Slime : MonoBehaviour
     public void TakeDmg(int damge) // 몬스터 피격
     {
         stat.curHp -= damge;
-        Debug.Log("아파 내 체력 : " + stat.curHp);
         if (stat.curHp <= 0)
         {
             gameObject.active = false;
