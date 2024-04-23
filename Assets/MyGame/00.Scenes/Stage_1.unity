@@ -3370,7 +3370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f1b0141a45d0a4aa49f25aa95073a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseSource: {fileID: 0}
 --- !u!1 &1662805881
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,6 +3513,7 @@ MonoBehaviour:
   pools: {fileID: 501602126}
   Bullet: {fileID: 739015622489296759, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
   MapMove: {fileID: 0}
+  loadingNextScene: 
 --- !u!4 &1662808162
 Transform:
   m_ObjectHideFlags: 0

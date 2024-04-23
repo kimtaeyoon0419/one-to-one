@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Bullet Bullet;
     public MapMove MapMove;
 
+    public string loadingNextScene;
     private bool isMapMove = false;
 
     void Awake()

@@ -48,15 +48,16 @@ public class UiManager : MonoBehaviour
 
     public static void LoadScene(string sceneName) // ¾À ·Îµå
     {
-        SceneManager.LoadScene(sceneName);
+        GameManager.instance.loadingNextScene = sceneName;
+        SceneManager.LoadScene("99_LoadingScene");
     }
-   
 
     public void Gameover()
     {
         if(PlayerStatManager.instance.isDie)
         {
             GameOverUI.SetActive(true);
+            PlayerStatManager.instance.isDie = false;
         }
     }
 
