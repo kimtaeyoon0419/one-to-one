@@ -11,13 +11,18 @@ public class Bullet : MonoBehaviour
     void OnEnable()
     {   
         AudioManager.instance.PlaySFX("Shot");
-        if (PlayerBulletDir.instance.playerMovement.playerDir == Direction.Right)
+        transform.localScale = Vector2.one;
+        if (PlayerBulletDir.instance.playerMovement.playerDir == Direction.Right) // 만약 플레이어의 방향이 오른쪽이라면
         {
             DirVec((int)Direction.Right);
         }
-        else
+        else // 왼쪽이라면
         {
             DirVec((int)Direction.Left);
+        }
+        if(dirVec == -1)
+        {
+            transform.localScale = transform.localScale * -1;
         }
     }
 

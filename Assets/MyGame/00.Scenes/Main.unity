@@ -2153,7 +2153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   JumpPoawer: 15
-  ArmorDurability: 0
+  ArmorDurability: 3
   AttackPower: 1
   CurBulletCount: 0
   MaxBublletCount: 500
@@ -2602,6 +2602,7 @@ MonoBehaviour:
   pools: {fileID: 16248378}
   Bullet: {fileID: 739015622489296759, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
   MapMove: {fileID: 0}
+  loadingNextScene: 
 --- !u!4 &1663252106
 Transform:
   m_ObjectHideFlags: 0
