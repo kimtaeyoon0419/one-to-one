@@ -22,6 +22,7 @@ public class PlayerStatManager : MonoBehaviour
     public int MaxBublletCount;
     public float bulletshotCoolTime;
     public float bulletshotCurTime;
+    public bool isDie = false;
 
 
     private void OnEnable()

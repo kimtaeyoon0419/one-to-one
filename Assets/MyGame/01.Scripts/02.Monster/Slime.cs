@@ -23,6 +23,7 @@ public class Slime : MonoBehaviour
 
     public int nextMove; // 다음으로 움직일 방향
 
+    private Vector2 frontVec;
     private Vector2 JumpPower = new Vector2(2f, 4f);
 
     private int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
@@ -48,7 +49,10 @@ public class Slime : MonoBehaviour
         Vector2 DirVec = new Vector2(nextMove * stat.moveSpeed, rb.velocity.y); // 방향 설정
         rb.velocity = DirVec; // 방향으로 이동
 
-        Vector2 frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
+        if (isGround == true)
+        {
+            frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
+        }
         Debug.DrawRay(frontVec, Vector2.down, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 3f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
         if (rayHit.collider == null) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
@@ -129,17 +133,20 @@ public class Slime : MonoBehaviour
         {
             rayLookDir = nextMove;
         }
-        Debug.DrawRay(rb.position, Vector2.right * stat.atkRange * nextMove, Color.yellow); // 레이확인
+        Debug.DrawRay(rb.position, Vector2.right * stat.atkRange * rayLookDir, Color.yellow); // 레이확인
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right * rayLookDir, stat.atkRange, LayerMask.GetMask("Player"));
 
         if (hit.collider != null && stat.curAtkSpeed <= 0 && isGround)
         {
             stat.curAtkSpeed = stat.atkSpeed;
             isGround = false;
-            StopCoroutine(Co_Think()); // 방향 전환을 막음
+            StopCoroutine(Co_Think()); // 코루틴을 꺼서 방향 전환을 막음
             Attack(); // 공격 후
-            StartCoroutine(Co_StartThinkCoroutineDelay(2f)); // 다시 방향전환을 정함
             animator.SetTrigger("Attack"); // 공격 애니메이션 
+            if (isGround == true)
+            {
+                StartCoroutine(Co_StartThinkCoroutineDelay(2f)); // 다시 방향전환을 정함
+            }
         }
     }
 

@@ -966,7 +966,7 @@ Transform:
   - {fileID: 1930186949}
   - {fileID: 560714037}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &435776175
 GameObject:
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   SettingPanel: {fileID: 1022312680}
   musicSlider: {fileID: 1934269426}
   sfxSlider: {fileID: 1561839221}
-  GameOverUI: []
+  GameOverUI: {fileID: 0}
 --- !u!95 &558606084
 Animator:
   serializedVersion: 5
@@ -1560,54 +1560,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &702603383
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 702603385}
-  - component: {fileID: 702603384}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &702603384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702603383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9e871844323fc46913d32f9dee7fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SettingPanel: {fileID: 1022312680}
-  musicSlider: {fileID: 1934269426}
-  sfxSlider: {fileID: 1561839221}
-  GameOverUI: []
---- !u!4 &702603385
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702603383}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 971.0034, y: 542.2995, z: 6.4222355}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860348230
 GameObject:
@@ -2207,6 +2159,7 @@ MonoBehaviour:
   MaxBublletCount: 500
   bulletshotCoolTime: 0
   bulletshotCurTime: 0
+  isDie: 0
 --- !u!4 &1309236671
 Transform:
   m_ObjectHideFlags: 0
@@ -2220,7 +2173,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440323637
 GameObject:
@@ -2653,7 +2606,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Name: 
-    GameObject: {fileID: 702603383}
+    GameObject: {fileID: 0}
     Ordinal: 4
     Priority: 0
     IconType: 104000
@@ -2736,7 +2689,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663252104
 GameObject:

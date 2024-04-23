@@ -22,11 +22,12 @@ public class PlayerTakeDMG : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    void TakeDMG()
+    void TakeDMG() // 플레이어 갑옷 감소 갑옷이 없다면 사망
     {
         if (PlayerStatManager.instance.ArmorDurability > 0)
         {
             PlayerStatManager.instance.ArmorDurability--;
+            StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
             CameraShakeManager.instance.CameraShake(impulseSource);
         }
@@ -36,8 +37,9 @@ public class PlayerTakeDMG : MonoBehaviour
         }
     }
 
-    void HitOn()
+    IEnumerator Co_OnHit()
     {
+        yield return new WaitForSeconds(delayTime * 6);
         isHit = false;
     }
 
@@ -55,19 +57,17 @@ public class PlayerTakeDMG : MonoBehaviour
     private void Die()
     {
         Debug.Log("으앙 주거써");
+        PlayerStatManager.instance.isDie = true; // 현재 상태를 죽음으로 바꿈
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAtk"))
+        if (collision.CompareTag("EnemyAtk") || collision.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
         {
             if (isHit == false)
             {
                 Debug.Log("처 맞음");
                 isHit = true;
                 TakeDMG();
-                Invoke("HitOn", hitDelay);
             }
         }
     }

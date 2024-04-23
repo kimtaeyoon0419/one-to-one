@@ -12,11 +12,25 @@ public class UiManager : MonoBehaviour
     public GameObject SettingPanel;
     public Slider musicSlider, sfxSlider;
     [Header("GameOver")]
-    public GameObject[] GameOverUI;
-    
+    public GameObject GameOverUI;
 
     private bool SetPanelOnoff = false;
-    private bool SetGameOverUI = false;
+
+    private void Start()
+    {
+        if (GameOverUI != null)
+        {
+            GameOverUI.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (PlayerStatManager.instance.isDie)
+        {
+            Gameover();
+        }
+    }
 
     public void SettingPanelOnoff() // ¼³Á¤ ÆÐ³Î on / off
     {
@@ -32,18 +46,18 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneName) // ¾À ·Îµå
+    public static void LoadScene(string sceneName) // ¾À ·Îµå
     {
+        SceneManager.LoadScene(sceneName);
+    }
+   
 
-        if (SetGameOverUI != false)
+    public void Gameover()
+    {
+        if(PlayerStatManager.instance.isDie)
         {
-            for (int i = 0; i < GameOverUI.Length; i++)
-            {
-                GameOverUI[i].SetActive(false);
-            }
-            SceneManager.LoadScene(sceneName);
+            GameOverUI.SetActive(true);
         }
-        else SceneManager.LoadScene(sceneName);
     }
 
     public void ToggleMusic() // À½¾Ç on / off
