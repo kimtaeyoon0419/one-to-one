@@ -1649,7 +1649,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 558606083}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: SettingPanelOnoff
+        m_MethodName: SettingPanelToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3283,7 +3283,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 558606083}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: SettingPanelOnoff
+        m_MethodName: SettingPanelToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
