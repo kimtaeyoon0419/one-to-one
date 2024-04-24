@@ -943,7 +943,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 196c4b2eaa0be9941b45f7c4324dbc9d, type: 3}
+    clip: {fileID: 8300000, guid: a56bd4e98d620e0408395707609a37b5, type: 3}
+  - name: Stage_1
+    clip: {fileID: 8300000, guid: 2d9ad4ec97d47d047b55abdd4d5a4d82, type: 3}
   sfxSounds:
   - name: Jump
     clip: {fileID: 8300000, guid: d22b241e75927e54289022aaabc8ec3a, type: 3}
@@ -2510,7 +2512,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3103,7 +3105,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

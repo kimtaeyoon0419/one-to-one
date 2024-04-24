@@ -32,18 +32,10 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void SettingPanelOnoff() // ¼³Á¤ ÆÐ³Î on / off
+    public void SettingPanelToggle() // ¼³Á¤ ÆÐ³Î on / off
     {
-        if (SetPanelOnoff == false)
-        {
-            SetPanelOnoff = true;
-            SettingPanel.SetActive(true);
-        }
-        else
-        {
-            SetPanelOnoff = false;
-            SettingPanel.SetActive(false);
-        }
+            SetPanelOnoff = !SetPanelOnoff;
+            SettingPanel.SetActive(SetPanelOnoff);
     }
 
     public static void LoadScene(string sceneName) // ¾À ·Îµå
@@ -63,11 +55,11 @@ public class UiManager : MonoBehaviour
 
     public void ToggleMusic() // À½¾Ç on / off
     {
-        AudioManager.instance.ToggleMusic();
+        AudioManager.instance.ToggleMusicMute();
     }
     public void ToggleSFX() // È¿°úÀ½ on / off
     {
-        AudioManager.instance.ToggleSFX();
+        AudioManager.instance.ToggleSFXMute();
     }
     public void MusicVolume() // À½¾Ç º¼·ý
     {

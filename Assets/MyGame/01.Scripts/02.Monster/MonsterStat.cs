@@ -32,7 +32,7 @@ public class MonsterStat
         this.moveSpeed = moveSpeed;
         this.atkRange = atkRange;
     }
-    public MonsterStat SetUnitStatus(MonsterUnitCode unitCode) // 사용법 : public Stat 변수 선언 -> stat = stat.SetUnitStatus(UnitCode.가져올 유닛의 이름)
+     public MonsterStat SetUnitStatus(MonsterUnitCode unitCode) // 사용법 : public Stat 변수 선언 -> stat = stat.SetUnitStatus(UnitCode.가져올 유닛의 이름)
     {                                                          // status = new MonsterStat(unitCode, "이름", 최대체력, 공격력, 공격속도, 이동속도, 사거리);
         MonsterStat status = null;
 
