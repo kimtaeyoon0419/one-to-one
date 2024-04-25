@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinMove : MonoBehaviour
+public class CoinSystem : MonoBehaviour
 {
     private Vector2 JumpPower = new Vector2(1f, 3f);
     private Rigidbody2D rb;
@@ -17,5 +17,13 @@ public class CoinMove : MonoBehaviour
         float dir = Random.Range(-1f, 1f);
         rb.velocity = JumpPower;
         rb.velocity = new Vector2(rb.velocity.x * dir, rb.velocity.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
