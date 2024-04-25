@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SetBulletText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI BulletCount;
+    public int index;
 
     void Start()
     {
@@ -15,11 +16,23 @@ public class SetBulletText : MonoBehaviour
 
     void Update()
     {
-        SetText();
+        if (index == 0)
+        {
+            SetText();
+        }
+
+        else if (index == 1)
+        {
+            SetText22();
+        }
     }
     
     public void SetText()
     {
         BulletCount.text = "≥≤¿∫ ≈∫»Ø :" + PlayerStatManager.instance.CurBulletCount;
+    }
+    public void SetText22()
+    {
+        BulletCount.text = "»πµÊ«— ƒ⁄¿Œ :" + CoinManager.instance.coin;
     }
 }
