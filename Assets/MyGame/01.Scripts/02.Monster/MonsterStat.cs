@@ -42,7 +42,7 @@ public class MonsterStat
                 status = new MonsterStat(unitCode, "뱀파이어", 1, 10, 1f, 32f, 2); 
                 break;
             case MonsterUnitCode.slime:
-                status = new MonsterStat(unitCode, "슬라임", 100, 10, 1.5f, 2f, 1.7f);
+                status = new MonsterStat(unitCode, "슬라임", 10, 10, 1.5f, 2f, 1.7f);
                 break;
             case MonsterUnitCode.pilwon:
                 status = new MonsterStat(unitCode, "필원", 9999999, 999999, 999999f, 999999f, 999999f);

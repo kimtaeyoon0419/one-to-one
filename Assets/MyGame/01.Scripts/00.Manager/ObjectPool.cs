@@ -45,7 +45,7 @@ public class ObjectPool : MonoBehaviour
         }
         if (!select)
         {
-            select = Instantiate(prefabs[index], posithon, Quaternion.identity, transform);
+            select = Instantiate(prefabs[index], posithon, Quaternion.identity);
             //if (index == 0) select.GetComponent<Bullet>().DirVec(GameManager.instance.player.bulletDirVec);
 
             pools[index].Add(select);

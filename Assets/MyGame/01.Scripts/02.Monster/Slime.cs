@@ -27,6 +27,7 @@ public class Slime : MonoBehaviour
     private Vector2 JumpPower = new Vector2(2f, 4f);
 
     private int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
+    private DropItem itemdrop;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class Slime : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         waitForSeconds = new WaitForSeconds(delayTime);
+        itemdrop = GetComponent<DropItem>();
     }
 
     void Start()
@@ -45,7 +47,6 @@ public class Slime : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print("호출");
         Vector2 DirVec = new Vector2(nextMove * stat.moveSpeed, rb.velocity.y); // 방향 설정
         rb.velocity = DirVec; // 방향으로 이동
 
@@ -111,6 +112,7 @@ public class Slime : MonoBehaviour
         stat.curHp -= damge;
         if (stat.curHp <= 0)
         {
+            itemdrop.DropCoin();
             gameObject.active = false;
         }
         else StartCoroutine(Co_isHit());
@@ -154,8 +156,8 @@ public class Slime : MonoBehaviour
         Debug.Log("공격!!!");
         CancelInvoke(); // 방향이 바뀌지 않게 캔슬
         //rb.AddForce(Vector2.up * 4, ForceMode2D.Impulse); // 점프 공격
-        rb.velocity = JumpPower; // 점프를!
-        rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 한다!
+        rb.velocity = JumpPower; // velocity 값을 JumpPower로 초기화하고
+        rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 점프 한다!
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 4356565804948623509}
   - component: {fileID: 4356565804948623508}
   - component: {fileID: 4356565804948623515}
+  - component: {fileID: 818933038}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Monster
@@ -222,3 +223,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.25, y: 0.17}
   m_Direction: 1
+--- !u!114 &818933038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356565804948623507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00baae2a4198b2499cb449fc9348fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
