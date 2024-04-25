@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Move")]
     public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
-    private bool isFacingRight = true; // Flip 용도
+    private float isFacingRight = 1; // Flip 용도
 
     Vector2 velocity;
 
@@ -114,10 +114,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        if (iswallSliding)
+        if (iswallSliding) // 벽점프가 가능한 상태
         {
             isWallJumping = false;
-            wallJumpingDirection = transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -126,19 +125,12 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpingCounter -= Time.deltaTime;
         }
-
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
+            rb.velocity = new Vector2(-wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
-
-            if (transform.localScale.x != wallJumpingDirection)
-            {
-                isFacingRight = !isFacingRight;
-                gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + 180, 0);
-            }
-
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
     }
@@ -150,15 +142,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && hor < 0f || !isFacingRight && hor > 0)
+        if ( hor < 0f || hor > 0)
         {
-            isFacingRight = !isFacingRight;
             if (hor > 0)
             {
+                isFacingRight = 1;
                 gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if (hor < 0)
             {
+                isFacingRight = -1;
                 gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
