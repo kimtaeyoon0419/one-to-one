@@ -6,6 +6,6 @@ public class DropItem : MonoBehaviour
 {
     public void DropCoin()
     {
-        ObjectPool.instance.Get(1, transform.position); // 풀링하여 코인 떨굼
+        ObjectPool.instance.Get(1, transform.position, Quaternion.identity); // 풀링하여 코인 떨굼
     }
 }

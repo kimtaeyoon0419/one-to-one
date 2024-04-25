@@ -1090,6 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletCount: {fileID: 559753424}
+  index: 1
 --- !u!114 &559753424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.5729065, w: 0}
+  m_margin: {x: 0, y: 0, z: -125.36029, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3269,6 +3270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletCount: {fileID: 1506858114}
+  index: 0
 --- !u!1 &1507786704
 GameObject:
   m_ObjectHideFlags: 0

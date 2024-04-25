@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.VFX;
 
-public class PlayerMovement : MonoBehaviour
+public class test_player : MonoBehaviour
 {
     [Header("Rigidbody")]
     [SerializeField] private Rigidbody2D rb;
@@ -30,8 +27,11 @@ public class PlayerMovement : MonoBehaviour
     public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private bool isFacingRight = true; // Flip 용도
+    private float yRotation = 0;
 
     Vector2 velocity;
+
+    public Transform pos;
 
     private void Awake()
     {
@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        playerDir = Direction.Right;
     }
 
     private void Update()
@@ -55,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         wallSlide();
         WallJump();
+        BulletAttack();
+        pos.localScale = this.transform.localScale;
     }
 
     private void FixedUpdate()
@@ -66,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move() // 플레이어 움직임
     {
+        if (hor > 0)
+        {
+            playerDir = Direction.Right; // 공격 방향 초기화 ( 오른쪽 )
+        }
+        else if (hor < 0)
+        {
+            playerDir = Direction.Left; // 공격 방향 초기화 ( 왼쪽 )
+        }
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -117,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         if (iswallSliding)
         {
             isWallJumping = false;
-            wallJumpingDirection = transform.localScale.x;
+            wallJumpingDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));
@@ -136,7 +145,14 @@ public class PlayerMovement : MonoBehaviour
             if (transform.localScale.x != wallJumpingDirection)
             {
                 isFacingRight = !isFacingRight;
-                gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + 180, 0);
+                if (yRotation == 0)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (yRotation == 180)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
 
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
@@ -155,12 +171,25 @@ public class PlayerMovement : MonoBehaviour
             isFacingRight = !isFacingRight;
             if (hor > 0)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                yRotation = 0;
+                gameObject.transform.rotation = Quaternion.Euler(0, yRotation, 0);
             }
             else if (hor < 0)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                yRotation = 180;
+                gameObject.transform.rotation = Quaternion.Euler(0, yRotation, 0);
             }
+        }
+    }
+
+    public void BulletAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("x 눌림");
+            PlayerStatManager.instance.CurBulletCount--; // 탄 소비
+            PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
+            test_objcetPool.instance.Get(0, pos.transform.position, gameObject.transform.rotation); // 풀링
         }
     }
 }

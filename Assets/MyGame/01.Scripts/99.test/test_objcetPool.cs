@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ObjectPool : MonoBehaviour
+public class test_objcetPool : MonoBehaviour
 {
-    public static ObjectPool instance;
+    public static test_objcetPool instance;
     public GameObject[] prefabs;
 
     List<GameObject>[] pools;
@@ -47,10 +47,13 @@ public class ObjectPool : MonoBehaviour
         }
         if (!select)
         {
-            select = Instantiate(prefabs[index], posithon, rotation, transform);
+            select = Instantiate(prefabs[index], posithon, rotation);
+            //if (index == 0) select.GetComponent<Bullet>().DirVec(GameManager.instance.player.bulletDirVec);
 
             pools[index].Add(select);
         }
+
+
         return select;
     }
 }
