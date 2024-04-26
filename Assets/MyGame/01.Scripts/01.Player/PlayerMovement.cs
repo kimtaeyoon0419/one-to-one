@@ -45,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        hor = Input.GetAxis("Horizontal");
-
         if (!isWallJumping)
         {
             Flip();
@@ -66,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move() // 플레이어 움직임
     {
+        hor = Input.GetAxis("Horizontal");
+
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -116,10 +116,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (iswallSliding) // 벽점프가 가능한 상태
         {
-            isWallJumping = false;
-            wallJumpingCounter = wallJumpingTime;
+            isWallJumping = false; // 벽점프 활성화
+            wallJumpingCounter = wallJumpingTime; // 벽에서 점프할 수 있는 시간
 
-            CancelInvoke(nameof(StopWallJumping));
+            CancelInvoke(nameof(StopWallJumping)); // 벽에서 벽으로 움직였을 떄 벽점프가 취소되는 오류 방지
         }
         else
         {
@@ -127,11 +127,18 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
-            isWallJumping = true;
-            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
-            rb.velocity = new Vector2(-wallJumpingPower.x, wallJumpingPower.y);
+            float jumpDirection = isFacingRight; // 현재 방향 저장
+            isWallJumping = true; // 벽점프 중
+            
+            if (IsWalled()) // 벽이라면
+            {
+                jumpDirection *= -1; // 반대방향 설정
+                gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y == 0 ? 180 : 0, 0); // 반대방향으로 회전
+                rb.velocity = new Vector2(wallJumpingPower.x * jumpDirection, wallJumpingPower.y); // walljupingpower만큼 반대방향으로
+            }
+            
             wallJumpingCounter = 0f;
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+            Invoke(nameof(StopWallJumping), wallJumpingDuration); // 일정 시간후 벽점프 종료
         }
     }
 
@@ -140,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false;
     }
 
-    private void Flip()
+    private void Flip() // 이동하는 방향 바라보기
     {
         if ( hor < 0f || hor > 0)
         {

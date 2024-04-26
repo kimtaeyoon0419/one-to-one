@@ -59,9 +59,21 @@ public class PlayerTakeDMG : MonoBehaviour
         Debug.Log("으앙 주거써");
         PlayerStatManager.instance.isDie = true; // 현재 상태를 죽음으로 바꿈
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnCollisionEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("EnemyAtk") || collision.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
+    //    {
+    //        if (isHit == false)
+    //        {
+    //            Debug.Log("처 맞음");
+    //            isHit = true;
+    //            TakeDMG();
+    //        }
+    //    }
+    //}
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("EnemyAtk") || collision.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
+        if (collision.gameObject.CompareTag("EnemyAtk") || collision.gameObject.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
         {
             if (isHit == false)
             {
