@@ -112,6 +112,7 @@ public class Slime : MonoBehaviour
         stat.curHp -= damge;
         if (stat.curHp <= 0)
         {
+            AudioManager.instance.PlaySFX("Slime_Die");
             itemdrop.DropCoin();
             gameObject.active = false;
         }
@@ -143,7 +144,8 @@ public class Slime : MonoBehaviour
             isGround = false;
             StopCoroutine(Co_Think()); // 코루틴을 꺼서 방향 전환을 막음
             Attack(); // 공격 후
-            animator.SetTrigger("Attack"); // 공격 애니메이션 
+            animator.SetTrigger("Attack"); // 공격 애니메이션
+            AudioManager.instance.PlaySFX("Slime_Jump");
             if (isGround == true)
             {
                 StartCoroutine(Co_StartThinkCoroutineDelay(2f)); // 다시 방향전환을 정함
