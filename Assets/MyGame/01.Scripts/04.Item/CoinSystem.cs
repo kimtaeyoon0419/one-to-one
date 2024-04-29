@@ -23,6 +23,7 @@ public class CoinSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.PlaySFX("Coin_Get");
             this.gameObject.SetActive(false);
         }
     }
