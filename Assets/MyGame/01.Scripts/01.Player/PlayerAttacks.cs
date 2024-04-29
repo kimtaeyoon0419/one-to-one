@@ -21,6 +21,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
         {
+            AudioManager.instance.PlaySFX("Shot");
             PlayerStatManager.instance.CurBulletCount--; // 탄 소비
             PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
             ObjectPool.instance.Get(0, AttackPos.transform.position, transform.rotation); // 풀링

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     [Header("LayCast")]
+    [SerializeField] private Transform groundChk;
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallChk;
     [SerializeField] private LayerMask wallLayer;
 
@@ -22,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingCounter; // 벽점프가 가능한 시간
     private float wallJumpingDirection; // 벽점프 방향
     private float wallJumpingDuration = 0.2f; // 벽점프 지속시간
-    private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기
-    private bool isGround = true;
+    private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기  
 
     [Header("Move")]
     public Direction playerDir;
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             //rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
             rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
@@ -85,6 +86,12 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundChk.position, 0.2f, groundLayer);
+        // 만약 groundChk.position에 위치한 0.2f 크기의 원 안에 groundLayer가 부딪힌다면 true를 리턴
+    }
+
     private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, wallLayer);
@@ -93,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void wallSlide() // 벽 슬라이딩
     {
-        if (IsWalled() && isGround && hor != 0)
+        if (IsWalled() && !IsGrounded() && hor != 0)
         {
             iswallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -118,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpingCounter -= Time.deltaTime;
         }
-        if (Input.GetButtonDown("Jump") && isGround == false && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             float jumpDirection = isFacingRight; // 현재 방향 저장
             isWallJumping = true; // 벽점프 중
@@ -154,13 +161,6 @@ public class PlayerMovement : MonoBehaviour
                 isFacingRight = -1;
                 gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = true;
         }
     }
 }
