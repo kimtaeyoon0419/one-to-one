@@ -21,6 +21,10 @@ public class CameraManager : MonoBehaviour
     // 카메라의 반높이값을 구할 속성을 이용하기 위한 변수
     private Camera theCamera;
 
+    // 카메라 쉐이크
+    private float shakeTime; // 흔들리는 시간
+    private float shakeIntensity; // 흔들리는 세기
+
     private void Start()
     {
         theCamera = GetComponent<Camera>();
@@ -43,5 +47,36 @@ public class CameraManager : MonoBehaviour
                                                           // ( 스크립트를 가지고 있는 오브젝트의 (x or y) 값, 카메라 범위의 (x or y) 최소값 + 카메라 범위 반지름, 카메라 범위의 (x or y) 최대값 - 카메라 범위 반지름 ) 
             this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
         }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            OnShakeCamera();
+        }
+    }
+
+    public void OnShakeCamera(float shakeTime = 0.2f, float shakeIntensity  = 0.1f)
+    {
+        this.shakeTime = shakeTime;
+        this.shakeIntensity = shakeIntensity;
+
+        StopCoroutine("ShakeByPos");
+        StartCoroutine("ShakeByPos");
+
+    }
+
+    private IEnumerator ShakeByPos()
+    {
+        // 흔들리기 직전의 위치 ( 흔들림 종료 후 돌아올 위치 )
+        Vector3 startPos = transform.position;
+
+        while (shakeTime > 0.0f)
+        {
+            // 시작 위치로 부터 구 범위 (Size 1) * shakeIntensity의 범위 안에서 카메라 위치 변동
+            transform.position= startPos + Random.insideUnitSphere * shakeIntensity;
+            // 시간 감소
+            shakeTime -= Time.deltaTime;
+
+            yield return null;
+        }
+        transform.position = startPos;
     }
 }
