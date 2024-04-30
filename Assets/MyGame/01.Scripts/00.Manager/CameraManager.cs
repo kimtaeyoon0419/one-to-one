@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraManager : MonoBehaviour
+{
+    public GameObject target; // 카메라가 따라갈 대상
+    public float movespeed; // 카메라 이동속도
+    private Vector3 targetPosition; // 대상의 현재 위치값
+
+    public BoxCollider2D cameraArea;
+
+    // 박스 콜라이더 영역의 최대, 최소 xyz값을 지님
+    private Vector3 minArea;
+    private Vector3 maxArea;
+
+    // 카메라의 반너비, 반높이 값을 지닐 변수   
+    private float halfWidth;
+    private float halfHeight;
+
+    // 카메라의 반높이값을 구할 속성을 이용하기 위한 변수
+    private Camera theCamera;
+
+    private void Start()
+    {
+        theCamera = GetComponent<Camera>();
+        minArea = cameraArea.bounds.min; // 카메라 범위 최소값  
+        maxArea = cameraArea.bounds.max; // 카메라 범위 최대값
+        halfHeight = theCamera.orthographicSize; // 반높이
+        halfWidth = halfHeight * Screen.width / Screen.height; // 반너비 공식
+    }
+
+    private void Update()
+    {
+        if (target.gameObject != null)
+        {
+            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.gameObject.transform.position.z);
+
+            this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, movespeed * Time.deltaTime); // 카메라의 포지션에서 타겟의 포지션으로 1초에 movespeed만큼 이동
+
+            float clampedX = Mathf.Clamp(this.transform.position.x, minArea.x + halfWidth, maxArea.x - halfWidth); 
+            float clampedY = Mathf.Clamp(this.transform.position.y, minArea.y + halfHeight, maxArea.y - halfHeight); // Clamp 공식 ( 벨류 , 최소 , 최대)
+                                                          // ( 스크립트를 가지고 있는 오브젝트의 (x or y) 값, 카메라 범위의 (x or y) 최소값 + 카메라 범위 반지름, 카메라 범위의 (x or y) 최대값 - 카메라 범위 반지름 ) 
+            this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
+        }
+    }
+}
