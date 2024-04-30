@@ -11,15 +11,16 @@ public class PlayerTakeDMG : MonoBehaviour
     Color hafpA = new Color(0, 0, 0);
     Color fullA = new Color(1, 1, 1);
     [SerializeField] private float delayTime = 0.1f;
-    [SerializeField] private float hitDelay;
     [SerializeField] private bool isHit = false;
-    private CinemachineImpulseSource impulseSource;
+    private GameObject camera;
+    private CameraManager cameraManager;
     
     private void Awake()
     {
         waitForSeconds = new WaitForSeconds(delayTime);
         sr = GetComponent<SpriteRenderer>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
+        camera = GameObject.FindGameObjectWithTag("Camera");
+        cameraManager = camera.GetComponent<CameraManager>();
     }
 
     void TakeDMG() // ÇÃ·¹ÀÌ¾î °©¿Ê °¨¼Ò °©¿ÊÀÌ ¾ø´Ù¸é »ç¸Á
@@ -29,7 +30,7 @@ public class PlayerTakeDMG : MonoBehaviour
             PlayerStatManager.instance.ArmorDurability--;
             StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
-            CameraShakeManager.instance.CameraShake(impulseSource);
+            cameraManager.OnShakeCamera();
         }
         else
         {

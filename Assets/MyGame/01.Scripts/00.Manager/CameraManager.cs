@@ -38,13 +38,14 @@ public class CameraManager : MonoBehaviour
     {
         if (target.gameObject != null)
         {
-            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.gameObject.transform.position.z);
+            targetPosition.Set(this.gameObject.transform.position.x, target.transform.position.y, this.gameObject.transform.position.z);
 
             this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, movespeed * Time.deltaTime); // 카메라의 포지션에서 타겟의 포지션으로 1초에 movespeed만큼 이동
 
             float clampedX = Mathf.Clamp(this.transform.position.x, minArea.x + halfWidth, maxArea.x - halfWidth); 
             float clampedY = Mathf.Clamp(this.transform.position.y, minArea.y + halfHeight, maxArea.y - halfHeight); // Clamp 공식 ( 벨류 , 최소 , 최대)
                                                           // ( 스크립트를 가지고 있는 오브젝트의 (x or y) 값, 카메라 범위의 (x or y) 최소값 + 카메라 범위 반지름, 카메라 범위의 (x or y) 최대값 - 카메라 범위 반지름 ) 
+                                                          // 수정 : 해당 카메라의 x 값이 움직일 필요가 없기에 움직이지 않게 수정
             this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
         }
         if(Input.GetKeyDown(KeyCode.Z))
