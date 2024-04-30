@@ -11,6 +11,7 @@ TagManager:
   - BossStage
   - EnemyAtk
   - Coin
+  - Camera
   layers:
   - Default
   - TransparentFX
