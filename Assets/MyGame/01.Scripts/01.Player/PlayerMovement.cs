@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
+    private bool isGround = false;
 
     Vector2 velocity;
 
@@ -62,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
             Move();
         }
     }
+
+    /// <summary>
+    /// 움직임
+    /// </summary>
     private void Move() // 플레이어 움직임
     {
         hor = Input.GetAxis("Horizontal");
@@ -72,13 +79,15 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
     }
 
+    /// <summary>
+    /// 점프
+    /// </summary>
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && isGround)
         {
             //rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
             rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
-
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
@@ -86,21 +95,23 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundChk.position, 0.2f, groundLayer);
-        // 만약 groundChk.position에 위치한 0.2f 크기의 원 안에 groundLayer가 부딪힌다면 true를 리턴
-    }
 
+    /// <summary>
+    /// 벽에 붙어있는지 체크
+    /// </summary>
+    /// <returns></returns>
     private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, wallLayer);
         // 만약 wallChk.position에 0.2f 크기의 원 안에 wallLayer가 부딪힌다면 true를 리턴
     }
 
+    /// <summary>
+    /// 벽 슬라이딩
+    /// </summary>
     private void wallSlide() // 벽 슬라이딩
     {
-        if (IsWalled() && !IsGrounded() && hor != 0)
+        if (IsWalled() && !isGround && hor != 0)
         {
             iswallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -112,6 +123,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 벽점프
+    /// </summary>
     private void WallJump()
     {
         if (iswallSliding) // 벽점프가 가능한 상태
@@ -129,27 +143,33 @@ public class PlayerMovement : MonoBehaviour
         {
             float jumpDirection = isFacingRight; // 현재 방향 저장
             isWallJumping = true; // 벽점프 중
-            
+
             if (IsWalled()) // 벽이라면
             {
                 jumpDirection *= -1; // 반대방향 설정
                 gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y == 0 ? 180 : 0, 0); // 반대방향으로 회전
                 rb.velocity = new Vector2(wallJumpingPower.x * jumpDirection, wallJumpingPower.y); // walljupingpower만큼 반대방향으로
             }
-            
+
             wallJumpingCounter = 0f;
             Invoke(nameof(StopWallJumping), wallJumpingDuration); // 일정 시간후 벽점프 종료
         }
     }
 
+    /// <summary>
+    /// 벽점프 종료
+    /// </summary>
     private void StopWallJumping()
     {
         isWallJumping = false;
     }
 
+    /// <summary>
+    /// Sprite 방향 전환
+    /// </summary>
     private void Flip() // 이동하는 방향 바라보기
     {
-        if ( hor < 0f || hor > 0)
+        if (hor < 0f || hor > 0)
         {
             if (hor > 0)
             {
@@ -161,6 +181,22 @@ public class PlayerMovement : MonoBehaviour
                 isFacingRight = -1;
                 gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) // 바닥에 있는지 체크
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) // 바닥에 떨어졌는지 체크
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGround = false;
         }
     }
 }
