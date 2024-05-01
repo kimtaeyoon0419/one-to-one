@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    [Header("Stat")]
     public MonsterStat stat; // 몬스터의 스텟
     public MonsterUnitCode unitCode; // 유닛코드 지정
 
-    Rigidbody2D rb;
-    Animator animator;
-    SpriteRenderer sr;
+    [Header("Component")]
+    public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer sr;
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
-    [SerializeField] private float delayTime; // WaitForSeconds 값
-    [SerializeField] private GameObject AttackCollider; // 공격 범위
-    [SerializeField] private bool isGround; // 바닥 검사
-    private WaitForSeconds waitForSeconds; // 웨잇포세컨드
+    public float delayTime; // WaitForSeconds 값
+    GameObject AttackCollider; // 공격 범위
+    public bool isGround; // 바닥 검사
+    WaitForSeconds waitForSeconds; // 웨잇포세컨드
 
     public int nextMove; // 다음으로 움직일 방향
 
     private Vector2 frontVec;
-    private Vector2 JumpPower = new Vector2(2f, 4f);
 
-    private int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
+    int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
     private DropItem itemdrop;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         stat = new MonsterStat();
         stat = stat.SetUnitStatus(unitCode);
@@ -42,7 +43,7 @@ public class Monster : MonoBehaviour
         StartCoroutine(Co_Think());
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Vector2 DirVec = new Vector2(nextMove * stat.moveSpeed, rb.velocity.y); // 방향 설정
         rb.velocity = DirVec; // 방향으로 이동
@@ -59,7 +60,7 @@ public class Monster : MonoBehaviour
             StartCoroutine(Co_StartThinkCoroutineDelay(1f));
         }
     }
-    void Update()
+    protected virtual void Update()
     {
         AttackRay(); // 공격범위에 플레이어가 있는지 검사 & 공격
         if (stat.curAtkSpeed > 0)
@@ -103,19 +104,25 @@ public class Monster : MonoBehaviour
         nextMove *= -1;
         StopCoroutine(Co_Think());
     }
-
+    /// <summary>
+    /// 피격 데미지
+    /// </summary>
+    /// <param name="damge"></param>
     public void TakeDmg(int damge) // 몬스터 피격
     {
         stat.curHp -= damge;
         if (stat.curHp <= 0)
         {
-            AudioManager.instance.PlaySFX("Slime_Die");
             itemdrop.DropCoin();
             gameObject.active = false;
         }
         else StartCoroutine(Co_isHit());
     }
 
+    /// <summary>
+    /// 피격 했을 때 반짝거림
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Co_isHit() // 맞았을 때 색전환
     {
         for (int i = 0; i < 3; i++)
@@ -126,6 +133,10 @@ public class Monster : MonoBehaviour
             sr.color = fullA;
         }
     }
+
+    /// <summary>
+    /// 플레이어가 있는지 검사하는 레이케이스
+    /// </summary>
     private void AttackRay() //레이케스트에 플레이어가 들어오면 공격!!!
     {
         if (nextMove != 0)
@@ -142,7 +153,6 @@ public class Monster : MonoBehaviour
             StopCoroutine(Co_Think()); // 코루틴을 꺼서 방향 전환을 막음
             Attack(); // 공격 후
             animator.SetTrigger("Attack"); // 공격 애니메이션
-            AudioManager.instance.PlaySFX("Slime_Jump");
             if (isGround == true)
             {
                 StartCoroutine(Co_StartThinkCoroutineDelay(2f)); // 다시 방향전환을 정함
@@ -150,19 +160,12 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void Attack() // 몬스터 공격
+    /// <summary>
+    /// 공격
+    /// </summary>
+    protected virtual void Attack() // 몬스터 공격
     {
         Debug.Log("공격!!!");
         CancelInvoke(); // 방향이 바뀌지 않게 캔슬
-        //rb.AddForce(Vector2.up * 4, ForceMode2D.Impulse); // 점프 공격
-        rb.velocity = JumpPower; // velocity 값을 JumpPower로 초기화하고
-        rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 점프 한다!
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground")) // 현재 땅에 붙어있는지 확인
-        {
-            isGround = true;
-        }
     }
 }
