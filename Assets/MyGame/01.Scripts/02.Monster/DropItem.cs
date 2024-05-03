@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    #region Private_Function
-    private void DropCoin()
+    #region Public_Function
+    public void DropCoin()
     {
         ObjectPool.SpawnFromPool("Coin", gameObject.transform.position);
     }

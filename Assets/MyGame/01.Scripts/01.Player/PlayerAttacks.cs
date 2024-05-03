@@ -21,6 +21,7 @@ public class PlayerAttacks : MonoBehaviour
             AudioManager.instance.PlaySFX("Shot"); // 총소리
             
             PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
+            PlayerStatManager.instance.UseBullet();
             ObjectPool.SpawnFromPool("Bullet", AttackPos.transform.position, gameObject.transform.rotation);
         }
     }

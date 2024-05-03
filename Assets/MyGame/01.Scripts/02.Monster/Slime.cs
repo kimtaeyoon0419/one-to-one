@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Slime : Monster
 {
-    private Vector2 JumpPower = new Vector2(2f, 4f);  // 점프 공격 점프파워
-    private float JumpScale = 2f;
+    public float JumpScale ;
 
     #region Unity_Function
     protected override void Awake()
@@ -23,6 +23,7 @@ public class Slime : Monster
     protected override void Update()
     {
         base.Update();
+        AttackRay();
     }
 
     /// <summary>
@@ -40,14 +41,11 @@ public class Slime : Monster
 
     #region override_Function
     protected override void Attack()
-    {   if (isGround)
-        {
-            base.Attack();
+    {   
+            Debug.Log("홀리씨우");
+            isGround = false;
             AudioManager.instance.PlaySFX("Slime_Jump");
-            //rb.velocity = JumpPower; // velocity 값을 JumpPower로 초기화하고
-            //rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 점프 한다!
-            rb.AddForce(Vector2.up * JumpScale, ForceMode2D.Impulse);
-        }
+            rb.velocity = Vector2.up * JumpScale;
     }
     #endregion
 }

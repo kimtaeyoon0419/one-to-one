@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     [Header("LayCast")]
-    [SerializeField] private Transform groundChk;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallChk;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Transform groundChk;
+    [SerializeField] private LayerMask groundLayer;
+    private Vector2 groundChkBox = new Vector2(1.5f, 0.1f);
+
 
     [Header("WallJump")]
     private bool iswallSliding; // 현재 벽을 타고 있는지
@@ -60,22 +62,6 @@ public class PlayerMovement : MonoBehaviour
             _Flip();
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground")) // 바닥에 있는지 체크
-        {
-            isGround = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // 바닥에 떨어졌는지 체크
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = false;
-        }
-    }
     #endregion
 
     #region Private_Function
@@ -95,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void _Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetButtonDown("Jump") && _IsGround())
         {
             //rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
             rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
@@ -107,14 +93,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool _IsGround()
+    {
+        return Physics2D.OverlapBox(groundChk.position, groundChkBox, 0, groundLayer);
+    }
+
     /// <summary>
     /// 벽에 붙어있는지 체크
     /// </summary>
     /// <returns></returns>
-    private bool IsWalled()
+    private bool _IsWalled()
     {
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, wallLayer);
         // 만약 wallChk.position에 0.2f 크기의 원 안에 wallLayer가 부딪힌다면 true를 리턴
+    }
+    private bool _IsWallGround()
+    {
+        return Physics2D.OverlapCircle(wallChk.position, 0.2f, groundLayer);
     }
 
     /// <summary>
@@ -122,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void _wallSlide() // 벽 슬라이딩
     {
-        if (IsWalled() && !isGround && hor != 0)
+        if (_IsWalled() || _IsWallGround() && !_IsGround()&& hor != 0)
         {
             iswallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -155,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             float jumpDirection = isFacingRight; // 현재 방향 저장
             isWallJumping = true; // 벽점프 중
 
-            if (IsWalled()) // 벽이라면
+            if (_IsWalled() || _IsWallGround()) // 벽이라면
             {
                 jumpDirection *= -1; // 반대방향 설정
                 gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y == 0 ? 180 : 0, 0); // 반대방향으로 회전

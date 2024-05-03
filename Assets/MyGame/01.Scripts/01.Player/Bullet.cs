@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -20,7 +21,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") || collision.CompareTag("Monster"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Ground"))
         {
             if (collision.CompareTag("Monster")) // 만약 몬스터와 부딪혔다면
             {

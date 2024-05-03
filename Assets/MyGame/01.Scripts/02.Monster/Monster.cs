@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     [Header("Stat")]
     public MonsterStat stat; // 몬스터의 스텟
@@ -24,6 +24,7 @@ public class Monster : MonoBehaviour
     public int nextMove; // 다음으로 움직일 방향
     private Vector2 frontVec;
     int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
+
 
     [Header("DropItem")]
     private DropItem itemdrop;
@@ -64,7 +65,7 @@ public class Monster : MonoBehaviour
     }
     protected virtual void Update()
     {
-        AttackRay(); // 공격범위에 플레이어가 있는지 검사 & 공격
+        //AttackRay(); // 공격범위에 플레이어가 있는지 검사 & 공격
         if (stat.curAtkSpeed > 0)
         {
             stat.curAtkSpeed -= Time.deltaTime;
@@ -89,7 +90,7 @@ public class Monster : MonoBehaviour
     /// <summary>
     /// 플레이어가 있는지 검사하는 레이케이스
     /// </summary>
-    private void AttackRay() //레이케스트에 플레이어가 들어오면 공격!!!
+    protected void AttackRay() //레이케스트에 플레이어가 들어오면 공격!!!
     {
         if (nextMove != 0)
         {
@@ -135,11 +136,7 @@ public class Monster : MonoBehaviour
     /// <summary>
     /// 공격
     /// </summary>
-    protected virtual void Attack() // 몬스터 공격
-    {
-        Debug.Log("공격!!!");
-        CancelInvoke(); // 방향이 바뀌지 않게 캔슬
-    }
+    protected abstract void Attack();// 몬스터 공격
     #endregion
 
     #region Coroutine_Function
