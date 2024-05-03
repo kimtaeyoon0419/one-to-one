@@ -15,18 +15,20 @@ public class Monster : MonoBehaviour
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
-    public float delayTime; // WaitForSeconds 값
-    GameObject AttackCollider; // 공격 범위
-    public bool isGround; // 바닥 검사
+    [Header("WaitForSecond")]
     WaitForSeconds waitForSeconds; // 웨잇포세컨드
+    public float delayTime; // WaitForSeconds 값
 
+    [Header("Move")]
+    public bool isGround; // 바닥 검사
     public int nextMove; // 다음으로 움직일 방향
-
     private Vector2 frontVec;
-
     int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
+
+    [Header("DropItem")]
     private DropItem itemdrop;
 
+    #region Unity_Function
     protected virtual void Awake()
     {
         stat = new MonsterStat();
@@ -76,64 +78,14 @@ public class Monster : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+    #endregion
 
-    IEnumerator Co_Think() // 어느방향으로 움직일지 생각해주는 코루틴(재귀)
-    {
-        nextMove = Random.Range(-1, 2);
-
-        float nextThinkTime = Random.Range(2f, 5f);
-        if (this.gameObject.activeSelf)
-        {
-            yield return new WaitForSeconds(nextThinkTime);
-            yield return StartCoroutine(Co_Think());
-        }
-        else
-        {
-            yield break;
-        }
-    }
-    IEnumerator Co_StartThinkCoroutineDelay(float delay) // Think() 코루틴을 일정 시간 뒤에 실행해줌
-    {
-        yield return new WaitForSeconds(delay);
-
-        StartCoroutine(Co_Think());
-    }
-
-    void Turn() // 방향전환
+    #region Private_Function
+    private void Turn() // 방향전환
     {
         nextMove *= -1;
         StopCoroutine(Co_Think());
     }
-    /// <summary>
-    /// 피격 데미지
-    /// </summary>
-    /// <param name="damge"></param>
-    public void TakeDmg(int damge) // 몬스터 피격
-    {
-        stat.curHp -= damge;
-        if (stat.curHp <= 0)
-        {
-            itemdrop.DropCoin();
-            gameObject.active = false;
-        }
-        else StartCoroutine(Co_isHit());
-    }
-
-    /// <summary>
-    /// 피격 했을 때 반짝거림
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Co_isHit() // 맞았을 때 색전환
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            yield return waitForSeconds;
-            sr.color = hafpA;
-            yield return waitForSeconds;
-            sr.color = fullA;
-        }
-    }
-
     /// <summary>
     /// 플레이어가 있는지 검사하는 레이케이스
     /// </summary>
@@ -160,6 +112,26 @@ public class Monster : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Public_Function
+    /// <summary>
+    /// 피격 데미지
+    /// </summary>
+    /// <param name="damge"></param>
+    public void TakeDmg(int damge) // 몬스터 피격
+    {
+        stat.curHp -= damge;
+        if (stat.curHp <= 0)
+        {
+            itemdrop.DropCoin();
+            gameObject.active = false;
+        }
+        else StartCoroutine(Co_isHit());
+    }
+    #endregion
+
+    #region Protected_Function
     /// <summary>
     /// 공격
     /// </summary>
@@ -168,4 +140,43 @@ public class Monster : MonoBehaviour
         Debug.Log("공격!!!");
         CancelInvoke(); // 방향이 바뀌지 않게 캔슬
     }
+    #endregion
+
+    #region Coroutine_Function
+    IEnumerator Co_Think() // 어느방향으로 움직일지 생각해주는 코루틴(재귀)
+    {
+        nextMove = Random.Range(-1, 2);
+
+        float nextThinkTime = Random.Range(2f, 5f);
+        if (this.gameObject.activeSelf)
+        {
+            yield return new WaitForSeconds(nextThinkTime);
+            yield return StartCoroutine(Co_Think());
+        }
+        else
+        {
+            yield break;
+        }
+    }
+    IEnumerator Co_StartThinkCoroutineDelay(float delay) // Think() 코루틴을 일정 시간 뒤에 실행해줌
+    {
+        yield return new WaitForSeconds(delay);
+
+        StartCoroutine(Co_Think());
+    }
+    /// <summary>
+    /// 피격 했을 때 반짝거림
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Co_isHit() // 맞았을 때 색전환
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return waitForSeconds;
+            sr.color = hafpA;
+            yield return waitForSeconds;
+            sr.color = fullA;
+        }
+    }
+    #endregion
 }

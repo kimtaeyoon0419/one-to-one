@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
+    #region Unity_Function
     private void Awake()
     {
         if (instance == null)
@@ -30,7 +31,9 @@ public class AudioManager : MonoBehaviour
         SFXVolume(0.5f);
         PlayMusic("Theme");
     }
+    #endregion
 
+    #region Public_Function
     public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
@@ -73,4 +76,5 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.volume = volume;
     }
+    #endregion
 }

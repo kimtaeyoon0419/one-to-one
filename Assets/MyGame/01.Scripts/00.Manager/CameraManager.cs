@@ -25,6 +25,7 @@ public class CameraManager : MonoBehaviour
     private float shakeTime; // 흔들리는 시간
     private float shakeIntensity; // 흔들리는 세기
 
+    #region Unity_Function
     private void Start()
     {
         theCamera = GetComponent<Camera>();
@@ -53,7 +54,28 @@ public class CameraManager : MonoBehaviour
             OnShakeCamera();
         }
     }
+    #endregion
 
+    #region Private_Function
+    private IEnumerator ShakeByPos()
+    {
+        // 흔들리기 직전의 위치 ( 흔들림 종료 후 돌아올 위치 )
+        Vector3 startPos = transform.position;
+
+        while (shakeTime > 0.0f)
+        {
+            // 시작 위치로 부터 구 범위 (Size 1) * shakeIntensity의 범위 안에서 카메라 위치 변동
+            transform.position = startPos + Random.insideUnitSphere * shakeIntensity;
+            // 시간 감소
+            shakeTime -= Time.deltaTime;
+
+            yield return null;
+        }
+        transform.position = startPos;
+    }
+    #endregion
+
+    #region Public_Function
     public void OnShakeCamera(float shakeTime = 0.2f, float shakeIntensity  = 0.1f)
     {
         this.shakeTime = shakeTime;
@@ -63,21 +85,5 @@ public class CameraManager : MonoBehaviour
         StartCoroutine("ShakeByPos");
 
     }
-
-    private IEnumerator ShakeByPos()
-    {
-        // 흔들리기 직전의 위치 ( 흔들림 종료 후 돌아올 위치 )
-        Vector3 startPos = transform.position;
-
-        while (shakeTime > 0.0f)
-        {
-            // 시작 위치로 부터 구 범위 (Size 1) * shakeIntensity의 범위 안에서 카메라 위치 변동
-            transform.position= startPos + Random.insideUnitSphere * shakeIntensity;
-            // 시간 감소
-            shakeTime -= Time.deltaTime;
-
-            yield return null;
-        }
-        transform.position = startPos;
-    }
+    #endregion
 }

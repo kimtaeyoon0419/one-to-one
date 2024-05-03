@@ -14,7 +14,10 @@ public class PlayerTakeDMG : MonoBehaviour
     [SerializeField] private bool isHit = false;
     private GameObject camera;
     private CameraManager cameraManager;
-    
+
+    public Vector2 test_Vec2;
+
+    #region Unity_Function
     private void Awake()
     {
         waitForSeconds = new WaitForSeconds(delayTime);
@@ -23,7 +26,21 @@ public class PlayerTakeDMG : MonoBehaviour
         cameraManager = camera.GetComponent<CameraManager>();
     }
 
-    void TakeDMG() // 플레이어 갑옷 감소 갑옷이 없다면 사망
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyAtk") || collision.gameObject.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
+        {
+            if (isHit == false)
+            {
+                isHit = true;
+                TakeDMG();
+            }
+        }
+    }
+    #endregion
+
+    #region Private_Function
+    private void TakeDMG() // 플레이어 갑옷 감소 갑옷이 없다면 사망
     {
         if (PlayerStatManager.instance.ArmorDurability > 0)
         {
@@ -38,6 +55,14 @@ public class PlayerTakeDMG : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        Debug.Log("으앙 주거써");
+        PlayerStatManager.instance.isDie = true; // 현재 상태를 죽음으로 바꿈
+    }
+    #endregion
+
+    #region Corutine_Function
     IEnumerator Co_OnHit()
     {
         yield return new WaitForSeconds(delayTime * 6);
@@ -54,34 +79,5 @@ public class PlayerTakeDMG : MonoBehaviour
             sr.color = fullA;
         }
     }
-
-    private void Die()
-    {
-        Debug.Log("으앙 주거써");
-        PlayerStatManager.instance.isDie = true; // 현재 상태를 죽음으로 바꿈
-    }
-    //private void OnCollisionEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("EnemyAtk") || collision.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
-    //    {
-    //        if (isHit == false)
-    //        {
-    //            Debug.Log("처 맞음");
-    //            isHit = true;
-    //            TakeDMG();
-    //        }
-    //    }
-    //}
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("EnemyAtk") || collision.gameObject.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
-        {
-            if (isHit == false)
-            {
-                Debug.Log("처 맞음");
-                isHit = true;
-                TakeDMG();
-            }
-        }
-    }
+    #endregion
 }

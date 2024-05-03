@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    public void DropCoin()
+    #region Private_Function
+    private void DropCoin()
     {
-        ObjectPool.instance.Get(1, transform.position, Quaternion.identity); // Ç®¸µÇÏ¿© ÄÚÀÎ ¶³±À
+        ObjectPool.SpawnFromPool("Coin", gameObject.transform.position);
     }
+    #endregion
 }

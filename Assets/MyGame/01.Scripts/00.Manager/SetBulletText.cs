@@ -9,6 +9,7 @@ public class SetBulletText : MonoBehaviour
     [SerializeField] private TextMeshProUGUI BulletCount;
     public int index;
 
+    #region Unity_Function
     void Start()
     {
         
@@ -20,13 +21,14 @@ public class SetBulletText : MonoBehaviour
         {
             SetText();
         }
-
         else if (index == 1)
         {
             SetText22();
         }
     }
-    
+    #endregion
+
+    #region Public_Function
     public void SetText()
     {
         BulletCount.text = "≥≤¿∫ ≈∫»Ø :" + PlayerStatManager.instance.CurBulletCount;
@@ -35,4 +37,5 @@ public class SetBulletText : MonoBehaviour
     {
         BulletCount.text = "»πµÊ«— ƒ⁄¿Œ :" + CoinManager.instance.coin;
     }
+    #endregion
 }

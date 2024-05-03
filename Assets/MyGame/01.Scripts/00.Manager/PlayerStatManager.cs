@@ -18,16 +18,16 @@ public class PlayerStatManager : MonoBehaviour
 
     [Header("플레이어 공격스텟")]
     public int AttackPower = 1;
-    public int CurBulletCount;
+    public int CurBulletCount { get; private set; }
     public int MaxBublletCount;
     public float bulletshotCoolTime;
     public float bulletshotCurTime;
     public bool isDie = false;
 
-
+    #region Unity_Function
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += _OnSceneLoaded;
     }
 
     void Start()
@@ -44,7 +44,6 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         if (bulletshotCurTime > 0)
@@ -56,12 +55,10 @@ public class PlayerStatManager : MonoBehaviour
             CurBulletCount = MaxBublletCount;
         }
     }
-    public void InitializeStats()
-    {
-        CurBulletCount = MaxBublletCount;
-    }
+    #endregion
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    #region Private_Function
+    private void _OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log(scene.name);
         // 플레이어 스탯 초기화
@@ -70,4 +67,16 @@ public class PlayerStatManager : MonoBehaviour
             InitializeStats();
         }
     }
+    #endregion
+
+    #region Public_Function
+    public void InitializeStats()
+    {
+        CurBulletCount = MaxBublletCount;
+    }
+    public void UseBullet()
+    {
+        CurBulletCount--; // 탄 소비
+    }
+    #endregion
 }

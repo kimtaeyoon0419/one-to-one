@@ -29,50 +29,61 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기  
 
     [Header("Move")]
-    public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
     private bool isGround = false;
+    private Vector2 velocity;
 
-    Vector2 velocity;
+    [Header("Coroutine")]
+    private Coroutine Co_StopWallJumping;
 
+    #region Unity_Function
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        playerDir = Direction.Right;
-    }
-
     private void Update()
     {
-        if (!isWallJumping)
-        {
-            Flip();
-        }
+        hor = Input.GetAxis("Horizontal");
 
-        Jump();
-        wallSlide();
-        WallJump();
+        _Jump();
+        _wallSlide();
+        _WallJump();
     }
 
     private void FixedUpdate()
     {
         if (!isWallJumping)
         {
-            Move();
+            _Move();
+            _Flip();
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) // 바닥에 있는지 체크
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) // 바닥에 떨어졌는지 체크
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGround = false;
+        }
+    }
+    #endregion
+
+    #region Private_Function
     /// <summary>
     /// 움직임
     /// </summary>
-    private void Move() // 플레이어 움직임
-    {
-        hor = Input.GetAxis("Horizontal");
-
+    private void _Move() // 플레이어 움직임
+    { 
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -82,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// 점프
     /// </summary>
-    private void Jump()
+    private void _Jump()
     {
         if (Input.GetButtonDown("Jump") && isGround)
         {
@@ -109,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// 벽 슬라이딩
     /// </summary>
-    private void wallSlide() // 벽 슬라이딩
+    private void _wallSlide() // 벽 슬라이딩
     {
         if (IsWalled() && !isGround && hor != 0)
         {
@@ -126,14 +137,14 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// 벽점프
     /// </summary>
-    private void WallJump()
+    private void _WallJump()
     {
         if (iswallSliding) // 벽점프가 가능한 상태
         {
             isWallJumping = false; // 벽점프 활성화
             wallJumpingCounter = wallJumpingTime; // 벽에서 점프할 수 있는 시간
 
-            CancelInvoke(nameof(StopWallJumping)); // 벽에서 벽으로 움직였을 떄 벽점프가 취소되는 오류 방지
+            if(Co_StopWallJumping != null) StopCoroutine(Co_StopWallJumping);
         }
         else
         {
@@ -152,22 +163,14 @@ public class PlayerMovement : MonoBehaviour
             }
 
             wallJumpingCounter = 0f;
-            Invoke(nameof(StopWallJumping), wallJumpingDuration); // 일정 시간후 벽점프 종료
+            Co_StopWallJumping = StartCoroutine(co_StopWallJumping(wallJumpingDuration));
         }
-    }
-
-    /// <summary>
-    /// 벽점프 종료
-    /// </summary>
-    private void StopWallJumping()
-    {
-        isWallJumping = false;
     }
 
     /// <summary>
     /// Sprite 방향 전환
     /// </summary>
-    private void Flip() // 이동하는 방향 바라보기
+    private void _Flip() // 이동하는 방향 바라보기
     {
         if (hor < 0f || hor > 0)
         {
@@ -183,20 +186,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    #endregion
+  
+    #region Coroutine_Function
+    IEnumerator co_StopWallJumping(float daley)
     {
-        if (collision.gameObject.CompareTag("Ground")) // 바닥에 있는지 체크
-        {
-            isGround = true;
-        }
+        yield return new WaitForSeconds(daley);
+        isWallJumping = false;
     }
-
-    private void OnCollisionExit2D(Collision2D collision) // 바닥에 떨어졌는지 체크
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = false;
-        }
-    }
+    #endregion
 }

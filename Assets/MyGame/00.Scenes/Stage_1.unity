@@ -1510,7 +1510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501602127}
-  - component: {fileID: 501602126}
+  - component: {fileID: 501602128}
   m_Layer: 0
   m_Name: Object Pool
   m_TagString: Untagged
@@ -1518,21 +1518,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &501602126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501602125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60da4c821277f3745b878283eb587760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 5314648248145369640, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
-  - {fileID: 8010027258336019907, guid: 1d2fc64047c29cc41adb75df1ca0df54, type: 3}
 --- !u!4 &501602127
 Transform:
   m_ObjectHideFlags: 0
@@ -1548,6 +1533,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &501602128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501602125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c8f6c4b496fde4fb66e078cd9f86cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolList:
+  - poolCount: 20
+    poolName: Bullet
+    poolObject: {fileID: 5314648248145369640, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
+    parentObject: {fileID: 0}
+  - poolCount: 15
+    poolName: Coin
+    poolObject: {fileID: 8010027258336019907, guid: 1d2fc64047c29cc41adb75df1ca0df54, type: 3}
+    parentObject: {fileID: 0}
 --- !u!1 &519967047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1740,7 @@ GameObject:
   - component: {fileID: 559753424}
   - component: {fileID: 559753423}
   m_Layer: 5
-  m_Name: BulletCount (1)
+  m_Name: Coin Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2639,8 +2645,7 @@ MonoBehaviour:
   JumpPoawer: 15
   ArmorDurability: 5
   AttackPower: 1
-  CurBulletCount: 0
-  MaxBublletCount: 500
+  MaxBublletCount: 20
   bulletshotCoolTime: 0
   bulletshotCurTime: 0
   isDie: 0
@@ -3397,7 +3402,6 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
-  playerDir: 0
 --- !u!114 &1351111164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3425,6 +3429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayTime: 0.1
   isHit: 0
+  test_Vec2: {x: 0, y: 0}
 --- !u!114 &1351111166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,8 +4253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b23f7e36d17b448aecd1cfe7f5bf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: {fileID: 501602126}
-  Bullet: {fileID: 739015622489296759, guid: f255d3fefbf5b9d4a8ad7b6dcc0730dd, type: 3}
   MapMove: {fileID: 0}
   loadingNextScene: 
 --- !u!4 &1662808162

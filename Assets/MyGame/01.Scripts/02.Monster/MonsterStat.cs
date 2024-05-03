@@ -15,11 +15,7 @@ public class MonsterStat
     public float moveSpeed { get; set; } // 이동속도
     public float atkRange { get; set; } // 사거리 
 
-    private Rigidbody2D rb;
-
-    public MonsterStat()
-    {
-    }
+    #region Public_Function
     public MonsterStat(MonsterUnitCode unitCode, string name, int maxHp, int atkDmg, float atkSpeed, float moveSpeed, float atkRange)
     {
         this.unitCode = unitCode;
@@ -50,4 +46,5 @@ public class MonsterStat
         }
         return status;
     }
+    #endregion
 }

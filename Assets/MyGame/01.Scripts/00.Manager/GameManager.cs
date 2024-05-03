@@ -6,15 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("ObjectPooling")]
-    public ObjectPool pools;
-    [Header("Bullet")]
-    public Bullet Bullet;
     public MapMove MapMove;
 
     public string loadingNextScene;
-    private bool isMapMove = false;
 
+    #region Unity_Function
     void Awake()
     {
         if (instance == null)
@@ -27,17 +23,5 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
-    private void OnEnable()
-    {
-        Debug.Log("¿¿æ÷");
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    #endregion
 }

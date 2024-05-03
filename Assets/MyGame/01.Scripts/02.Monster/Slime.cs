@@ -10,6 +10,7 @@ public class Slime : Monster
     private Vector2 JumpPower = new Vector2(2f, 4f);  // 점프 공격 점프파워
     private float JumpScale = 2f;
 
+    #region Unity_Function
     protected override void Awake()
     {
         base.Awake();
@@ -24,17 +25,6 @@ public class Slime : Monster
         base.Update();
     }
 
-    protected override void Attack()
-    {   if (isGround)
-        {
-            base.Attack();
-            AudioManager.instance.PlaySFX("Slime_Jump");
-            //rb.velocity = JumpPower; // velocity 값을 JumpPower로 초기화하고
-            //rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 점프 한다!
-            rb.AddForce(Vector2.up * JumpScale, ForceMode2D.Impulse);
-        }
-    }
-
     /// <summary>
     /// 바닥에 있는지 확인
     /// </summary>
@@ -46,5 +36,19 @@ public class Slime : Monster
             isGround = true;
         }
     }
+    #endregion
+
+    #region override_Function
+    protected override void Attack()
+    {   if (isGround)
+        {
+            base.Attack();
+            AudioManager.instance.PlaySFX("Slime_Jump");
+            //rb.velocity = JumpPower; // velocity 값을 JumpPower로 초기화하고
+            //rb.velocity = new Vector2(rb.velocity.x * stat.moveSpeed * rayLookDir, rb.velocity.y); // 레이의 방향으로 점프 한다!
+            rb.AddForce(Vector2.up * JumpScale, ForceMode2D.Impulse);
+        }
+    }
+    #endregion
 }
 

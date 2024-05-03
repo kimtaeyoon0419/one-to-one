@@ -48,7 +48,7 @@ public class test_player : MonoBehaviour
 
         if (!isWallJumping)
         {
-            Flip();
+            _Flip();
         }
 
         Jump();
@@ -164,7 +164,7 @@ public class test_player : MonoBehaviour
         isWallJumping = false;
     }
 
-    private void Flip()
+    private void _Flip()
     {
         if (isFacingRight && hor < 0f || !isFacingRight && hor > 0)
         {
@@ -187,7 +187,6 @@ public class test_player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             Debug.Log("x 눌림");
-            PlayerStatManager.instance.CurBulletCount--; // 탄 소비
             PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
             test_objcetPool.instance.Get(0, pos.transform.position, gameObject.transform.rotation); // 풀링
         }

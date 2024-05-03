@@ -16,6 +16,7 @@ public class UiManager : MonoBehaviour
 
     private bool SetPanelOnoff = false;
 
+    #region Unity_Function
     private void Start()
     {
         if (GameOverUI != null)
@@ -31,7 +32,9 @@ public class UiManager : MonoBehaviour
             Gameover();
         }
     }
+    #endregion
 
+    #region Public_Fuction
     public void SettingPanelToggle() // 설정 패널 on / off
     {
             SetPanelOnoff = !SetPanelOnoff;
@@ -74,4 +77,5 @@ public class UiManager : MonoBehaviour
     {
         Application.Quit();
     }
+    #endregion
 }

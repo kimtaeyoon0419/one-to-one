@@ -7,7 +7,7 @@ public class CoinManager : MonoBehaviour
     public static CoinManager instance;
 
     [SerializeField] public int coin;
-
+    #region Unity_Function
     private void Awake()
     {
         if(instance == null)
@@ -20,4 +20,5 @@ public class CoinManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    #endregion
 }

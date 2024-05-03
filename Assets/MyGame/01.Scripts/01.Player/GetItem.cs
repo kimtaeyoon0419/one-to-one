@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class GetItem : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
-
+    #region Unity_Function
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
@@ -17,4 +12,5 @@ public class GetItem : MonoBehaviour
             CoinManager.instance.coin += 100;
         }
     }
+    #endregion
 }

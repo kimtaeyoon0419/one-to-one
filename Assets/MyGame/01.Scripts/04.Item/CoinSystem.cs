@@ -7,6 +7,7 @@ public class CoinSystem : MonoBehaviour
     private Vector2 JumpPower = new Vector2(1f, 3f);
     private Rigidbody2D rb;
 
+    #region Unity_Function
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,8 +24,9 @@ public class CoinSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            ObjectPool.ReturnToPool("Coin", gameObject);
             AudioManager.instance.PlaySFX("Coin_Get");
-            this.gameObject.SetActive(false);
         }
     }
+    #endregion
 }

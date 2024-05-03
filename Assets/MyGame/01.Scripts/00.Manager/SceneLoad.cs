@@ -19,7 +19,7 @@ public class SceneLoad : MonoBehaviour
     //operation; <- 비동기식 실행
     //operation.progress; <- 진행률
     //operation.allowSceneActivation; <- 완료되었는가?
-
+    #region Unity_Function
     private void Awake()
     {
         waitForSeconds = new WaitForSeconds(delayTime);
@@ -30,7 +30,9 @@ public class SceneLoad : MonoBehaviour
         StartCoroutine(LoadScene());
         StartCoroutine(lodingSet());
     }
+    #endregion
 
+    #region Corountine_Function
     IEnumerator LoadScene()
     {
         yield return null;
@@ -81,4 +83,5 @@ public class SceneLoad : MonoBehaviour
             lodingTextCount++;
         }
     }
+    #endregion
 }
