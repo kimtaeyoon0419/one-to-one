@@ -5,25 +5,28 @@ using UnityEngine;
 public abstract class Monster : MonoBehaviour
 {
     [Header("Stat")]
-    public MonsterStat stat; // 몬스터의 스텟
-    public MonsterUnitCode unitCode; // 유닛코드 지정
+    protected MonsterStat stat; // 몬스터의 스텟
+    protected MonsterUnitCode unitCode; // 유닛코드 지정
 
     [Header("Component")]
-    public Rigidbody2D rb;
-    public Animator animator;
-    public SpriteRenderer sr;
+    protected Rigidbody2D rb;
+    protected Animator animator;
+    protected SpriteRenderer sr;
+    protected Transform target_Player;
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
     [Header("WaitForSecond")]
     WaitForSeconds waitForSeconds; // 웨잇포세컨드
-    public float delayTime; // WaitForSeconds 값
+    protected float delayTime; // WaitForSeconds 값
 
     [Header("Move")]
-    public bool isGround; // 바닥 검사
-    public int nextMove; // 다음으로 움직일 방향
-    private Vector2 frontVec;
+    protected int nextMove; // 다음으로 움직일 방향
+    private Vector2 frontVec; // 앞에 땅이 있는지 확인하는 거리
     int rayLookDir; // 몬스터의 방향과 맞는 레이 방향
+    protected bool isAttack = false; // 공격중인지
+    private Vector3 velocity;
+    protected float player_Distance;
 
 
     [Header("DropItem")]
@@ -39,6 +42,7 @@ public abstract class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         waitForSeconds = new WaitForSeconds(delayTime);
         itemdrop = GetComponent<DropItem>();
+        target_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Start()
@@ -48,10 +52,12 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        Vector2 DirVec = new Vector2(nextMove * stat.moveSpeed, rb.velocity.y); // 방향 설정
-        rb.velocity = DirVec; // 방향으로 이동
+        velocity.x = nextMove * stat.moveSpeed;
+        velocity.y = rb.velocity.y;
 
-        if (isGround == true)
+        rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
+
+        if (!isAttack)
         {
             frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
         }
@@ -65,6 +71,7 @@ public abstract class Monster : MonoBehaviour
     }
     protected virtual void Update()
     {
+        player_Distance = Vector3.Distance(transform.position, target_Player.transform.position);
         //AttackRay(); // 공격범위에 플레이어가 있는지 검사 & 공격
         if (stat.curAtkSpeed > 0)
         {
@@ -99,20 +106,18 @@ public abstract class Monster : MonoBehaviour
         Debug.DrawRay(rb.position, Vector2.right * stat.atkRange * rayLookDir, Color.yellow); // 레이확인
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right * rayLookDir, stat.atkRange, LayerMask.GetMask("Player"));
 
-        if (hit.collider != null && stat.curAtkSpeed <= 0 && isGround)
+        if (hit.collider != null && stat.curAtkSpeed <= 0)
         {
             stat.curAtkSpeed = stat.atkSpeed;
-            isGround = false;
             StopCoroutine(Co_Think()); // 코루틴을 꺼서 방향 전환을 막음
+            isAttack = true;
             Attack(); // 공격 후
-            animator.SetTrigger("Attack"); // 공격 애니메이션
-            if (isGround == true)
+            if (isAttack == false)
             {
                 StartCoroutine(Co_StartThinkCoroutineDelay(2f)); // 다시 방향전환을 정함
             }
         }
     }
-
     #endregion
 
     #region Public_Function

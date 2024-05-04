@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Move")]
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
-    private bool isGround = false;
     private Vector2 velocity;
 
     [Header("Coroutine")]
@@ -69,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     /// 움직임
     /// </summary>
     private void _Move() // 플레이어 움직임
-    { 
+    {
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
 
@@ -117,11 +116,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void _wallSlide() // 벽 슬라이딩
     {
-        if (_IsWalled() || _IsWallGround() && !_IsGround()&& hor != 0)
+        if (_IsWalled() || _IsWallGround())
         {
-            iswallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            // velocity의 y값을 wallSlidingSpeed만큼 내려가기 위해 앞에 - 를 붙힘
+            if (hor != 0)
+            {
+                Debug.Log("벽타는중~~");
+                iswallSliding = true;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+                // velocity의 y값을 wallSlidingSpeed만큼 내려가기 위해 앞에 - 를 붙힘
+            }
         }
         else
         {
@@ -139,13 +142,13 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = false; // 벽점프 활성화
             wallJumpingCounter = wallJumpingTime; // 벽에서 점프할 수 있는 시간
 
-            if(Co_StopWallJumping != null) StopCoroutine(Co_StopWallJumping);
+            if (Co_StopWallJumping != null) StopCoroutine(Co_StopWallJumping);
         }
         else
         {
             wallJumpingCounter -= Time.deltaTime;
         }
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && !_IsGround())
         {
             float jumpDirection = isFacingRight; // 현재 방향 저장
             isWallJumping = true; // 벽점프 중
@@ -156,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y == 0 ? 180 : 0, 0); // 반대방향으로 회전
                 rb.velocity = new Vector2(wallJumpingPower.x * jumpDirection, wallJumpingPower.y); // walljupingpower만큼 반대방향으로
             }
-
             wallJumpingCounter = 0f;
             Co_StopWallJumping = StartCoroutine(co_StopWallJumping(wallJumpingDuration));
         }
@@ -182,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     #endregion
-  
+
     #region Coroutine_Function
     IEnumerator co_StopWallJumping(float daley)
     {

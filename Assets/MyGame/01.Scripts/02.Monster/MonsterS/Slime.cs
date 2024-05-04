@@ -9,6 +9,7 @@ using UnityEngine;
 public class Slime : Monster
 {
     public float JumpScale ;
+    private bool isGround = false;
 
     #region Unity_Function
     protected override void Awake()
@@ -41,11 +42,16 @@ public class Slime : Monster
 
     #region override_Function
     protected override void Attack()
-    {   
+    {
+        if (isGround)
+        {
             Debug.Log("홀리씨우");
             isGround = false;
+            animator.SetTrigger("Attack"); // 공격 애니메이션
             AudioManager.instance.PlaySFX("Slime_Jump");
             rb.velocity = Vector2.up * JumpScale;
+        }
+        isAttack = false;
     }
     #endregion
 }
