@@ -7,7 +7,6 @@ using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.VFX;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Rigidbody")]
@@ -38,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
-    
+
     #region Unity_Function
     private void Awake()
     {

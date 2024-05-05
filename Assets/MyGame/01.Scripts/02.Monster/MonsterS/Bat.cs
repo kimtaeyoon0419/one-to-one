@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Bat : Monster
 {
-    #region Unity_Function
-
-    #endregion
+   
 }
