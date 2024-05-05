@@ -3,35 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(DropItem))]
 public abstract class Monster : MonoBehaviour
 {
     [Header("Stat")]
     protected MonsterStat stat; // 몬스터의 스텟
-    protected MonsterUnitCode unitCode; // 유닛코드 지정
+    [SerializeField] protected MonsterUnitCode unitCode; // 유닛코드 지정
 
     [Header("Component")]
     protected Rigidbody2D rb;
     protected Animator animator;
     protected SpriteRenderer sr;
     protected Transform target_Player;
-    protected NavMeshAgent agent;
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
     [Header("WaitForSecond")]
     WaitForSeconds waitForSeconds; // 웨잇포세컨드
-    protected float delayTime; // WaitForSeconds 값
+    [SerializeField] protected float delayTime; // WaitForSeconds 값
 
     [Header("Move")]
-    protected int nextMove; // 다음으로 움직일 방향
+    [SerializeField] protected int nextMove; // 다음으로 움직일 방향
     private Vector2 frontVec; // 앞에 땅이 있는지 확인하는 거리
-    protected bool isAttack = false; // 공격중인지
+    [SerializeField] protected bool isAttack = false; // 공격중인지
     private Vector3 velocity;
     protected float player_Distance;
-    protected bool isFollow = false;
+
+    [Header("State")]
+    private bool isDie = false;
 
     [Header("DropItem")]
     private DropItem itemdrop;
+
+    [Header("Ray")]
+    [SerializeField] private Transform findPlayerPos;
+    [SerializeField] private LayerMask Player;
 
     #region Unity_Function
     protected virtual void Awake()
@@ -46,7 +53,7 @@ public abstract class Monster : MonoBehaviour
         target_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    void Start()
+    protected void OnEnable()
     {
         StartCoroutine(Co_Think());
     }
@@ -58,7 +65,7 @@ public abstract class Monster : MonoBehaviour
 
         rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
 
-        if (isFollow)
+        if (_IsFollow())
         {
             FollowPlayer();
         }
@@ -66,9 +73,10 @@ public abstract class Monster : MonoBehaviour
         {
             frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
             Debug.DrawRay(frontVec, Vector2.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 3f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
+            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 2.5f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
             if (rayHit.collider == null) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
             {
+                Debug.Log("땅이 없다!");
                 Turn();
                 StartCoroutine(Co_StartThinkCoroutineDelay(1f));
             }
@@ -91,21 +99,15 @@ public abstract class Monster : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        if(stat.curHp <= 0)
         {
-            isFollow = true;
+            isDie = true;
+            StopAllCoroutines();
+            itemdrop.DropCoin();
+            this.gameObject.active = false;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isFollow = false;
-        }
-    }
+
     #endregion
 
     #region Private_Function
@@ -126,22 +128,25 @@ public abstract class Monster : MonoBehaviour
             nextMove = 1;
         }
     }
+    private bool _IsFollow()
+    {
+        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 1f, Player);
+    }
     #endregion
 
     #region Public_Function
     /// <summary>
     /// 피격 데미지
     /// </summary>
-    /// <param name="damge"></param>
+    /// <param name="damge">입힐 피해량</param>
     public void TakeDmg(int damge) // 몬스터 피격
     {
-        stat.curHp -= damge;
-        if (stat.curHp <= 0)
+        if(!isDie)
         {
-            itemdrop.DropCoin();
-            gameObject.active = false;
+            stat.curHp -= damge;
+            Debug.Log("Hit : " + stat.curHp);
+            StartCoroutine(Co_isHit());
         }
-        else StartCoroutine(Co_isHit());
     }
     #endregion
 
@@ -149,7 +154,7 @@ public abstract class Monster : MonoBehaviour
     #region Coroutine_Function
     protected IEnumerator Co_Think() // 어느방향으로 움직일지 생각해주는 코루틴(재귀)
     {
-        if (!isFollow)
+        if (!_IsFollow())
         {
             nextMove = Random.Range(-1, 2);
         }
