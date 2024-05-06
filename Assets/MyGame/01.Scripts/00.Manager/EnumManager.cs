@@ -9,3 +9,9 @@ public enum MonsterUnitCode // 유닛들을 정의 (유닛을 구분하기 위함)
     slime,
     필원
 }
+public enum PlayerCharCode
+{
+    dog,
+    knight,
+    cat
+}

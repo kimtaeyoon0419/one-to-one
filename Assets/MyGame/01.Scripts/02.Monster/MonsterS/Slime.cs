@@ -13,15 +13,6 @@ public class Slime : Monster
     float rayLookDir; // 몬스터의 방향과 맞는 레이 방향
 
     #region Unity_Function
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -72,7 +63,6 @@ public class Slime : Monster
     {
         if (isGround)
         {
-            Debug.Log("홀리씨우");
             isGround = false;
             animator.SetTrigger("Attack"); // 공격 애니메이션
             AudioManager.instance.PlaySFX("Slime_Jump");

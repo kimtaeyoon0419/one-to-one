@@ -12,7 +12,7 @@ public class PlayerTakeDMG : MonoBehaviour
     Color fullA = new Color(1, 1, 1);
     [SerializeField] private float delayTime = 0.1f;
     [SerializeField] private bool isHit = false;
-    private GameObject camera;
+    private GameObject p_Camera;
     private CameraManager cameraManager;
 
     public Vector2 test_Vec2;
@@ -22,8 +22,8 @@ public class PlayerTakeDMG : MonoBehaviour
     {
         waitForSeconds = new WaitForSeconds(delayTime);
         sr = GetComponent<SpriteRenderer>();
-        camera = GameObject.FindGameObjectWithTag("Camera");
-        cameraManager = camera.GetComponent<CameraManager>();
+        p_Camera = GameObject.FindGameObjectWithTag("Camera");
+        cameraManager = p_Camera.GetComponent<CameraManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,8 +57,7 @@ public class PlayerTakeDMG : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("으앙 주거써");
-        PlayerStatManager.instance.isDie = true; // 현재 상태를 죽음으로 바꿈
+        GameManager.instance.gameOver = true; // 현재 상태를 죽음으로 바꿈
     }
     #endregion
 
@@ -71,6 +70,7 @@ public class PlayerTakeDMG : MonoBehaviour
 
     IEnumerator Co_isHit()
     {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
         for (int i = 0; i < 3; i++)
         {
             yield return waitForSeconds;
@@ -78,6 +78,7 @@ public class PlayerTakeDMG : MonoBehaviour
             yield return waitForSeconds;
             sr.color = fullA;
         }
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
     }
     #endregion
 }

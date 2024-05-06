@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public MapMove MapMove;
-
     public string loadingNextScene;
+
+    public bool stageClear = false;
+    public bool gameOver = false;
+
+    public List<GameObject> clearItem;
+    public Transform[] itemSpawnPos;
 
     #region Unity_Function
     void Awake()
@@ -22,6 +26,27 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+    private void Update()
+    {
+        if(stageClear)
+        {
+            _SpawnClearItem();
+        }
+    }
+    #endregion
+
+    #region Private_Function
+    private void _SpawnClearItem()
+    {
+        int itemIndex;
+        for (int i = 0; i < 3; i++)
+        {
+            itemIndex = Random.Range(0, clearItem.Count);
+            Instantiate(clearItem[itemIndex], itemSpawnPos[i]);
+            clearItem.RemoveAt(itemIndex);
+        }
+        stageClear = false; 
     }
     #endregion
 }

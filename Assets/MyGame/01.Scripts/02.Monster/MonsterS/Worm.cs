@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : Monster
+public class Worm : Monster
 {
-    #region Unity_Function
-
-    #endregion
+   
 }

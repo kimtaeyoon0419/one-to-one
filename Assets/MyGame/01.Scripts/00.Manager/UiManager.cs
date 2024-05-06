@@ -27,7 +27,7 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerStatManager.instance.isDie)
+        if (GameManager.instance.gameOver)
         {
             Gameover();
         }
@@ -49,10 +49,10 @@ public class UiManager : MonoBehaviour
 
     public void Gameover()
     {
-        if(PlayerStatManager.instance.isDie)
+        if(GameManager.instance.gameOver)
         {
             GameOverUI.SetActive(true);
-            PlayerStatManager.instance.isDie = false;
+            GameManager.instance.gameOver = false;
         }
     }
 
