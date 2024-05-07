@@ -17,21 +17,25 @@ public class PlayerStatManager : MonoBehaviour
     public int ArmorDurability = 0;
 
     [Header("플레이어 공격스텟")]
-    public int AttackPower = 1;
-    public int CurBulletCount { get; private set; }
-    public int MaxBublletCount;
+    public int attackPower = 1;
+    public int curBulletCount { get; private set; }
+    public int maxBublletCount;
     public float bulletshotCoolTime;
     public float bulletshotCurTime;
 
     #region Unity_Function
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += _OnSceneLoaded;
+        Debug.Log("실행됨");
+        if(SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "Stage_1")
+        {
+            InitializeStats();
+        }
     }
 
     void Start()
     {
-        CurBulletCount = MaxBublletCount;
+        curBulletCount = maxBublletCount;
         if (instance == null)
         {
             instance = this;
@@ -51,31 +55,46 @@ public class PlayerStatManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            CurBulletCount = MaxBublletCount;
+            curBulletCount = maxBublletCount;
+            Debug.Log("공격력 : " + attackPower + "이동속도 : " + speed);
         }
     }
     #endregion
 
     #region Private_Function
-    private void _OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log(scene.name);
-        // 플레이어 스탯 초기화
-        if (scene.name == "Main" && scene.name == "Stage_1")
-        {
-            InitializeStats();
-        }
-    }
+    //private void _OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log(scene.name);
+    //    // 플레이어 스탯 초기화
+    //    if (scene.name == "Main" && scene.name == "Stage_1")
+    //    {
+    //        InitializeStats();
+    //    }
+    //}
     #endregion
 
     #region Public_Function
     public void InitializeStats()
     {
-        CurBulletCount = MaxBublletCount;
+        curBulletCount = maxBublletCount;
     }
     public void UseBullet()
     {
-        CurBulletCount--; // 탄 소비
+        curBulletCount--; // 탄 소비
+    }
+    /// <summary>
+    /// 아이템 먹었을 때 스텟업
+    /// </summary>
+    /// <param name="speed_up">이동속도</param>
+    /// <param name="jumppower_up">점프력</param>
+    /// <param name="armorDurability_up">방어력</param>
+    /// <param name="attackPower_up">공격력</param>
+    public void StatUP(float speed_up, float jumppower_up, int armorDurability_up, int attackPower_up)
+    {
+        speed += speed_up;
+        JumpPoawer += jumppower_up;
+        ArmorDurability += armorDurability_up;
+        attackPower += attackPower_up;
     }
     #endregion
 }

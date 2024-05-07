@@ -31,7 +31,7 @@ public class SetBulletText : MonoBehaviour
     #region Public_Function
     public void SetText()
     {
-        BulletCount.text = "³²Àº ÅºÈ¯ :" + PlayerStatManager.instance.CurBulletCount;
+        BulletCount.text = "³²Àº ÅºÈ¯ :" + PlayerStatManager.instance.curBulletCount;
     }
     public void SetText22()
     {

@@ -2711,8 +2711,8 @@ MonoBehaviour:
   speed: 7
   JumpPoawer: 10
   ArmorDurability: 5
-  AttackPower: 1
-  MaxBublletCount: 20
+  attackPower: 1
+  maxBublletCount: 20
   bulletshotCoolTime: 0
   bulletshotCurTime: 0
 --- !u!4 &1034533176

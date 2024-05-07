@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private float wallSlidingSpeed = 2f; // 벽 타고 내려오는 속도
     private float wallJumpingTime = 0.2f; // 벽에서 떨어진 이후 벽점프가 가능한 시간
     private float wallJumpingCounter; // 벽점프가 가능한 시간
-    private float wallJumpingDirection; // 벽점프 방향
     private float wallJumpingDuration = 0.2f; // 벽점프 지속시간
     private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기  
 

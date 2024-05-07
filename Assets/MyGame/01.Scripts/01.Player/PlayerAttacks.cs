@@ -16,7 +16,7 @@ public class PlayerAttacks : MonoBehaviour
     #region Public_Function
     public void BulletAttack()
     {
-        if(Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.CurBulletCount > 0)
+        if(Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0 && PlayerStatManager.instance.curBulletCount > 0)
         {
             AudioManager.instance.PlaySFX("Shot"); // ÃÑ¼Ò¸®
             
