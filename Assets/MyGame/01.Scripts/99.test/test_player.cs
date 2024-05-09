@@ -24,7 +24,6 @@ public class test_player : MonoBehaviour
     private Vector2 wallJumpingPower = new Vector2(4f, 10f); // 벽점프 세기
 
     [Header("Move")]
-    public Direction playerDir;
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private bool isFacingRight = true; // Flip 용도
     private float yRotation = 0;
