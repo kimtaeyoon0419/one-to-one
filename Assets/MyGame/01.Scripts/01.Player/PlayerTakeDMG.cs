@@ -6,12 +6,19 @@ using UnityEngine;
 
 public class PlayerTakeDMG : MonoBehaviour
 {
-    [SerializeField] private WaitForSeconds waitForSeconds;
+    [Header("SpriteRenderer")]
     SpriteRenderer sr;
     Color hafpA = new Color(0, 0, 0);
     Color fullA = new Color(1, 1, 1);
+
+    [Header("WaitForSeconds")]
+    [SerializeField] private WaitForSeconds waitForSeconds;
     [SerializeField] private float delayTime = 0.1f;
+
+    [Header("isHit")]
     [SerializeField] private bool isHit = false;
+
+    [Header("Camera")]
     private GameObject p_Camera;
     private CameraManager cameraManager;
 

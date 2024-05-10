@@ -12,6 +12,7 @@ TagManager:
   - EnemyAtk
   - Coin
   - Camera
+  - Gun
   layers:
   - Default
   - TransparentFX

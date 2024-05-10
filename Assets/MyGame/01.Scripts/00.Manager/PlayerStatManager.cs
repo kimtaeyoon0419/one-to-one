@@ -82,6 +82,11 @@ public class PlayerStatManager : MonoBehaviour
     {
         curBulletCount--; // 탄 소비
     }
+    public void ReloadBullet()
+    {
+        bulletshotCurTime = 0;
+        curBulletCount = maxBublletCount;
+    }
     /// <summary>
     /// 아이템 먹었을 때 스텟업
     /// </summary>

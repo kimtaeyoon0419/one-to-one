@@ -18,16 +18,19 @@ public class PlayerAttacks : WeaponManager
     #endregion
 
     #region Public_Function
-    public void BulletAttack()
+    public override void CurWeaponHandGun()
     {
-        if(Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0)
-        {
-            AudioManager.instance.PlaySFX("Shot"); // 총소리
-            
-            PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
-            PlayerStatManager.instance.UseBullet();
-            ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
-        }
+        base.CurWeaponHandGun();
+    }
+
+    public override void CurWeaponRifle()
+    {
+        base.CurWeaponRifle();
+    }
+
+    public override void CurWeaponShotGun()
+    {
+        base.CurWeaponShotGun();
     }
     #endregion
 }
