@@ -130,7 +130,7 @@ public abstract class Monster : MonoBehaviour
     }
     private bool _IsFollow()
     {
-        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 1f, Player);
+        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 2f, Player);
     }
     #endregion
 
@@ -149,7 +149,6 @@ public abstract class Monster : MonoBehaviour
         }
     }
     #endregion
-
 
     #region Coroutine_Function
     protected IEnumerator Co_Think() // 어느방향으로 움직일지 생각해주는 코루틴(재귀)
