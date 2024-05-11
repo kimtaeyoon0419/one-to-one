@@ -6,6 +6,7 @@ public class CoinSystem : MonoBehaviour
 {
     private Vector2 JumpPower = new Vector2(1f, 3f);
     private Rigidbody2D rb;
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(1f);
 
     #region Unity_Function
     private void Awake()
@@ -17,7 +18,12 @@ public class CoinSystem : MonoBehaviour
     {
         float dir = Random.Range(-1f, 1f);
         rb.velocity = JumpPower;
-        rb.velocity = new Vector2(rb.velocity.x * dir, rb.velocity.y);
+        rb.velocity = new Vector2(rb.velocity.x * dir , rb.velocity.y);
+        StartCoroutine(velocityReset());
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +33,14 @@ public class CoinSystem : MonoBehaviour
             ObjectPool.ReturnToPool("Coin", gameObject);
             AudioManager.instance.PlaySFX("Coin_Get");
         }
+    }
+    #endregion
+
+    #region Courutine_Function
+    IEnumerator velocityReset()
+    {
+        yield return waitForSeconds;
+        rb.velocity = Vector2.zero;
     }
     #endregion
 }

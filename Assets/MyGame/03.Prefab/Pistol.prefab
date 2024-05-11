@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7744404063388701896}
   - component: {fileID: 7744404063388701897}
   - component: {fileID: 7744404063388701910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pistol
   m_TagString: Gun
   m_Icon: {fileID: 0}

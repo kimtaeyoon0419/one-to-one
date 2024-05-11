@@ -6,6 +6,7 @@ public class RamdomMapSpawner : MonoBehaviour
 {
     [Header("½ºÆù À§Ä¡")]
     public Transform[] spawnPos;
+    public Transform Grid;
 
     [Header("¸Ê ÇÁ¸®ÆÕ")]
     public GameObject[] mapPerfab;
@@ -28,7 +29,7 @@ public class RamdomMapSpawner : MonoBehaviour
         {
             int index = Random.Range(0, randomIndex.Count - 1);
             GameObject instantiatedObject = Instantiate(mapPerfab[randomIndex[index]], spawnPos[i].position, Quaternion.identity);
-            instantiatedObject.transform.SetParent(this.transform);
+            instantiatedObject.transform.SetParent(Grid);
             randomIndex.RemoveAt(index);
         }
     }

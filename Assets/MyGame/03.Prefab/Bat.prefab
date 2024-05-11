@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3020784175604466340}
   - component: {fileID: 3020784175604466338}
   - component: {fileID: 3020784175604466339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00baae2a4198b2499cb449fc9348fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunList: []
 --- !u!70 &3020784175604466339
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

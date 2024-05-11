@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
-    private Vector2 groundChkBox = new Vector2(1.5f, 0.1f);
+    private Vector2 groundChkBox = new Vector2(0.2f, 0.1f);
 
 
     [Header("WallJump")]

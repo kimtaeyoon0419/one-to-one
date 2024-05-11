@@ -16,6 +16,7 @@ public abstract class Monster : MonoBehaviour
     protected Animator animator;
     protected SpriteRenderer sr;
     protected Transform target_Player;
+    private DropItem itemdrop;
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
@@ -32,9 +33,6 @@ public abstract class Monster : MonoBehaviour
 
     [Header("State")]
     private bool isDie = false;
-
-    [Header("DropItem")]
-    private DropItem itemdrop;
 
     [Header("Ray")]
     [SerializeField] private Transform findPlayerPos;
@@ -104,6 +102,7 @@ public abstract class Monster : MonoBehaviour
             isDie = true;
             StopAllCoroutines();
             itemdrop.DropCoin();
+            itemdrop.DropGun();
             gameObject.SetActive(false);
         }
     }

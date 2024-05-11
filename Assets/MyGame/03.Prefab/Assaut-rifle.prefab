@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 865747604453606615}
   - component: {fileID: 865747604453606614}
   - component: {fileID: 865747604453606613}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Assaut-rifle
   m_TagString: Gun
   m_Icon: {fileID: 0}
