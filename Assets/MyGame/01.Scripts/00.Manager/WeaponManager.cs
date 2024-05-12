@@ -16,21 +16,22 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] public int handGunBulletCount; // ±ÇÃÑ Åº¼ö
     [SerializeField] public int rilfeGunBulletCount; // ¼ÒÃÑ Åº¼ö
     [SerializeField] public int shotGunBulletCount; // ¼¦°Ç Åº¼ö
+    [SerializeField] private float defDistanceRay = 100;
+    public LineRenderer lineRenderer;
 
     [Header("Rotation List")]
     List<float> shootGunRot = new List<float>() { -2f, -1f , 0 , 1f , 2f }; // ¼¦°Ç ÅºÆÛÁü ¹æÇâ
     #region Unity_Function
-    
     #endregion
     #region Private_Function
-    private void HandGunAttack()
+    private void HandGunAttack() // ±ÇÃÑ
     {
         AudioManager.instance.PlaySFX("Shot"); // ÃÑ¼Ò¸®
         PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // °ø°Ý ¼Óµµ ÃÊ±âÈ­
         PlayerStatManager.instance.UseBullet();
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
-    private void ShotGunAttack()
+    private void ShotGunAttack() // ¼¦°Ç
     {
         for (int i = 0; i < 5; i++)
         {
@@ -49,12 +50,30 @@ public class WeaponManager : MonoBehaviour
         }
         PlayerStatManager.instance.UseBullet();
     }
-    private void RifleGunAttack()
+    private void RifleGunAttack() // ¼ÒÃÑ
     {
         AudioManager.instance.PlaySFX("Shot"); // ÃÑ¼Ò¸®
         PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime * 0.03f; // °ø°Ý ¼Óµµ ÃÊ±âÈ­
         PlayerStatManager.instance.UseBullet();
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
+    }
+
+    private void LaserGunAttack()
+    {
+        if(Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x))
+        {
+            RaycastHit2D _hit = Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x);
+            Draw2Ray(attackPos.position, _hit.point);
+        }
+        else
+        {
+            Draw2Ray(attackPos.position, attackPos.transform.right * defDistanceRay);
+        }
+    }
+    private void Draw2Ray(Vector2 startPos, Vector2 endPos)
+    {
+        lineRenderer.SetPosition(0, startPos);
+        lineRenderer.SetPosition(1, endPos);
     }
     #endregion
 
