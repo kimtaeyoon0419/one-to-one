@@ -9,7 +9,7 @@ public class PlayerAttacks : WeaponManager
     {
         if (curWeapon != null)
         {
-            if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0)
+            if (Input.GetKeyDown(KeyCode.X) && PlayerStatManager.instance.bulletshotCurTime <= 0) // x키 누르면 공격
             {
                 curWeapon();
             }
