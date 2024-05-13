@@ -12,8 +12,8 @@ public class RamdomMapSpawner : MonoBehaviour
     public GameObject[] mapPerfab;
     public GameObject bossStageGround;
 
-    private List<int> randomIndex; // 맵 개수를 담을 리스트
-    
+    private  List<int> randomIndex = new List<int>(); // 맵 개수를 담을 리스트
+
     void Start()
     {
         RandomMapSpawn();
