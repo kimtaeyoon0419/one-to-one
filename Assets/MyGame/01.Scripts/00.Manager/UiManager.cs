@@ -8,13 +8,18 @@ using UnityEditor.Purchasing;
 
 public class UiManager : MonoBehaviour
 {
+    [Header("CharSelect")]
+    public GameObject SelectPnl;
+    private bool SelectPaneltogge = false;
+
     [Header("Setting")]
     public GameObject SettingPanel;
     public Slider musicSlider, sfxSlider;
+    private bool SetPaneltoggle = false;
+
     [Header("GameOver")]
     public GameObject GameOverUI;
 
-    private bool SetPanelOnoff = false;
 
     #region Unity_Function
     private void Start()
@@ -37,8 +42,13 @@ public class UiManager : MonoBehaviour
     #region Public_Fuction
     public void SettingPanelToggle() // 설정 패널 on / off
     {
-            SetPanelOnoff = !SetPanelOnoff;
-            SettingPanel.SetActive(SetPanelOnoff);
+            SetPaneltoggle = !SetPaneltoggle;
+            SettingPanel.SetActive(SetPaneltoggle);
+    }
+    public void CharSelectPanelToggle()
+    {
+        SelectPaneltogge = !SelectPaneltogge;
+        SelectPnl.SetActive(SelectPaneltogge);
     }
 
     public static void LoadScene(string sceneName) // 씬 로드
