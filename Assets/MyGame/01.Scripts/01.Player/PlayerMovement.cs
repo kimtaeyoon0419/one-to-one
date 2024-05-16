@@ -8,10 +8,12 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Rigidbody")]
+    [Header("Component")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private PlayerStats stats;
 
     [Header("LayCast")]
     [SerializeField] private Transform wallChk;
@@ -43,6 +45,15 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+    }
+
+    private void Start()
+    {
+        stats = GetComponent<PlayerStats>();
+        Debug.Log("name: " + stats.charName);
+        Debug.Log("speed : " + stats.speed);
+        Debug.Log("Jumppower: " + stats.JumpPoawer);
     }
 
     private void Update()
@@ -76,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void _Move() // 플레이어 움직임
     {
-        velocity.x = hor * PlayerStatManager.instance.speed;
+        velocity.x = hor * stats.speed;
         velocity.y = rb.velocity.y;
         
         rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
@@ -90,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _IsGround())
         {
             //rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
-            rb.AddForce(Vector2.up * PlayerStatManager.instance.JumpPoawer, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * stats.JumpPoawer, ForceMode2D.Impulse);
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
@@ -99,6 +110,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 땅에 붙어있는지 체크
+    /// </summary>
+    /// <returns></returns>
     private bool _IsGround()
     {
         RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.1f, groundLayer);
@@ -114,6 +129,11 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, wallLayer);
         // 만약 wallChk.position에 0.2f 크기의 원 안에 wallLayer가 부딪힌다면 true를 리턴
     }
+    
+    /// <summary>
+    /// 땅 옆에 붙어있는지 체크
+    /// </summary>
+    /// <returns></returns>
     private bool _IsWallGround()
     {
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, groundLayer);

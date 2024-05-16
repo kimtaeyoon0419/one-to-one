@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878822a65d254b043990c5a7ce63cf3a, type: 3}
+  m_Name: StatsDB
+  m_EditorClassIdentifier: 
+  Stats:
+  - branch: 1
+    name: knight
+    speed: 7
+    jumppower: 7
+    armordurability: 2
+    attackpower: 2
+  - branch: 2
+    name: cat
+    speed: 10
+    jumppower: 10
+    armordurability: 1
+    attackpower: 1
+  - branch: 3
+    name: mage
+    speed: 5
+    jumppower: 5
+    armordurability: 0
+    attackpower: 3

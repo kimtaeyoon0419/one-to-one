@@ -8,6 +8,11 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    public int curBulletCount { get; private set; }
+    public int maxBublletCount;
+    public float bulletshotCoolTime;
+    public float bulletshotCurTime;
+
     [Header("Attack")]
     [SerializeField] protected Transform attackPos; // 총알 발사 위치
     [SerializeField] protected Action curWeapon; // 현재 총
@@ -27,8 +32,8 @@ public class WeaponManager : MonoBehaviour
     private void HandGunAttack() // 권총
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
-        PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
-        PlayerStatManager.instance.UseBullet();
+        bulletshotCurTime = bulletshotCoolTime; // 공격 속도 초기화
+        curBulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
     private void ShotGunAttack() // 샷건
@@ -37,7 +42,7 @@ public class WeaponManager : MonoBehaviour
         {
             Debug.Log(i);
             AudioManager.instance.PlaySFX("Shot"); // 총소리
-            PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime; // 공격 속도 초기화
+            bulletshotCurTime = bulletshotCoolTime; // 공격 속도 초기화
 
             int rotIndex = i % shootGunRot.Count; // shootGunRot 리스트의 인덱스를 순환하도록 인덱스 계산
             float zRot = shootGunRot[rotIndex]; // shootGunRot 리스트에서 해당 인덱스의 값을 가져옴
@@ -48,13 +53,13 @@ public class WeaponManager : MonoBehaviour
                                                            zRot);
             ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, bulletRotation);
         }
-        PlayerStatManager.instance.UseBullet();
+        curBulletCount--;
     }
     private void RifleGunAttack() // 소총
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
-        PlayerStatManager.instance.bulletshotCurTime = PlayerStatManager.instance.bulletshotCoolTime * 0.03f; // 공격 속도 초기화
-        PlayerStatManager.instance.UseBullet();
+        bulletshotCurTime = bulletshotCoolTime * 0.03f; // 공격 속도 초기화
+        curBulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
 
@@ -84,8 +89,8 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        PlayerStatManager.instance.maxBublletCount = handGunBulletCount;
-        PlayerStatManager.instance.ReloadBullet();
+        maxBublletCount = handGunBulletCount;
+        curBulletCount = maxBublletCount;
         curWeapon = () => { HandGunAttack(); };  
     }
 
@@ -95,8 +100,8 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        PlayerStatManager.instance.maxBublletCount = rilfeGunBulletCount;
-        PlayerStatManager.instance.ReloadBullet();
+        maxBublletCount = rilfeGunBulletCount;
+        curBulletCount = maxBublletCount;
         curWeapon = () => {RifleGunAttack(); };
     }
 
@@ -106,8 +111,8 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        PlayerStatManager.instance.maxBublletCount = shotGunBulletCount;
-        PlayerStatManager.instance.ReloadBullet();
+        maxBublletCount = shotGunBulletCount;
+        curBulletCount = maxBublletCount;
         curWeapon = () => { ShotGunAttack(); };
     }
     #endregion

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerTakeDMG : MonoBehaviour
+public class PlayerTakeDMG : PlayerStats
 {
     [Header("SpriteRenderer")]
     SpriteRenderer sr;
@@ -49,9 +49,9 @@ public class PlayerTakeDMG : MonoBehaviour
     #region Private_Function
     private void TakeDMG() // ÇÃ·¹ÀÌ¾î °©¿Ê °¨¼Ò °©¿ÊÀÌ ¾ø´Ù¸é »ç¸Á
     {
-        if (PlayerStatManager.instance.ArmorDurability > 0)
+        if (ArmorDurability > 0)
         {
-            PlayerStatManager.instance.ArmorDurability--;
+            ArmorDurability--;
             StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
             cameraManager.OnShakeCamera();

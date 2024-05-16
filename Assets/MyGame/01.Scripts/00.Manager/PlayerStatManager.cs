@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStatManager : MonoBehaviour
 {
-    public static PlayerStatManager instance;
+    //public static PlayerStatManager instance;
 
     [Header("플레이어 움직임스텟")]
     public float speed;
@@ -24,27 +24,19 @@ public class PlayerStatManager : MonoBehaviour
     public float bulletshotCurTime;
 
     #region Unity_Function
-    private void OnEnable()
-    {
-        Debug.Log("실행됨");
-        if(SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "Stage_1")
-        {
-            InitializeStats();
-        }
-    }
 
     void Start()
     {
-        curBulletCount = maxBublletCount;
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this);
-        }
+        //curBulletCount = maxBublletCount;
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(this.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(this);
+        //}
     }
 
     void Update()

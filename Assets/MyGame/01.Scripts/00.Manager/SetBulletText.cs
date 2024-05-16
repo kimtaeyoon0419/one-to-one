@@ -6,36 +6,36 @@ using UnityEngine.UI;
 
 public class SetBulletText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI BulletCount;
-    public int index;
+    //[SerializeField] private TextMeshProUGUI BulletCount;
+    //public int index;
 
-    #region Unity_Function
-    void Start()
-    {
+    //#region Unity_Function
+    //void Start()
+    //{
         
-    }
+    //}
 
-    void Update()
-    {
-        if (index == 0)
-        {
-            SetText();
-        }
-        else if (index == 1)
-        {
-            SetText22();
-        }
-    }
-    #endregion
+    //void Update()
+    //{
+    //    if (index == 0)
+    //    {
+    //        SetText();
+    //    }
+    //    else if (index == 1)
+    //    {
+    //        SetText22();
+    //    }
+    //}
+    //#endregion
 
-    #region Public_Function
-    public void SetText()
-    {
-        BulletCount.text = "≥≤¿∫ ≈∫»Ø :" + PlayerStatManager.instance.curBulletCount;
-    }
-    public void SetText22()
-    {
-        BulletCount.text = "»πµÊ«— ƒ⁄¿Œ :" + CoinManager.instance.coin;
-    }
-    #endregion
+    //#region Public_Function
+    //public void SetText()
+    //{
+    //    BulletCount.text = "≥≤¿∫ ≈∫»Ø :" + PlayerStatManager.instance.curBulletCount;
+    //}
+    //public void SetText22()
+    //{
+    //    BulletCount.text = "»πµÊ«— ƒ⁄¿Œ :" + CoinManager.instance.coin;
+    //}
+    //#endregion
 }

@@ -1455,8 +1455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1ea06ca01d80e4680da5ac57c8da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletCount: {fileID: 559753424}
-  index: 1
 --- !u!114 &559753424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3124,6 +3122,7 @@ GameObject:
   - component: {fileID: 1351111165}
   - component: {fileID: 1351111166}
   - component: {fileID: 1351111167}
+  - component: {fileID: 1351111168}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3283,6 +3282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  stats: {fileID: 0}
   wallChk: {fileID: 651981791}
   wallLayer:
     serializedVersion: 2
@@ -3303,6 +3303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94412cca7f2782648810c69fb8885f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBublletCount: 0
+  bulletshotCoolTime: 0
+  bulletshotCurTime: 0
   attackPos: {fileID: 490675553}
   handGunBulletCount: 10
   rilfeGunBulletCount: 30
@@ -3321,6 +3324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8658b85acc01d345b7f3bb0f0e09881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  branch: 0
+  statDB: {fileID: 0}
+  charName: 
+  speed: 0
+  JumpPoawer: 0
+  ArmorDurability: 0
+  attackPower: 1
   delayTime: 0.1
   isHit: 0
   test_Vec2: {x: 0, y: 0}
@@ -3435,6 +3445,25 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1351111168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351111153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4317aff1082ae4487786f5d88c1a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  branch: 1
+  statDB: {fileID: 11400000, guid: 3b9364f092866484d9699b89dbe90930, type: 2}
+  charName: 
+  speed: 0
+  JumpPoawer: 0
+  ArmorDurability: 0
+  attackPower: 1
 --- !u!1 &1415965647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,8 +3740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1ea06ca01d80e4680da5ac57c8da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletCount: {fileID: 1506858114}
-  index: 0
 --- !u!1 &1507786704
 GameObject:
   m_ObjectHideFlags: 0

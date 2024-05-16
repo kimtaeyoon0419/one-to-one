@@ -13,7 +13,6 @@ public class clearItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerStatManager.instance.StatUP(speed, jumpPower, armor, attack);
         }
     }
 }
