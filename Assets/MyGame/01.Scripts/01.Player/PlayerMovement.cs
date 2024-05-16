@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
     private Vector2 velocity;
+    bool test_isGround;
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
@@ -51,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
         _Jump();
         _wallSlide();
         _WallJump();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.1f);
     }
 
     private void FixedUpdate()
@@ -71,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity.x = hor * PlayerStatManager.instance.speed;
         velocity.y = rb.velocity.y;
-
+        
         rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
     }
 
@@ -94,7 +101,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _IsGround()
     {
-        return Physics2D.OverlapBox(groundChk.position, groundChkBox, 0, groundLayer);
+        RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.1f, groundLayer);
+        return rayhit.collider != null;
     }
 
     /// <summary>

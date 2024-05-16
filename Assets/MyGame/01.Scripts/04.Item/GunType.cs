@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // # Unity
 using UnityEngine;
 
-public class GunType : MonoBehaviour
+public class GunType : Item
 {
     public WaeponList gunType;
 }

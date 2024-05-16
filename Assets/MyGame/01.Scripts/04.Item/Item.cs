@@ -7,18 +7,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    void Start()
+    #region Unity_Function
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
     }
-
-    void Update()
-    {
-        
-    }
-
-    protected void OnGainItem()
-    {
-
-    }
+    #endregion
 }
