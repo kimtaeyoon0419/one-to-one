@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     #region Unity_Function
     void Awake()
     {
-        Debug.Log("asdad");
         if (instance == null)
         {
             instance = this;

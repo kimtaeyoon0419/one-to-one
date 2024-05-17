@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("Speed")]
     [SerializeField] float Speed;
 
     #region Unity_Function
@@ -16,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.right * Speed);
+        transform.Translate(Vector3.right * Speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +26,8 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Monster")) // 만약 몬스터와 부딪혔다면
             {
-                //collision.GetComponent<Monster>().TakeDmg(PlayerStatManager.instance.attackPower); // 플레이어스텟매니저의 어택파워만큼 피해를 입힘
+                Debug.Log(PlayerStats.attackPower);
+                collision.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
             }
             ObjectPool.ReturnToPool("Bullet", gameObject);
         }

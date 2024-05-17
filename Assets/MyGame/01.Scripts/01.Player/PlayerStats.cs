@@ -19,14 +19,26 @@ public class PlayerStats : MonoBehaviour
     public float JumpPoawer;
 
     [Header("플레이어 체력스텟")]
-    public int ArmorDurability = 0;
+    public int ArmorDurability;
 
     [Header("플레이어 공격스텟")]
-    public int attackPower = 1;
+    public static int attackPower;
 
+    #region Unity_Funtion
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        GetStat();
+    }
+
+    private void OnDisable()
+    {
+        SaveStat();
+    }
+    #endregion
+
+    #region Private_Function
+    private void GetStat()
+    {
         branch = GameManager.instance.selectChar;
         for (int i = 0; i < statDB.Stats.Count; i++)
         {
@@ -40,4 +52,20 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    private void SaveStat()
+    {
+        for (int i = 0; i < statDB.Stats.Count; i++)
+        {
+            if (statDB.Stats[i].branch == branch)
+            {
+                statDB.Stats[i].name = charName;
+                statDB.Stats[i].speed = speed;                                                          // 이동속도 초기화
+                statDB.Stats[i].jumppower = JumpPoawer;                                    // 점프력 초기화
+                statDB.Stats[i].armordurability = ArmorDurability;                        // 방어력 초기화
+                statDB.Stats[i].attackpower = attackPower;                                // 공격력 초기화
+            }
+        }
+    }
+    #endregion
 }

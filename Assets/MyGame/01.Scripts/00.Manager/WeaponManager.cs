@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public int curBulletCount { get; private set; }
-    public int maxBublletCount;
-    public float bulletshotCoolTime;
-    public float bulletshotCurTime;
+    protected int curBulletCount { get; private set; }
+    protected int maxBublletCount;
+    protected float bulletshotCoolTime;
+    protected float bulletshotCurTime;
 
     [Header("Attack")]
     [SerializeField] protected Transform attackPos; // 총알 발사 위치
