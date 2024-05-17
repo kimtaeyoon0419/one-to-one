@@ -57,6 +57,11 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("99_LoadingScene");
     }
 
+    public void CharSelect(int selectNum)
+    {
+        GameManager.instance.selectChar = selectNum;
+    }
+
     public void Gameover()
     {
         if(GameManager.instance.gameOver)

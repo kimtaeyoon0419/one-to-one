@@ -26,6 +26,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
+        branch = GameManager.instance.selectChar;
         for (int i = 0; i < statDB.Stats.Count; i++)
         {
             if (statDB.Stats[i].branch == branch)

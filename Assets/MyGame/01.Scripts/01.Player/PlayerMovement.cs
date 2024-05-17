@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerStats))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Component")]
@@ -50,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        stats = GetComponent<PlayerStats>();
         Debug.Log("name: " + stats.charName);
         Debug.Log("speed : " + stats.speed);
         Debug.Log("Jumppower: " + stats.JumpPoawer);

@@ -11,12 +11,15 @@ public class GameManager : MonoBehaviour
     public bool stageClear = false;
     public bool gameOver = false;
 
+    public int selectChar;
+
     public List<GameObject> clearItem;
     public Transform[] itemSpawnPos;
 
     #region Unity_Function
     void Awake()
     {
+        Debug.Log("asdad");
         if (instance == null)
         {
             instance = this;

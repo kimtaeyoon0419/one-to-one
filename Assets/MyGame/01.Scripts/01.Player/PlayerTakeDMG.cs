@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerTakeDMG : PlayerStats
+public class PlayerTakeDMG : MonoBehaviour
 {
-    [Header("SpriteRenderer")]
+    [Header("Component")]
     SpriteRenderer sr;
+    [SerializeField] private PlayerStats stat;
+
+    [Header("Color")]
     Color hafpA = new Color(0, 0, 0);
     Color fullA = new Color(1, 1, 1);
 
@@ -49,9 +52,9 @@ public class PlayerTakeDMG : PlayerStats
     #region Private_Function
     private void TakeDMG() // ÇÃ·¹ÀÌ¾î °©¿Ê °¨¼Ò °©¿ÊÀÌ ¾ø´Ù¸é »ç¸Á
     {
-        if (ArmorDurability > 0)
+        if (stat.ArmorDurability > 0)
         {
-            ArmorDurability--;
+            stat.ArmorDurability--;
             StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
             cameraManager.OnShakeCamera();
