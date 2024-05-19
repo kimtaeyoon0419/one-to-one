@@ -1112,7 +1112,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2077,7 +2077,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3003,13 +3003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ccc7ab278c69c41b53acca03e2f990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  JumpPoawer: 15
-  ArmorDurability: 3
-  attackPower: 1
-  maxBublletCount: 0
-  bulletshotCoolTime: 0
-  bulletshotCurTime: 0
 --- !u!4 &1309236671
 Transform:
   m_ObjectHideFlags: 0
@@ -4788,7 +4781,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

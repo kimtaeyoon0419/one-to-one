@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: StatsDB
   m_EditorClassIdentifier: 
   Stats:
-  - branch: 0
+  - branch: 1
     name: knight
     speed: 7
     jumppower: 15
     armordurability: 2
     attackpower: 2
-  - branch: 1
+  - branch: 2
     name: rogue
     speed: 10
     jumppower: 10
     armordurability: 1
     attackpower: 1
-  - branch: 2
+  - branch: 3
     name: dog
     speed: 5
     jumppower: 5
