@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
     #region Unity_Function
     void OnEnable()
     {   
-        AudioManager.instance.PlaySFX("Shot");
         transform.localScale = Vector2.one;
     }
 

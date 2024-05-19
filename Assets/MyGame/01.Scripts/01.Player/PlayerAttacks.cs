@@ -12,6 +12,7 @@ public class PlayerAttacks : WeaponManager
             if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0) // x키 누르면 공격
             {
                 curWeapon();
+                AudioManager.instance.PlaySFX("Shot");
             }
         }
     }
