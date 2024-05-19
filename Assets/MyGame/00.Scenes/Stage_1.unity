@@ -4464,7 +4464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865747604453606612, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}
@@ -4576,7 +4576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3020784175604466362, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
@@ -6083,10 +6083,6 @@ PrefabInstance:
     - target: {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
       propertyPath: m_Name
       value: Slime
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4356565804948623510, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
       propertyPath: m_RootOrder

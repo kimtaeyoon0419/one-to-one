@@ -51,7 +51,7 @@ public abstract class Monster : MonoBehaviour
         target_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         StartCoroutine(Co_Think());
     }

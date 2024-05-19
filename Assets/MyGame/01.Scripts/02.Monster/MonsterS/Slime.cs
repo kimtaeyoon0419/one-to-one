@@ -5,14 +5,35 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class Slime : Monster
 {
+    [Header("SpriteLibrary")]
+    [SerializeField] SpriteLibrary library;
+    [SerializeField] SpriteLibraryAsset defultAsset;
+    [SerializeField] SpriteLibraryAsset secondAsset;
+
     public float JumpScale;
     private bool isGround = false;
     float rayLookDir; // 몬스터의 방향과 맞는 레이 방향
 
     #region Unity_Function
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        int randomColor = Random.Range(0, 2);
+        Debug.Log(randomColor);
+        if(randomColor == 0)
+        {
+            library.spriteLibraryAsset = defultAsset;
+        }
+        if (randomColor == 1)
+        {
+            library.spriteLibraryAsset = secondAsset;
+        }
+    }
+
     protected override void Update()
     {
         base.Update();

@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 4356565804948623508}
   - component: {fileID: 4356565804948623515}
   - component: {fileID: 818933038}
+  - component: {fileID: 675931443}
+  - component: {fileID: 675931444}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Monster
@@ -169,12 +171,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1054847652, guid: 25c0cf79187db4a46ba29ea177710224, type: 3}
+  m_Sprite: {fileID: -1658050599, guid: 8af73b63a2a37f7498770c4a83cfd15c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -242,6 +244,9 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 256
+  library: {fileID: 675931444}
+  defultAsset: {fileID: 7108339969198208228, guid: d12748124e3f9484e9271bce43a6de0c, type: 3}
+  secondAsset: {fileID: 7108339969198208228, guid: 90656aec6fda214458743993d3eb7cb2, type: 3}
   JumpScale: 4
 --- !u!70 &4356565804948623515
 CapsuleCollider2D:
@@ -275,3 +280,32 @@ MonoBehaviour:
   - {fileID: 865747604453606612, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}
   - {fileID: 7744404063388701911, guid: 149fbed38edc2bd468b1e4cc968a679e, type: 3}
   - {fileID: 9182844134303797973, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
+--- !u!114 &675931443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356565804948623507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0.007696917
+  m_labelHash: 1.906358e-17
+  m_SpriteKey: 4.7685846e-15
+--- !u!114 &675931444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356565804948623507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 90656aec6fda214458743993d3eb7cb2, type: 3}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25c0cf79187db4a46ba29ea177710224
+guid: 61e309a6db0faff4e8afe178f9df936a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_0
+      name: MONSTER_2-1-_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c7b5d78958672d4893356669b7f3f0e
-      internalID: 1054847652
+      spriteID: 6ea99175f388242498f2f558aa0bbb9c
+      internalID: -223074322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_1
+      name: MONSTER_2-1-_Sheet_1
       rect:
         serializedVersion: 2
         x: 50
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2da1524d79293ed47b5e65947e06bcb4
-      internalID: 869898673
+      spriteID: 3e97f99fdfe84bc43a5c1bc5ada2e044
+      internalID: -394809465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_2
+      name: MONSTER_2-1-_Sheet_2
       rect:
         serializedVersion: 2
         x: 100
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbeb47ff90653524dbbdb8d46a8395a9
-      internalID: 2072347685
+      spriteID: 6f8ac6a5bcbb2ba4a82cb24270d76d3f
+      internalID: 77257336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_3
+      name: MONSTER_2-1-_Sheet_3
       rect:
         serializedVersion: 2
         x: 150
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dd53457faf57f44bb2eceda6f298b74
-      internalID: 1012988646
+      spriteID: c0f93f36f8246dd478afec8fbf17fb4b
+      internalID: -533405749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_4
+      name: MONSTER_2-1-_Sheet_4
       rect:
         serializedVersion: 2
         x: 200
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7958c99067b2b0449bb7dba2f798da09
-      internalID: 1098628351
+      spriteID: 44b614bd112afcd4281a743b8e8ffa58
+      internalID: 1492263343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_MONSTER_2_-Sheet_5
+      name: MONSTER_2-1-_Sheet_5
       rect:
         serializedVersion: 2
         x: 250
@@ -236,8 +236,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da9d7035a57d03d4d858bd5bd1ba6b34
-      internalID: -1957072209
+      spriteID: 9468bcce71f9c9242ae04d44108ea920
+      internalID: -62890183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MONSTER_2-1-_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5758b8da8e921b04fbea106e23086bef
+      internalID: -2027841152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MONSTER_2-1-_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 449fe14aca25399488def15960372c64
+      internalID: -850482250
       vertices: []
       indices: 
       edges: []
@@ -253,12 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      new_MONSTER_2_-Sheet_0: 1054847652
-      new_MONSTER_2_-Sheet_1: 869898673
-      new_MONSTER_2_-Sheet_2: 2072347685
-      new_MONSTER_2_-Sheet_3: 1012988646
-      new_MONSTER_2_-Sheet_4: 1098628351
-      new_MONSTER_2_-Sheet_5: -1957072209
+      MONSTER_2-1-_Sheet_0: -223074322
+      MONSTER_2-1-_Sheet_1: -394809465
+      MONSTER_2-1-_Sheet_2: 77257336
+      MONSTER_2-1-_Sheet_3: -533405749
+      MONSTER_2-1-_Sheet_4: 1492263343
+      MONSTER_2-1-_Sheet_5: -62890183
+      MONSTER_2-1-_Sheet_6: -2027841152
+      MONSTER_2-1-_Sheet_7: -850482250
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
