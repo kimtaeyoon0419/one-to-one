@@ -6,6 +6,16 @@ using System.Collections.Generic;
 // # Unity
 using UnityEngine;
 
+[System.Serializable]
+public class Gunstat
+{
+    public string gunName;
+
+    public int maxBullet;
+
+    public float bulletShotCool;
+}
+
 public class WeaponManager : MonoBehaviour
 {
     protected int curBulletCount { get; private set; }
@@ -13,22 +23,36 @@ public class WeaponManager : MonoBehaviour
     protected float bulletshotCoolTime;
     protected float bulletshotCurTime;
 
+    [Header("GunStat")]
+    public Dictionary<string, Gunstat> gunDictionary = new Dictionary<string, Gunstat>();
+    public List<Gunstat> gunStatList = new List<Gunstat>();
+
     [Header("Attack")]
     [SerializeField] protected Transform attackPos; // ÃÑ¾Ë ¹ß»ç À§Ä¡
     [SerializeField] protected Action curWeapon; // ÇöÀç ÃÑ
 
     [Header("Gun")]
-    [SerializeField] public int handGunBulletCount; // ±ÇÃÑ Åº¼ö
-    [SerializeField] public int rilfeGunBulletCount; // ¼ÒÃÑ Åº¼ö
-    [SerializeField] public int shotGunBulletCount; // ¼¦°Ç Åº¼ö
     [SerializeField] private float defDistanceRay = 100;
     public LineRenderer lineRenderer;
 
     [Header("Rotation List")]
     List<float> shootGunRot = new List<float>() { -2f, -1f , 0 , 1f , 2f }; // ¼¦°Ç ÅºÆÛÁü ¹æÇâ
     #region Unity_Function
+    private void Start()
+    {
+        foreach (Gunstat gunstat in gunStatList)
+        {
+            gunDictionary.Add(gunstat.gunName, gunstat);
+        }
+    }
     #endregion
     #region Private_Function
+    private void SetGunStat(string name)
+    {
+        maxBublletCount = gunDictionary[name].maxBullet;
+        bulletshotCoolTime = gunDictionary[name].bulletShotCool;
+    }
+
     private void HandGunAttack() // ±ÇÃÑ
     {
         AudioManager.instance.PlaySFX("Shot"); // ÃÑ¼Ò¸®
@@ -89,7 +113,7 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        maxBublletCount = handGunBulletCount;
+        SetGunStat("HandGun");
         curBulletCount = maxBublletCount;
         curWeapon = () => { HandGunAttack(); };  
     }
@@ -100,7 +124,7 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        maxBublletCount = rilfeGunBulletCount;
+        SetGunStat("Rifle");
         curBulletCount = maxBublletCount;
         curWeapon = () => {RifleGunAttack(); };
     }
@@ -111,7 +135,7 @@ public class WeaponManager : MonoBehaviour
         {
             curWeapon = () => { };
         }
-        maxBublletCount = shotGunBulletCount;
+        SetGunStat("ShotGun");
         curBulletCount = maxBublletCount;
         curWeapon = () => { ShotGunAttack(); };
     }

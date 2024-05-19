@@ -13,14 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Component")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerStats stats;
+    [SerializeField] private Animator animator;
 
     [Header("LayCast")]
     [SerializeField] private Transform wallChk;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
-    private Vector2 groundChkBox = new Vector2(0.2f, 0.1f);
-
 
     [Header("WallJump")]
     private bool iswallSliding; // 현재 벽을 타고 있는지
@@ -39,36 +38,38 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
-    
+
+    [Header("Animation")]
+    private readonly int hashIsRun = Animator.StringToHash("IsRun");
+
     #region Unity_Function
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
     }
 
     private void Start()
     {
         Debug.Log("name: " + stats.charName);
         Debug.Log("speed : " + stats.speed);
-        Debug.Log("Jumppower: " + stats.JumpPoawer);
+        Debug.Log("Jumppower: " + stats.jumpPoawer);
     }
 
     private void Update()
     {
-        hor = Input.GetAxis("Horizontal");
+        hor = Input.GetAxisRaw("Horizontal");
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log(_IsGround());
+        }
+
+        SetAnim();
         _Jump();
         _wallSlide();
         _WallJump();
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.1f);
-    }
-
     private void FixedUpdate()
     {
         if (!isWallJumping)
@@ -77,6 +78,13 @@ public class PlayerMovement : MonoBehaviour
             _Flip();
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.1f);
+    }
+
+
     #endregion
 
     #region Private_Function
@@ -87,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity.x = hor * stats.speed;
         velocity.y = rb.velocity.y;
-        
+
         rb.velocity = velocity; // new를 지양하기 위해 Vector2 velocity 선언 후 초기화
     }
 
@@ -98,13 +106,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _IsGround())
         {
-            //rb.velocity = new Vector2(rb.velocity.x, PlayerStatManager.instance.JumpPoawer);
-            rb.AddForce(Vector2.up * stats.JumpPoawer, ForceMode2D.Impulse);
+            Debug.Log("점프함");
+            rb.velocity = Vector2.up * stats.jumpPoawer;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+    }
+    private void SetAnim()
+    {
+        if (hor != 0)
+        {
+            animator.SetBool(hashIsRun, true);
+        }
+        else if (hor == 0)
+        {
+            animator.SetBool(hashIsRun, false);
         }
     }
 
@@ -127,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(wallChk.position, 0.2f, wallLayer);
         // 만약 wallChk.position에 0.2f 크기의 원 안에 wallLayer가 부딪힌다면 true를 리턴
     }
-    
+
     /// <summary>
     /// 땅 옆에 붙어있는지 체크
     /// </summary>

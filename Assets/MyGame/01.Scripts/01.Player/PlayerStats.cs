@@ -16,10 +16,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("플레이어 움직임스텟")]
     public float speed; // 캐릭터 이동속도
-    public float JumpPoawer; // 캐릭터 점프력
+    public float jumpPoawer; // 캐릭터 점프력
 
     [Header("플레이어 체력스텟")]
-    public int ArmorDurability; // 캐릭터 방어력
+    public int armorDurability; // 캐릭터 방어력
 
     [Header("플레이어 공격스텟")]
     public static int attackPower; // 캐릭터 공격력
@@ -46,8 +46,8 @@ public class PlayerStats : MonoBehaviour
             {
                 charName = statDB.Stats[i].name;                                                   // 캐릭터 이름 초기화
                 speed = statDB.Stats[i].speed;                                                         // 이동속도 초기화
-                JumpPoawer = statDB.Stats[i].jumppower;                                    // 점프력 초기화
-                ArmorDurability = statDB.Stats[i].armordurability;                        // 방어력 초기화
+                jumpPoawer = statDB.Stats[i].jumppower;                                    // 점프력 초기화
+                armorDurability = statDB.Stats[i].armordurability;                        // 방어력 초기화
                 attackPower = statDB.Stats[i].attackpower;                                // 공격력 초기화
             }
         }
@@ -61,8 +61,8 @@ public class PlayerStats : MonoBehaviour
             {
                 statDB.Stats[i].name = charName;                                                   // 엑셀 캐릭터 이름 초기화
                 statDB.Stats[i].speed = speed;                                                          // 엑셀 이동속도 초기화
-                statDB.Stats[i].jumppower = JumpPoawer;                                    // 엑셀 점프력 초기화
-                statDB.Stats[i].armordurability = ArmorDurability;                         // 엑셀 방어력 초기화
+                statDB.Stats[i].jumppower = jumpPoawer;                                    // 엑셀 점프력 초기화
+                statDB.Stats[i].armordurability =  armorDurability;                         // 엑셀 방어력 초기화
                 statDB.Stats[i].attackpower = attackPower;                                // 엑셀 공격력 초기화
             }
         }

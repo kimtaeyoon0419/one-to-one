@@ -15,6 +15,10 @@ public class PlayerAttacks : WeaponManager
                 AudioManager.instance.PlaySFX("Shot");
             }
         }
+        if (bulletshotCurTime >= 0)
+        {
+            bulletshotCurTime -= Time.deltaTime;
+        }
     }
     #endregion
 

@@ -123,37 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &42519425
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 42519426}
-  m_Layer: 7
-  m_Name: OverlapCirclePos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &42519426
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42519425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 675931436}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154543888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,8 +1278,8 @@ MonoBehaviour:
   statDB: {fileID: 11400000, guid: 3b9364f092866484d9699b89dbe90930, type: 2}
   charName: 
   speed: 0
-  JumpPoawer: 0
-  ArmorDurability: 0
+  jumpPoawer: 0
+  armorDurability: 0
 --- !u!4 &556731231
 Transform:
   m_ObjectHideFlags: 0
@@ -1633,11 +1602,6 @@ Transform:
   m_Father: {fileID: 1351111158}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &675931436 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4356565804948623510, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-  m_PrefabInstance: {fileID: 4356565803002492131}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &740050993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2624,7 +2588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108992418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.252, y: -0.644, z: 0}
+  m_LocalPosition: {x: -0.252, y: -0.637, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3219,7 +3183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1351111158}
   - component: {fileID: 1351111156}
-  - component: {fileID: 1351111155}
+  - component: {fileID: 1351111169}
   - component: {fileID: 1351111160}
   - component: {fileID: 1351111163}
   - component: {fileID: 1351111164}
@@ -3234,32 +3198,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1351111155
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351111153}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 0.8, y: 0.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.74, y: 0.8580291}
-  m_EdgeRadius: 0
 --- !u!50 &1351111156
 Rigidbody2D:
   serializedVersion: 4
@@ -3291,7 +3229,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.83, y: -4.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651981791}
   - {fileID: 1108992419}
@@ -3367,6 +3305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   stats: {fileID: 556731230}
+  animator: {fileID: 1351111168}
   wallChk: {fileID: 651981791}
   wallLayer:
     serializedVersion: 2
@@ -3387,10 +3326,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94412cca7f2782648810c69fb8885f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunStatList:
+  - gunName: HandGun
+    maxBullet: 10
+    bulletShotCool: 1
+  - gunName: Rifle
+    maxBullet: 30
+    bulletShotCool: 0.2
+  - gunName: ShotGun
+    maxBullet: 7
+    bulletShotCool: 2
   attackPos: {fileID: 490675553}
-  handGunBulletCount: 10
-  rilfeGunBulletCount: 30
-  shotGunBulletCount: 5
   defDistanceRay: 100
   lineRenderer: {fileID: 0}
 --- !u!114 &1351111165
@@ -3541,6 +3487,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &1351111169
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351111153}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 0.67, y: 1.12}
+  m_Direction: 0
 --- !u!1 &1415965647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4560,6 +4522,10 @@ PrefabInstance:
       propertyPath: gunList.Array.data[2]
       value: 
       objectReference: {fileID: 9182844134303797973, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
+    - target: {fileID: 3020784175604466360, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 97874848, guid: 12b7132d10a296f4d9009c1ece7264a2, type: 3}
     - target: {fileID: 3020784175604466361, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -4610,7 +4576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3020784175604466362, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
@@ -6114,30 +6080,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 818933038, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: gunList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 818933038, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: gunList.Array.data[0]
-      value: 
-      objectReference: {fileID: 865747604453606612, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}
-    - target: {fileID: 818933038, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: gunList.Array.data[1]
-      value: 
-      objectReference: {fileID: 7744404063388701911, guid: 149fbed38edc2bd468b1e4cc968a679e, type: 3}
-    - target: {fileID: 818933038, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: gunList.Array.data[2]
-      value: 
-      objectReference: {fileID: 9182844134303797973, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
-    - target: {fileID: 4356565804948623505, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 855777b12a57aac4ea4c7b8bdcdfe820, type: 2}
-    - target: {fileID: 4356565804948623505, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -6146,18 +6088,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4356565804948623508, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: JumpScale
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356565804948623508, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: Player.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356565804948623508, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-      propertyPath: findPlayerPos
-      value: 
-      objectReference: {fileID: 42519426}
     - target: {fileID: 4356565804948623510, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
       propertyPath: m_RootOrder
       value: 10

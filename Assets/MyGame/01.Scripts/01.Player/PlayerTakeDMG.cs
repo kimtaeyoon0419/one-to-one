@@ -52,9 +52,9 @@ public class PlayerTakeDMG : MonoBehaviour
     #region Private_Function
     private void TakeDMG() // ÇÃ·¹ÀÌ¾î °©¿Ê °¨¼Ò °©¿ÊÀÌ ¾ø´Ù¸é »ç¸Á
     {
-        if (stat.ArmorDurability > 0)
+        if (stat.armorDurability > 0)
         {
-            stat.ArmorDurability--;
+            stat.armorDurability--;
             StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
             cameraManager.OnShakeCamera();
