@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     [Header("StatDB")]
     [SerializeField] private int branch; // 캐릭터 번호
     [SerializeField] private StatsDB statDB; // 스텟 데이터베이스
+    [SerializeField] private bool stage_1;
 
     [Header("플레이어 움직임")]
     public string charName; // 캐릭터 이름
@@ -27,7 +28,8 @@ public class PlayerStats : MonoBehaviour
     #region Unity_Funtion
     private void Awake()
     {
-        GetStat(); // 처음 시작할 때 스텟 불러오기
+        if(stage_1 == true) GetStat(); // 처음 스테이지라면 선택한 캐릭터 스텟 불러오기
+        else SaveStatLoad();
     }
 
     private void OnDisable()
@@ -53,11 +55,26 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void SaveStatLoad()
+    {
+        for (int i = 0; i < statDB.Stats.Count; i++)
+        {
+            if (statDB.Stats[i].branch == 99)
+            {
+                charName = statDB.Stats[i].name;                                                  // 저장한 캐릭터 이름 불러오기
+                speed = statDB.Stats[i].speed;                                                         // 저장한 이동속도 불러오기
+                jumpPoawer = statDB.Stats[i].jumppower;                                    // 저장한 점프력 불러오기
+                armorDurability = statDB.Stats[i].armordurability;                        // 저장한 방어력 불러오기
+                attackPower = statDB.Stats[i].attackpower;                                // 저장한 공격력 불러오기
+            }
+        }
+    }
+
     private void SaveStat() // 엑셀에 스텟저장
     {
         for (int i = 0; i < statDB.Stats.Count; i++)
         {
-            if (statDB.Stats[i].branch == branch)
+            if (statDB.Stats[i].branch == 99)
             {
                 statDB.Stats[i].name = charName;                                                   // 엑셀 캐릭터 이름 초기화
                 statDB.Stats[i].speed = speed;                                                          // 엑셀 이동속도 초기화

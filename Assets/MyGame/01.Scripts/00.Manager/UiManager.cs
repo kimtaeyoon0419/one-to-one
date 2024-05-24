@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEditor.Purchasing;
+using System.Security.Cryptography;
 
 public class UiManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class UiManager : MonoBehaviour
     public GameObject SettingPanel;
     public Slider musicSlider, sfxSlider;
     private bool SetPaneltoggle = false;
+
+    [Header("∏∏µÁ¿Ã")]
+    public GameObject craftdeveloperPnl;
+    private bool craftPnl = false;
 
     [Header("GameOver")]
     public GameObject GameOverUI;
@@ -55,6 +60,17 @@ public class UiManager : MonoBehaviour
     {
         GameManager.instance.loadingNextScene = sceneName;
         SceneManager.LoadScene("99_LoadingScene");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void credit()
+    {
+        craftPnl = !craftPnl;
+        craftdeveloperPnl.SetActive(craftPnl);
     }
 
     public void CharSelect(int selectNum)

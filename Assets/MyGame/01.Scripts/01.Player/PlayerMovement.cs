@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
     private Vector2 velocity;
-    bool test_isGround;
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
@@ -81,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.1f);
+        Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.15f);
     }
 
 
@@ -133,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     private bool _IsGround()
     {
-        RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.15f, groundLayer);
         return rayhit.collider != null;
     }
 

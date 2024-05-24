@@ -31,3 +31,9 @@ MonoBehaviour:
     jumppower: 5
     armordurability: 0
     attackpower: 3
+  - branch: 99
+    name: curchar
+    speed: 0
+    jumppower: 0
+    armordurability: 0
+    attackpower: 0
