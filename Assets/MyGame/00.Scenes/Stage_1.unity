@@ -312,8 +312,9 @@ GameObject:
   - component: {fileID: 189888125}
   - component: {fileID: 189888126}
   - component: {fileID: 189888127}
+  - component: {fileID: 189888128}
   m_Layer: 6
-  m_Name: GroundTileMap
+  m_Name: GroundTileMap_Base
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1501,7 +1502,7 @@ CompositeCollider2D:
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 534c2328b6b3e064690d1b91366ac50d, type: 2}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 1
@@ -1574,6 +1575,25 @@ CompositeCollider2D:
       - {x: -6.209971, y: -6.21}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!251 &189888128
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189888119}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &311195500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,7 +2612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676629744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.87, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3188,7 +3208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7744404063388701911, guid: 149fbed38edc2bd468b1e4cc968a679e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 149fbed38edc2bd468b1e4cc968a679e, type: 3}
@@ -4116,7 +4136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108992418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.295, y: -0.633, z: 0}
+  m_LocalPosition: {x: -0.173, y: -0.633, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4761,7 +4781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351111153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94, y: -4.04, z: 0}
+  m_LocalPosition: {x: 0.94, y: -4.8, z: 0}
   m_LocalScale: {x: 1.2139513, y: 1.1755536, z: 1.2524}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5854,10 +5874,17 @@ MonoBehaviour:
   stageClear: 0
   gameOver: 0
   selectChar: 0
+  curStage: 1
   clearItem:
   - {fileID: 1212192993646302651, guid: 9f58774884f71d847b703ea0c7317b32, type: 3}
   - {fileID: 2059314728938223951, guid: 1ce44b31180162b44bf892138795feee, type: 3}
   - {fileID: 6316962266097605425, guid: 50493d8aad24a6f468353b583c4ecb31, type: 3}
+  monsterType:
+  - stage: 1
+    monsters:
+    - {fileID: 3020784175604466362, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
+    - {fileID: 6734910406732851739, guid: 773001027b4bd6e47865d93eb3c03d1b, type: 3}
+    - {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
   itemSpawnPos:
   - {fileID: 1975198693}
   - {fileID: 2139344892}
@@ -6092,7 +6119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182844134303797973, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9182844134303797976, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
       propertyPath: m_RootOrder
@@ -6197,7 +6224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865747604453606612, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed2a2d0a7e342848ae8bab081757f83, type: 3}

@@ -4413,8 +4413,21 @@ MonoBehaviour:
   stageClear: 0
   gameOver: 0
   selectChar: 0
-  clearItem: []
-  itemSpawnPos: []
+  curStage: 1
+  clearItem:
+  - {fileID: 1212192993646302651, guid: 9f58774884f71d847b703ea0c7317b32, type: 3}
+  - {fileID: 2059314728938223951, guid: 1ce44b31180162b44bf892138795feee, type: 3}
+  - {fileID: 6316962266097605425, guid: 50493d8aad24a6f468353b583c4ecb31, type: 3}
+  monsterType:
+  - stage: 1
+    monsters:
+    - {fileID: 3020784175604466362, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
+    - {fileID: 6734910406732851739, guid: 773001027b4bd6e47865d93eb3c03d1b, type: 3}
+    - {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
+  itemSpawnPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1663252106
 Transform:
   m_ObjectHideFlags: 0

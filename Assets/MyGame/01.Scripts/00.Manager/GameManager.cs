@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class stageMonsterType
+{
+    public int stage;
+
+    public GameObject[] monsters;
+}
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -12,8 +21,10 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
 
     public int selectChar;
+    public int curStage;
 
     public List<GameObject> clearItem;
+    public List<stageMonsterType> monsterType;
     public Transform[] itemSpawnPos;
 
     #region Unity_Function

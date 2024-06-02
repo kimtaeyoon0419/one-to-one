@@ -71,12 +71,11 @@ public abstract class Monster : MonoBehaviour
         {
             frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
             Debug.DrawRay(frontVec, Vector2.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 2.5f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
+            RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 1f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
             if (rayHit.collider == null) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
             {
                 Debug.Log("땅이 없다!");
                 Turn();
-                StartCoroutine(Co_StartThinkCoroutineDelay(1f));
             }
         }
     }
@@ -113,7 +112,6 @@ public abstract class Monster : MonoBehaviour
     private void Turn() // 방향전환
     {
         nextMove *= -1;
-        StopCoroutine(Co_Think());
     }
     private void FollowPlayer()
     {
