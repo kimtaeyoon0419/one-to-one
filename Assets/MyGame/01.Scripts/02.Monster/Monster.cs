@@ -74,7 +74,7 @@ public abstract class Monster : MonoBehaviour
             RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 1f, LayerMask.GetMask("Ground")); // frontVec만큼의 거리에 바닥이 있는지 검사
             if (rayHit.collider == null) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
             {
-                Debug.Log("땅이 없다!");
+                //Debug.Log("땅이 없다!");
                 Turn();
             }
         }
@@ -115,7 +115,7 @@ public abstract class Monster : MonoBehaviour
     }
     private void FollowPlayer()
     {
-        Debug.Log("따라가는중~~");
+        //Debug.Log("따라가는중~~");
         if (target_Player.transform.position.x - transform.position.x < 0.2f)
         {
             nextMove = -1;

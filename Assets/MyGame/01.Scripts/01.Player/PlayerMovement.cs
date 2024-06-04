@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask monsterLayer;
+    private Vector2 raybox = new Vector2(0.7f, 0.1f);
 
     [Header("WallJump")]
     private bool iswallSliding; // 현재 벽을 타고 있는지
@@ -68,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         _Jump();
         _wallSlide();
         _WallJump();
+        //stepAttack();
     }
     private void FixedUpdate()
     {
@@ -81,8 +84,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(groundChk.position, groundChk.position + Vector3.down * 0.15f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(groundChk.position, raybox);
     }
 
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Monster"))
+    //    {
+    //        if (rb.velocity.y > 0 && transform.position.y > collision.transform.position.y)
+    //        {
+    //            collision.gameObject.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
+    //        }
+    //    }
+    //}
 
     #endregion
 
@@ -126,14 +142,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //private void stepAttack()
+    //{
+    //    Collider2D collider2D = Physics2D.OverlapBox(groundChk.position, raybox, 0, monsterLayer);
+    //    collider2D.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
+    //}
+
     /// <summary>
     /// 땅에 붙어있는지 체크
     /// </summary>
     /// <returns></returns>
     private bool _IsGround()
     {
-        RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.15f, groundLayer);
-        return rayhit.collider != null;
+        //RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.15f, groundLayer);
+        //return rayhit.collider != null;
+
+        return Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer);
     }
 
     /// <summary>

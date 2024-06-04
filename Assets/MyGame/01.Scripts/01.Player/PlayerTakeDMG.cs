@@ -9,6 +9,7 @@ public class PlayerTakeDMG : MonoBehaviour
     [Header("Component")]
     SpriteRenderer sr;
     [SerializeField] private PlayerStats stat;
+    [SerializeField] private Rigidbody2D rb;
 
     [Header("Color")]
     Color hafpA = new Color(0, 0, 0);
@@ -34,14 +35,20 @@ public class PlayerTakeDMG : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         p_Camera = GameObject.FindGameObjectWithTag("Camera");
         cameraManager = p_Camera.GetComponent<CameraManager>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("EnemyAtk") || collision.gameObject.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
         {
-            if (isHit == false)
+            if( transform.position.y > collision.transform.position.y && rb.velocity.y != 0 )
             {
+                collision.gameObject.GetComponent<Monster>().TakeDmg(10000000);
+                rb.velocity = Vector2.up * 10f;
+            }
+            else if (isHit == false)
+            {   
                 isHit = true;
                 TakeDMG();
             }
