@@ -18,7 +18,7 @@ public class Gunstat
 
 public class WeaponManager : MonoBehaviour
 {
-    protected int curBulletCount { get; private set; }
+    [SerializeField] protected int curBulletCount { get; private set; }
     protected int maxBublletCount;
     protected float bulletshotCoolTime;
     protected float bulletshotCurTime;

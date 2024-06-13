@@ -9,10 +9,14 @@ public class PlayerAttacks : WeaponManager
     {
         if (curWeapon != null)
         {
-            if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0) // x키 누르면 공격
+            if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0 && curBulletCount > 0) // x키 누르면 공격
             {
                 curWeapon();
                 AudioManager.instance.PlaySFX("Shot");
+            }
+            else if(curBulletCount == 0)
+            {
+
             }
         }
         if (bulletshotCurTime >= 0)

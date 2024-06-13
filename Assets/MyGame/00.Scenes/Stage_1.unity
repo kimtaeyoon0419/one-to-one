@@ -1641,6 +1641,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: eb08b6dc54a3d2e4f922c83f89e7a5f7, type: 3}
   - name: Gun_Reload
     clip: {fileID: 8300000, guid: a2c88f03227cb7945b6019b440c923af, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 95ffd1c9a061f80439cf88b039c74be4, type: 3}
   musicSource: {fileID: 557093352}
   sfxSource: {fileID: 1415965648}
 --- !u!4 &311195502

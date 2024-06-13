@@ -108,5 +108,10 @@ public class UiManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ButtonSfx()
+    {
+        AudioManager.instance.PlaySFX("Button");
+    }
     #endregion
 }
