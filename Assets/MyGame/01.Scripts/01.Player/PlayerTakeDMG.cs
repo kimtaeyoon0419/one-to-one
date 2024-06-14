@@ -61,6 +61,7 @@ public class PlayerTakeDMG : MonoBehaviour
     {
         if (stat.armorDurability > 0)
         {
+            Debug.Log("체력: " +  stat.armorDurability);
             stat.armorDurability--;
             StartCoroutine(Co_OnHit());
             StartCoroutine(Co_isHit());
@@ -68,13 +69,17 @@ public class PlayerTakeDMG : MonoBehaviour
         }
         else
         {
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
             Die();
         }
     }
 
     private void Die()
     {
-        GameManager.instance.gameOver = true; // 현재 상태를 죽음으로 바꿈
+        GameManager.instance.curGameState = CurGameState.gameOver;
+        AudioManager.instance.StopMusic();
+        AudioManager.instance.PlaySFX("GameOver");
+        Debug.Log("죽음");
     }
     #endregion
 

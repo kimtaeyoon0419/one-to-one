@@ -10,6 +10,14 @@ public class stageMonsterType
     public GameObject[] monsters;
 }
 
+public enum CurGameState
+{
+    title,
+    getReady,
+    stageClear,
+    gameClear,
+    gameOver
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -17,11 +25,12 @@ public class GameManager : MonoBehaviour
 
     public string loadingNextScene;
 
-    public bool stageClear = false;
-    public bool gameOver = false;
+    //public bool stageClear = false;
+    //public bool gameOver = false;
 
     public int selectChar;
     public int curStage;
+    public CurGameState curGameState;
 
     public List<GameObject> clearItem;
     public List<stageMonsterType> monsterType;
@@ -40,12 +49,9 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
-    private void Update()
+    public void StageClear()
     {
-        if(stageClear)
-        {
-            _SpawnClearItem();
-        }
+        _SpawnClearItem();
     }
     #endregion
 
@@ -59,7 +65,6 @@ public class GameManager : MonoBehaviour
             Instantiate(clearItem[itemIndex], itemSpawnPos[i]);
             clearItem.RemoveAt(itemIndex);
         }
-        stageClear = false; 
     }
     #endregion
 }

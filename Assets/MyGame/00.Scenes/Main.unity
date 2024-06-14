@@ -184,8 +184,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Tower Of Demons '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bda2d4c38bb1f964194ffb95ebcbb559, type: 2}
-  m_sharedMaterial: {fileID: -6816386967927218535, guid: bda2d4c38bb1f964194ffb95ebcbb559, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bff14b762ce026945913adbd6726b47e, type: 2}
+  m_sharedMaterial: {fileID: -6816386967927218535, guid: bff14b762ce026945913adbd6726b47e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -454,6 +454,18 @@ MonoBehaviour:
       - m_Target: {fileID: 558606083}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
         m_MethodName: ButtonSfx
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 558606083}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: FadeIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1491,7 +1503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 42744e23d64302945ac0f699d081882e, type: 3}
+    clip: {fileID: 8300000, guid: bc800c8f26bfc594faa94dda36599f01, type: 3}
   - name: Stage_1
     clip: {fileID: 8300000, guid: 2d9ad4ec97d47d047b55abdd4d5a4d82, type: 3}
   sfxSounds:
@@ -1509,6 +1521,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a2c88f03227cb7945b6019b440c923af, type: 3}
   - name: Button
     clip: {fileID: 8300000, guid: f3f57c211c4e0244fbafdee375fa54e4, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 95ffd1c9a061f80439cf88b039c74be4, type: 3}
   musicSource: {fileID: 1930186948}
   sfxSource: {fileID: 560714036}
 --- !u!4 &331237373
@@ -1668,6 +1682,7 @@ RectTransform:
   - {fileID: 940497902}
   - {fileID: 1022312683}
   - {fileID: 1236772196}
+  - {fileID: 650238241}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1694,6 +1709,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 1561839221}
   craftdeveloperPnl: {fileID: 1236772195}
   GameOverUI: {fileID: 0}
+  fadePanel: {fileID: 650238240}
 --- !u!95 &558606084
 Animator:
   serializedVersion: 5
@@ -1923,6 +1939,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &650238240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650238241}
+  - component: {fileID: 650238243}
+  - component: {fileID: 650238242}
+  m_Layer: 5
+  m_Name: FadePenel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &650238241
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650238240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558606082}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &650238242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650238240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &650238243
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650238240}
+  m_CullTransparentMesh: 1
 --- !u!1 &655962555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,14 +3685,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  m_Color: {r: 0.8962264, g: 0.106868036, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 57c0646d9d3685a469a6fd0e22e18d61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4448,10 +4540,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingNextScene: 
-  stageClear: 0
-  gameOver: 0
   selectChar: 0
   curStage: 1
+  curGameState: 0
   clearItem:
   - {fileID: 1212192993646302651, guid: 9f58774884f71d847b703ea0c7317b32, type: 3}
   - {fileID: 2059314728938223951, guid: 1ce44b31180162b44bf892138795feee, type: 3}
@@ -5876,7 +5967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5959,7 +6050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE90\uB9AD\uD130\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694!"
+  m_text: "\uCE90\uB9AD\uD130\uB97C \uC120\uD0DD\uD558\uC138\uC694!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bda2d4c38bb1f964194ffb95ebcbb559, type: 2}
   m_sharedMaterial: {fileID: -6816386967927218535, guid: bda2d4c38bb1f964194ffb95ebcbb559, type: 2}
@@ -6025,7 +6116,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2097200635

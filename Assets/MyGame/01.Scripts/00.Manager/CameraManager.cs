@@ -81,8 +81,8 @@ public class CameraManager : MonoBehaviour
         this.shakeTime = shakeTime;
         this.shakeIntensity = shakeIntensity;
 
-        StopCoroutine("ShakeByPos");
-        StartCoroutine("ShakeByPos");
+        StopCoroutine(ShakeByPos());
+        StartCoroutine(ShakeByPos());
 
     }
     #endregion

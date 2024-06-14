@@ -23,8 +23,11 @@ public class UiManager : MonoBehaviour
     private bool craftPnl = false;
 
     [Header("GameOver")]
+    private bool gameOverUiActive = false;
     public GameObject GameOverUI;
 
+    [Header("Fade")]
+    public GameObject fadePanel;
 
     #region Unity_Function
     private void Start()
@@ -37,7 +40,7 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.gameOver)
+        if (GameOverUI != null)
         {
             Gameover();
         }
@@ -47,8 +50,8 @@ public class UiManager : MonoBehaviour
     #region Public_Fuction
     public void SettingPanelToggle() // 설정 패널 on / off
     {
-            SetPaneltoggle = !SetPaneltoggle;
-            SettingPanel.SetActive(SetPaneltoggle);
+        SetPaneltoggle = !SetPaneltoggle;
+        SettingPanel.SetActive(SetPaneltoggle);
     }
     public void CharSelectPanelToggle()
     {
@@ -80,10 +83,9 @@ public class UiManager : MonoBehaviour
 
     public void Gameover()
     {
-        if(GameManager.instance.gameOver)
+        if (!GameOverUI.activeSelf && GameManager.instance.curGameState == CurGameState.gameOver)
         {
             GameOverUI.SetActive(true);
-            GameManager.instance.gameOver = false;
         }
     }
 
@@ -112,6 +114,51 @@ public class UiManager : MonoBehaviour
     public void ButtonSfx()
     {
         AudioManager.instance.PlaySFX("Button");
+    }
+    #endregion
+
+    #region Fade
+    public void FadeIn()
+    {
+        StartCoroutine(Co_FadeIn());
+    }
+
+    public void FadeOut()
+    {
+        StartCoroutine(Co_FadeOut());
+    }
+
+    IEnumerator Co_FadeIn()
+    {
+        fadePanel.SetActive(true);
+        Image image = fadePanel.GetComponent<Image>();  
+        Color tempColor = image.color;
+        while(image.color.a < 1)
+        {
+            yield return null;
+            tempColor.a += Time.deltaTime;
+            image.color = tempColor;
+            if(tempColor.a >= 1f) tempColor.a = 1f;
+        }
+        image.color = tempColor;
+        fadePanel.SetActive(false);
+    }
+
+    IEnumerator Co_FadeOut()
+    {
+        Debug.Log("페이드 아웃 시작");
+        fadePanel.SetActive(true);
+        Image image = fadePanel.GetComponent<Image>();
+        Color tempColor = image.color;
+        while (image.color.a > 0)
+        {
+            tempColor.a -= Time.deltaTime;
+            image.color = tempColor;
+            if (tempColor.a <= 0f) tempColor.a = 0f;
+            yield return null;
+        }
+        image.color = tempColor;
+        fadePanel.SetActive(false);
     }
     #endregion
 }

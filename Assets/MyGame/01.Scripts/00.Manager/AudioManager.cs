@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class AudioManager : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
     }
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
 
     public void PlaySFX(string name) 
     {
@@ -59,6 +64,7 @@ public class AudioManager : MonoBehaviour
         }
         sfxSource.PlayOneShot(s.clip);
     }
+
     public void ToggleMusicMute()
     {
         musicSource.mute = !musicSource.mute;
