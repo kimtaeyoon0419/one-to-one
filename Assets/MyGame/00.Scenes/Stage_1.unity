@@ -2259,6 +2259,7 @@ MonoBehaviour:
   branch: 0
   statDB: {fileID: 11400000, guid: 3b9364f092866484d9699b89dbe90930, type: 2}
   stage_1: 1
+  saveBranch: 99
   charName: 
   speed: 0
   jumpPoawer: 0
@@ -4792,6 +4793,7 @@ Transform:
   - {fileID: 490675553}
   - {fileID: 903819894}
   - {fileID: 829980277}
+  - {fileID: 1873258991}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4914,7 +4916,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   delayTime: 0.1
   isHit: 0
-  test_Vec2: {x: 0, y: 0}
+  footPos: {fileID: 1873258991}
 --- !u!114 &1351111166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5686,6 +5688,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 0}
   craftdeveloperPnl: {fileID: 0}
   GameOverUI: {fileID: 1565204167}
+  fadePanel: {fileID: 0}
 --- !u!1 &1565204167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5877,10 +5880,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingNextScene: 
-  stageClear: 0
-  gameOver: 0
   selectChar: 0
   curStage: 1
+  curGameState: 0
   clearItem:
   - {fileID: 1212192993646302651, guid: 9f58774884f71d847b703ea0c7317b32, type: 3}
   - {fileID: 2059314728938223951, guid: 1ce44b31180162b44bf892138795feee, type: 3}
@@ -6230,6 +6232,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b41ab8fd5eeea954ba259b123adced6e, type: 3}
+--- !u!1 &1873258990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873258991}
+  m_Layer: 8
+  m_Name: FootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873258991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873258990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1351111158}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1877428035
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,7 +26,10 @@ public class PlayerTakeDMG : MonoBehaviour
     private GameObject p_Camera;
     private CameraManager cameraManager;
 
-    public Vector2 test_Vec2;
+    [Header("FootPos")]
+    [SerializeField] private Transform footPos;
+
+    //public Vector2 test_Vec2;
 
     #region Unity_Function
     private void Awake()
@@ -42,7 +45,7 @@ public class PlayerTakeDMG : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("EnemyAtk") || collision.gameObject.CompareTag("Monster")) // 몬스터 공격 범위나 몬스터에 부딪혔다면
         {
-            if( transform.position.y > collision.transform.position.y && rb.velocity.y != 0 )
+            if(footPos.transform.position.y > collision.transform.position.y && rb.velocity.y != 0 )
             {
                 collision.gameObject.GetComponent<Monster>().TakeDmg(10000000);
                 rb.velocity = Vector2.up * 10f;

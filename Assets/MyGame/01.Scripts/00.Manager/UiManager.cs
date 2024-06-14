@@ -118,11 +118,19 @@ public class UiManager : MonoBehaviour
     #endregion
 
     #region Fade
+    /// <summary>
+    /// 밝음 -> 어두움
+    /// </summary>
+    /// <returns></returns>
     public void FadeIn()
     {
         StartCoroutine(Co_FadeIn());
     }
 
+    /// <summary>
+    /// 어두움 -> 밝음
+    /// </summary>
+    /// <returns></returns>
     public void FadeOut()
     {
         StartCoroutine(Co_FadeOut());
@@ -130,6 +138,7 @@ public class UiManager : MonoBehaviour
 
     IEnumerator Co_FadeIn()
     {
+        Debug.Log("페이드인");
         fadePanel.SetActive(true);
         Image image = fadePanel.GetComponent<Image>();  
         Color tempColor = image.color;

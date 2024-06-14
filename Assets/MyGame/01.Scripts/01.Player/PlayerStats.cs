@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int branch; // 캐릭터 번호
     [SerializeField] private StatsDB statDB; // 스텟 데이터베이스
     [SerializeField] private bool stage_1;
-    [SerializeField] private int curCharNum;
+    [SerializeField] private int saveBranch;
 
     [Header("플레이어 움직임")]
     public string charName; // 캐릭터 이름
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     public static int attackPower; // 캐릭터 공격력
 
     #region Unity_Funtion
-    private void Awake()
+    private void Start()
     {
         if (stage_1 == true) GetStat(); // 처음 스테이지라면 선택한 캐릭터 스텟 불러오기
         else SaveStatLoad();
@@ -35,6 +35,8 @@ public class PlayerStats : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("스텟이 저장되었습니다");
+        if(GameManager.instance.curGameState != CurGameState.gameOver)
         SaveStat(); // 씬 넘어거갈 때 스텟 저장
     }
     #endregion
@@ -73,11 +75,11 @@ public class PlayerStats : MonoBehaviour
 
     private void SaveStat() // 엑셀에 스텟저장
     {
-        statDB.Stats[curCharNum].name = charName;                                                  // 엑셀 캐릭터 이름 초기화
-        statDB.Stats[curCharNum].speed = speed;                                                         // 엑셀 이동속도 초기화
-        statDB.Stats[curCharNum].jumppower = jumpPoawer;                                    // 엑셀 점프력 초기화
-        statDB.Stats[curCharNum].armordurability = armorDurability;                        // 엑셀 방어력 초기화
-        statDB.Stats[curCharNum].attackpower = attackPower;                               // 엑셀 공격력 초기화
+        statDB.Stats[saveBranch].name = charName;                                                  // 엑셀 캐릭터 이름 초기화
+        statDB.Stats[saveBranch].speed = speed;                                                         // 엑셀 이동속도 초기화
+        statDB.Stats[saveBranch].jumppower = jumpPoawer;                                    // 엑셀 점프력 초기화
+        statDB.Stats[saveBranch].armordurability = armorDurability;                        // 엑셀 방어력 초기화
+        statDB.Stats[saveBranch].attackpower = attackPower;                               // 엑셀 공격력 초기화
     }
     #endregion
 }
