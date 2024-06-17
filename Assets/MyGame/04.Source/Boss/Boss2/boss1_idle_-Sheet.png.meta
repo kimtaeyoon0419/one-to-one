@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61e309a6db0faff4e8afe178f9df936a
+guid: 0d434e33a80e41d47a6123ce34d03d9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,169 +117,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_0
+      name: boss1_idle_-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ea99175f388242498f2f558aa0bbb9c
-      internalID: -223074322
+      spriteID: ef04c092550c00f48b752b05680fbdba
+      internalID: -1083018907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e97f99fdfe84bc43a5c1bc5ada2e044
-      internalID: -394809465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f8ac6a5bcbb2ba4a82cb24270d76d3f
-      internalID: 77257336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_3
+      name: boss1_idle_-Sheet_1
       rect:
         serializedVersion: 2
         x: 150
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0f93f36f8246dd478afec8fbf17fb4b
-      internalID: -533405749
+      spriteID: e1aebfd8d120fe34ca47f5eef7005c4a
+      internalID: -122925400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44b614bd112afcd4281a743b8e8ffa58
-      internalID: 1492263343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9468bcce71f9c9242ae04d44108ea920
-      internalID: -62890183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_6
+      name: boss1_idle_-Sheet_2
       rect:
         serializedVersion: 2
         x: 300
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5758b8da8e921b04fbea106e23086bef
-      internalID: -2027841152
+      spriteID: 3b12dbb94a7dbbe439cdfca5d5cd3df9
+      internalID: 1159038185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_7
+      name: boss1_idle_-Sheet_3
       rect:
         serializedVersion: 2
-        x: 350
+        x: 450
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 449fe14aca25399488def15960372c64
-      internalID: -850482250
+      spriteID: dc7d85088337fcb41a2d73920827f5ce
+      internalID: -269725172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_idle_-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9660453e9c6f347bacf02049b7a664
+      internalID: -132732356
       vertices: []
       indices: 
       edges: []
@@ -295,14 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MONSTER_2-1-_Sheet_0: -223074322
-      MONSTER_2-1-_Sheet_1: -394809465
-      MONSTER_2-1-_Sheet_2: 77257336
-      MONSTER_2-1-_Sheet_3: -533405749
-      MONSTER_2-1-_Sheet_4: 1492263343
-      MONSTER_2-1-_Sheet_5: -62890183
-      MONSTER_2-1-_Sheet_6: -2027841152
-      MONSTER_2-1-_Sheet_7: -850482250
+      boss1_idle_-Sheet_0: -1083018907
+      boss1_idle_-Sheet_1: -122925400
+      boss1_idle_-Sheet_2: 1159038185
+      boss1_idle_-Sheet_3: -269725172
+      boss1_idle_-Sheet_4: -132732356
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

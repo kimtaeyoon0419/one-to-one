@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 61e309a6db0faff4e8afe178f9df936a
+guid: 332ef096417124045a33d86bbaeca116
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,169 +117,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_0
+      name: boss1_jump_attack_-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ea99175f388242498f2f558aa0bbb9c
-      internalID: -223074322
+      spriteID: 30558f2033252a240b556f7593acfff6
+      internalID: 1410476957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e97f99fdfe84bc43a5c1bc5ada2e044
-      internalID: -394809465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f8ac6a5bcbb2ba4a82cb24270d76d3f
-      internalID: 77257336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_3
+      name: boss1_jump_attack_-Sheet_1
       rect:
         serializedVersion: 2
         x: 150
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0f93f36f8246dd478afec8fbf17fb4b
-      internalID: -533405749
+      spriteID: bc4a6d1eff86cb14a877f7779c6478a1
+      internalID: 473038971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44b614bd112afcd4281a743b8e8ffa58
-      internalID: 1492263343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9468bcce71f9c9242ae04d44108ea920
-      internalID: -62890183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_6
+      name: boss1_jump_attack_-Sheet_2
       rect:
         serializedVersion: 2
         x: 300
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5758b8da8e921b04fbea106e23086bef
-      internalID: -2027841152
+      spriteID: 18762ce0e175aac4898fc7e099cc6f6b
+      internalID: 814414650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MONSTER_2-1-_Sheet_7
+      name: boss1_jump_attack_-Sheet_3
       rect:
         serializedVersion: 2
-        x: 350
+        x: 450
         y: 0
-        width: 50
-        height: 50
+        width: 150
+        height: 150
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 449fe14aca25399488def15960372c64
-      internalID: -850482250
+      spriteID: 7a337818294bbbc40a64b9d6a9ebd2c3
+      internalID: -1190510357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761ac64ee2178e74ba3b36c4cd7e6411
+      internalID: -1327968082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877bb24121c1d7540a5b3b3b9419e9e9
+      internalID: 629911795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77b251d16fd30f4eac54b99304962e6
+      internalID: 515174781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adfc47a227176a64e919b21b58cb5bc1
+      internalID: -741583645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6c73c7cfe0e6149a96cba9b3053653
+      internalID: 1512720342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9d23c7edcef2144589d658e44532b63
+      internalID: 198984154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e2886a4354fd944af40ddcb9cacc9f
+      internalID: -1467530085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_jump_attack_-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee7e5bde1d0fa63499ba0ab1dd1fec92
+      internalID: 760718279
       vertices: []
       indices: 
       edges: []
@@ -295,14 +379,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MONSTER_2-1-_Sheet_0: -223074322
-      MONSTER_2-1-_Sheet_1: -394809465
-      MONSTER_2-1-_Sheet_2: 77257336
-      MONSTER_2-1-_Sheet_3: -533405749
-      MONSTER_2-1-_Sheet_4: 1492263343
-      MONSTER_2-1-_Sheet_5: -62890183
-      MONSTER_2-1-_Sheet_6: -2027841152
-      MONSTER_2-1-_Sheet_7: -850482250
+      boss1_jump_attack_-Sheet_0: 1410476957
+      boss1_jump_attack_-Sheet_1: 473038971
+      boss1_jump_attack_-Sheet_10: -1467530085
+      boss1_jump_attack_-Sheet_11: 760718279
+      boss1_jump_attack_-Sheet_2: 814414650
+      boss1_jump_attack_-Sheet_3: -1190510357
+      boss1_jump_attack_-Sheet_4: -1327968082
+      boss1_jump_attack_-Sheet_5: 629911795
+      boss1_jump_attack_-Sheet_6: 515174781
+      boss1_jump_attack_-Sheet_7: -741583645
+      boss1_jump_attack_-Sheet_8: 1512720342
+      boss1_jump_attack_-Sheet_9: 198984154
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
