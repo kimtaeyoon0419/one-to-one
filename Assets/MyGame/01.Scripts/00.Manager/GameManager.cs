@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviour
     public List<stageMonsterType> monsterType;
     public Transform[] itemSpawnPos;
 
+    [Header("BossSpawned")]
+    public bool Stage_1BossSpawned;
+    public bool Stage_2BossSpawned;
+    public bool Stage_3BossSpawned;
+
+
     #region Unity_Function
     void Awake()
     {
