@@ -2259,7 +2259,7 @@ MonoBehaviour:
   branch: 0
   statDB: {fileID: 11400000, guid: 3b9364f092866484d9699b89dbe90930, type: 2}
   stage_1: 1
-  saveBranch: 99
+  saveBranch: 4
   charName: 
   speed: 0
   jumpPoawer: 0
@@ -5700,7 +5700,6 @@ GameObject:
   - component: {fileID: 1565204168}
   - component: {fileID: 1565204170}
   - component: {fileID: 1565204169}
-  - component: {fileID: 1565204171}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -5770,18 +5769,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565204167}
   m_CullTransparentMesh: 1
---- !u!114 &1565204171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1565204167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700242473f0ff5a4cbefe1d429894576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1613015383
 GameObject:
   m_ObjectHideFlags: 0
@@ -8432,14 +8419,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1507786709}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: reTryButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Stage_1
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2129833180

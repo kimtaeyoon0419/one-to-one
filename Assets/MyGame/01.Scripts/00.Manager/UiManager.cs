@@ -81,6 +81,12 @@ public class UiManager : MonoBehaviour
         GameManager.instance.selectChar = selectNum;
     }
 
+    public void reTryButton()
+    {
+        GameManager.instance.curGameState = CurGameState.getReady;
+        LoadScene("Stage_1");
+    }
+
     public void Gameover()
     {
         if (!GameOverUI.activeSelf && GameManager.instance.curGameState == CurGameState.gameOver)
