@@ -22,32 +22,32 @@ public  enum BossState
 public abstract class BossMonster : MonoBehaviour
 {
     [Header("Stat")]
-    [SerializeField] private int maxHp;
-    [SerializeField] private int curHp;
-    [SerializeField] private int movespeed;
-    [SerializeField] private string bossName;
-    [SerializeField] private BossState state;
-    [SerializeField] private bool isDie;
+    [SerializeField] protected int maxHp;
+    [SerializeField] protected int curHp;
+    [SerializeField] protected int movespeed;
+    [SerializeField] protected string bossName;
+    [SerializeField] protected BossState state;
+    [SerializeField] protected bool isDie;
 
     [Header("Component")]
-    [SerializeField] private Rigidbody2D rigid;
-    [SerializeField] private Animator animator;
+    [SerializeField] protected Rigidbody2D rigid;
+    [SerializeField] protected Animator animator;
 
     [Header("Player")]
-    [SerializeField] private GameObject player;
-    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected LayerMask playerLayer;
 
     [Header("Move")]
-    private Vector2 movePos;
+    protected Vector2 movePos;
 
     [Header("Skill")]
-    [SerializeField] private int skillIndex;
+    [SerializeField] protected int skillIndex;
 
     [Header("Animation")]
-    private readonly int hashMove = Animator.StringToHash("IsMove");
-    private readonly int hashSkill1 = Animator.StringToHash("Skill1");
-    private readonly int hashSkill2 = Animator.StringToHash("Skill2");
-    private readonly int hashDie = Animator.StringToHash("Die");
+    protected readonly int hashMove = Animator.StringToHash("IsMove");
+    protected readonly int hashSkill1 = Animator.StringToHash("Skill1");
+    protected readonly int hashSkill2 = Animator.StringToHash("Skill2");
+    protected readonly int hashDie = Animator.StringToHash("Die");
 
     private void Awake()
     {
@@ -77,6 +77,14 @@ public abstract class BossMonster : MonoBehaviour
                 if(!isDie)
                     Die();
                 break;
+        }
+    }
+
+    protected virtual void LookPlayer()
+    {
+        if(player.transform.position.x - transform.position.x > 0)
+        {
+
 
         }
     }
