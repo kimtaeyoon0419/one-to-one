@@ -40,6 +40,11 @@ public class PlayerTakeDMG : MonoBehaviour
         cameraManager = p_Camera.GetComponent<CameraManager>();
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Start()
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), false); // 몬스터와 충돌무시 해제
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -52,6 +57,14 @@ public class PlayerTakeDMG : MonoBehaviour
             }
             else if (isHit == false)
             {   
+                isHit = true;
+                TakeDMG();
+            }
+        }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            if(isHit == false)
+            {
                 isHit = true;
                 TakeDMG();
             }
@@ -72,7 +85,8 @@ public class PlayerTakeDMG : MonoBehaviour
         }
         else
         {
-            //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss")); // 몬스터와 충돌무시
             Die();
         }
     }
@@ -96,6 +110,7 @@ public class PlayerTakeDMG : MonoBehaviour
     IEnumerator Co_isHit()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss")); // 몬스터와 충돌무시
         for (int i = 0; i < 3; i++)
         {
             yield return waitForSeconds;
@@ -104,6 +119,7 @@ public class PlayerTakeDMG : MonoBehaviour
             sr.color = fullA;
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), false); // 몬스터와 충돌무시 해제
     }
     #endregion
 }

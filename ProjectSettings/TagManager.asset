@@ -13,6 +13,7 @@ TagManager:
   - Coin
   - Camera
   - Gun
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - coin
   - Gun
   - BaseGround
-  - 
+  - Boss
   - 
   - 
   - 
