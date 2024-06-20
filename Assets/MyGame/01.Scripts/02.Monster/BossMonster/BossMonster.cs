@@ -47,8 +47,6 @@ public abstract class BossMonster : MonoBehaviour
 
     [Header("Animation")]
     //protected readonly int hashMove = Animator.StringToHash("IsMove");
-    protected readonly int hashSkill1 = Animator.StringToHash("Skill1");
-    protected readonly int hashSkill2 = Animator.StringToHash("Skill2");
     //protected readonly int hashDie = Animator.StringToHash("Die");
 
     [Header("Diraction")]
@@ -125,18 +123,8 @@ public abstract class BossMonster : MonoBehaviour
 
     protected abstract IEnumerator UseSkill(int skillNum);
 
-    protected virtual IEnumerator SkillTriger(float time)
-    {
-        yield return new WaitForSeconds(time);
-        if (state == BossState.usingSkill)
-        {
-            StartCoroutine(SkillTriger(skillTrigerTime));
-        }
-        else
-        {
-            state = BossState.useSkill;
-        }
-    }
+    protected abstract IEnumerator SkillTriger(float time);
+    
 
     public void TakeDamage(int damage)
     {

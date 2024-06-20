@@ -17,6 +17,17 @@ public class SlimeBoss : BossMonster
     [SerializeField] private Vector3 minScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     [Header("Animation")]
+    /// <summary>
+    /// 대쉬 애니메이션
+    /// </summary>
+    protected readonly int hashSkill1 = Animator.StringToHash("Skill1");
+    /// <summary>
+    /// 점프 애니메이션
+    /// </summary>
+    protected readonly int hashSkill2 = Animator.StringToHash("Skill2");
+    /// <summary>
+    /// 공중에서 낙하하는 애니메이션
+    /// </summary>
     private readonly int hashDown = Animator.StringToHash("Down");
 
     protected override void Start()
@@ -75,6 +86,19 @@ public class SlimeBoss : BossMonster
         animator.SetBool(hashDown, false);
         StartCoroutine(SkillTriger(skillTrigerTime));
         yield return null;
+    }
+
+    protected override IEnumerator SkillTriger(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (state == BossState.usingSkill)
+        {
+            StartCoroutine(SkillTriger(skillTrigerTime));
+        }
+        else
+        {
+            state = BossState.useSkill;
+        }
     }
 
     #endregion
