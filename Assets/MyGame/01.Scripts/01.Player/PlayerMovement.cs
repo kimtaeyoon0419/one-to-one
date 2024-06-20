@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask monsterLayer;
-    private Vector2 raybox = new Vector2(0.7f, 0.001f);
+    private Vector2 raybox = new Vector2(0.7f, 0);
 
     [Header("WallJump")]
     private bool iswallSliding; // 현재 벽을 타고 있는지
