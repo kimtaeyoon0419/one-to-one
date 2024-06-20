@@ -43,6 +43,7 @@ public abstract class BossMonster : MonoBehaviour
 
     [Header("Skill")]
     [SerializeField] protected int skillIndex;
+    [SerializeField] protected float skillTrigerTime = 1f;
 
     [Header("Animation")]
     //protected readonly int hashMove = Animator.StringToHash("IsMove");
@@ -127,9 +128,24 @@ public abstract class BossMonster : MonoBehaviour
     protected virtual IEnumerator SkillTriger(float time)
     {
         yield return new WaitForSeconds(time);
-        state = BossState.useSkill;
+        if (state == BossState.usingSkill)
+        {
+            StartCoroutine(SkillTriger(skillTrigerTime));
+        }
+        else
+        {
+            state = BossState.useSkill;
+        }
     }
 
+    public void TakeDamage(int damage)
+    {
+        curHp -= damage;
+        if(curHp <= 0)
+        {
+            Die();
+        }
+    }
 
     protected abstract void Die();
 }

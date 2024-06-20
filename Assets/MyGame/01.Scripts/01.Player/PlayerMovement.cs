@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask monsterLayer;
-    private Vector2 raybox = new Vector2(0.7f, 0.1f);
+    private Vector2 raybox = new Vector2(0.7f, 0.001f);
 
     [Header("WallJump")]
     private bool iswallSliding; // 현재 벽을 타고 있는지
@@ -36,12 +36,16 @@ public class PlayerMovement : MonoBehaviour
     private float hor; // hor = Input.GetAxis("Horizontal"); 용도
     private float isFacingRight = 1; // Flip 용도
     private Vector2 velocity;
+    private bool isJumping;
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
 
     [Header("Animation")]
     private readonly int hashIsRun = Animator.StringToHash("IsRun");
+    private readonly int hashJump = Animator.StringToHash("Jump");
+    private readonly int hashJumpEnd = Animator.StringToHash("JumpEnd");
+    private readonly int hashIsWall = Animator.StringToHash("IsWall");
 
     #region Unity_Function
     private void Awake()
@@ -60,11 +64,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         hor = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            Debug.Log(_IsGround());
-        }
 
         SetAnim();
         _Jump();
@@ -121,7 +120,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _IsGround())
         {
-            Debug.Log("점프함");
+            isJumping = true;
+            animator.SetTrigger(hashJump);
+            StartCoroutine(JumpEndCheck());
             rb.velocity = Vector2.up * stats.jumpPoawer;
         }
 
@@ -130,6 +131,22 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
+
+    IEnumerator JumpEndCheck()
+    {
+        yield return new WaitForSeconds(0.2f);
+        while(isJumping)
+        {
+            if (isJumping && _IsGround())
+            {
+                isJumping = false;
+                animator.SetTrigger(hashJumpEnd);
+                break;
+            }
+            yield return null;
+        }
+    }
+
     private void SetAnim()
     {
         if (hor != 0)
@@ -147,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
     //    Collider2D collider2D = Physics2D.OverlapBox(groundChk.position, raybox, 0, monsterLayer);
     //    collider2D.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
     //}
+
 
     /// <summary>
     /// 땅에 붙어있는지 체크
@@ -184,11 +202,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void _wallSlide() // 벽 슬라이딩
     {
-        if (_IsWalled() || _IsWallGround())
+        if (_IsWalled() || _IsWallGround() && !_IsGround())
         {
             if (hor != 0)
             {
                 Debug.Log("벽타는중~~");
+                animator.SetBool(hashIsWall, true);
                 iswallSliding = true;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
                 // velocity의 y값을 wallSlidingSpeed만큼 내려가기 위해 앞에 - 를 붙힘
@@ -196,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            animator.SetBool(hashIsWall, false) ;
             iswallSliding = false;
         }
     }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43190eb310041b047ab671ffe3073ceb
+guid: 7ee142aaadeb5b44f927f774cbfa90f8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss_4-Sheet_0
+      name: knight_wall_-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 150
-        height: 150
+        x: 67
+        y: 8
+        width: 45
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76111f18b3dad044eb8358f01ec37fe6
-      internalID: 719930311
+      spriteID: cd5a1bdb104c8f941911d5c1c788b411
+      internalID: -1385822716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_1
+      name: knight_wall_-Sheet_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 0
-        width: 150
-        height: 150
+        x: 162
+        y: 23
+        width: 48
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b2db4a2c9d8d67419109c625bdfa84b
-      internalID: 1136966460
+      spriteID: fe07578e4d267f44690cced209542fba
+      internalID: -1260174999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_2
+      name: knight_wall_-Sheet_2
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 150
-        height: 150
+        x: 259
+        y: 39
+        width: 48
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfb72308e897cc84e85f35d1e22e4f6a
-      internalID: 1193165290
+      spriteID: a080b7d967357b94091ee1ec90e3d93f
+      internalID: 1257431917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_3
+      name: knight_wall_-Sheet_3
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 150
+        x: 377
+        y: 42
+        width: 42
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b59d8fb0dfb66bc4bafed151e4123624
-      internalID: 620454227
+      spriteID: 60768476e8efe9441a1ae9aa2794bdee
+      internalID: -1487126241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_4
+      name: knight_wall_-Sheet_4
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 150
-        height: 150
+        x: 497
+        y: 42
+        width: 42
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e947a74d7514ec4d89cbe351930af96
-      internalID: -1420039384
+      spriteID: 2e470445d7cfbe147aafc856606ea04e
+      internalID: 1847157834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_5
+      name: knight_wall_-Sheet_5
       rect:
         serializedVersion: 2
-        x: 750
-        y: 0
-        width: 150
-        height: 150
+        x: 619
+        y: 31
+        width: 38
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44cf76fca7c1b7947863e1830db68124
-      internalID: -461611987
+      spriteID: acfc8cb5064e59743b1d1de66a70783a
+      internalID: -629644973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_6
+      name: knight_wall_-Sheet_6
       rect:
         serializedVersion: 2
-        x: 900
-        y: 0
-        width: 150
-        height: 150
+        x: 767
+        y: 16
+        width: 38
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e54546451ee3e4478059cd0fcda8a4e
-      internalID: -1676025260
+      spriteID: 9aa32c3ecb12b184a985a2c8399c2843
+      internalID: -1253253808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_4-Sheet_7
+      name: knight_wall_-Sheet_7
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 0
-        width: 150
-        height: 150
+        x: 907
+        y: 8
+        width: 46
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e250d777d0d178a46bfcb6bb87714911
-      internalID: 898446445
+      spriteID: 7a1d53e7597c23b49aa3f0c354269c3f
+      internalID: -696157194
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss_4-Sheet_0: 719930311
-      boss_4-Sheet_1: 1136966460
-      boss_4-Sheet_2: 1193165290
-      boss_4-Sheet_3: 620454227
-      boss_4-Sheet_4: -1420039384
-      boss_4-Sheet_5: -461611987
-      boss_4-Sheet_6: -1676025260
-      boss_4-Sheet_7: 898446445
+      knight_wall_-Sheet_0: -1385822716
+      knight_wall_-Sheet_1: -1260174999
+      knight_wall_-Sheet_2: 1257431917
+      knight_wall_-Sheet_3: -1487126241
+      knight_wall_-Sheet_4: 1847157834
+      knight_wall_-Sheet_5: -629644973
+      knight_wall_-Sheet_6: -1253253808
+      knight_wall_-Sheet_7: -696157194
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

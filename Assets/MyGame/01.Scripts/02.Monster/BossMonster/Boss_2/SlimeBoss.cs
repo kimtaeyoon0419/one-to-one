@@ -13,7 +13,6 @@ public class SlimeBoss : BossMonster
     [SerializeField] private bool isDash;
     [SerializeField] private float jumpPower;
     [SerializeField] private bool isJump;
-    [SerializeField] private float skillTrigerTime = 1f;
     [SerializeField] private Vector3 initialScale;
     [SerializeField] private Vector3 minScale = new Vector3(0.5f, 0.5f, 0.5f);
 
