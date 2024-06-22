@@ -143,6 +143,11 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetTrigger(hashJumpEnd);
                 break;
             }
+            if(_IsWalled() || _IsWallGround())
+            {
+                animator.SetTrigger(hashJumpEnd);
+                break;
+            }
             yield return null;
         }
     }

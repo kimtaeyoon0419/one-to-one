@@ -49,8 +49,10 @@ public class SlimeBoss : BossMonster
 
 
     #region 공격
-    protected override IEnumerator UseSkill(int skillNum)
+    protected override IEnumerator UseSkill()
     {
+        int skillNum = Random.Range(0, 10);
+
         if (skillNum >= 0 &&  skillNum <= 6) // 대쉬
         {
             animator.SetTrigger(hashSkill1);

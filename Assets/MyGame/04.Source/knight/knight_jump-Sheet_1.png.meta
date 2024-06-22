@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 563f9b47919d0a847b774c9865bc8b7e
+guid: 5e3b9dbc5896cd24996cb4d04fadf4b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,185 +101,278 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_0
+      name: knight_jump-Sheet_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e823e4cf839210747bb108e864752d3d
-      internalID: 1188593611
+      spriteID: 933cae7c45a158147b4a1dc9cb37b743
+      internalID: 954739070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_1
+      name: knight_jump-Sheet_1_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 100
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c8d78876952e2499f21dcfcffd586b
-      internalID: -435396269
+      spriteID: c84820ee6b48d4f45a77f53ec92e7ccb
+      internalID: -37913785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_2
+      name: knight_jump-Sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64aa1fa9fa25fe49bf109552cc12161
+      internalID: 1229949111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump-Sheet_1_3
       rect:
         serializedVersion: 2
         x: 300
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 352ddcc372847ed4da4510b61e29ce36
-      internalID: -1396333640
+      spriteID: 00e1febe84c7e7e46a019376dc3ca39f
+      internalID: -1515662981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_3
+      name: knight_jump-Sheet_1_4
       rect:
         serializedVersion: 2
-        x: 450
+        x: 400
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f939835c2ea89614fb15d6345e0765ca
-      internalID: -501335937
+      spriteID: 9bf441f389afc7d4f841f20a485cacde
+      internalID: -292344614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_4
+      name: knight_jump-Sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8127037a3549f2e4db07c52db6a902ca
+      internalID: 398793025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump-Sheet_1_6
       rect:
         serializedVersion: 2
         x: 600
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35a37d7afad392d4c9be5737d98dc680
-      internalID: -1184678455
+      spriteID: c601dc53b0883b347961876e6af13c81
+      internalID: -178725942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_5
+      name: knight_jump-Sheet_1_7
       rect:
         serializedVersion: 2
-        x: 750
+        x: 700
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89e34498e1954214c8ac0535be28e277
-      internalID: 593323921
+      spriteID: 9a2e21f89b1d6e04391e7eaa969f654f
+      internalID: -1091817590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_6
+      name: knight_jump-Sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9960604efd46d3e47861b1cdb3bb030b
+      internalID: 535680490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump-Sheet_1_9
       rect:
         serializedVersion: 2
         x: 900
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b9085cc3edd3024b9a808ddb4a8467c
-      internalID: 1894040248
+      spriteID: df1ce791ead29ce438cde93a75c9bf12
+      internalID: 1159019967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss_attack_1_-Sheet_7
+      name: knight_jump-Sheet_1_10
       rect:
         serializedVersion: 2
-        x: 1050
+        x: 1000
         y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 725a4bb87559c9247b46b4dbe515d2b8
-      internalID: -1535299887
+      spriteID: f5fbb3e4c66f2d545b29f12d1ff57bde
+      internalID: -452153409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump-Sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7310a8df7a15d498047b92332a34a4
+      internalID: 301436672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_jump-Sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd2343d65a8ccdb4bab0e92d569ad17d
+      internalID: -1101753053
       vertices: []
       indices: 
       edges: []
@@ -295,14 +388,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss_attack_1_-Sheet_0: 1188593611
-      boss_attack_1_-Sheet_1: -435396269
-      boss_attack_1_-Sheet_2: -1396333640
-      boss_attack_1_-Sheet_3: -501335937
-      boss_attack_1_-Sheet_4: -1184678455
-      boss_attack_1_-Sheet_5: 593323921
-      boss_attack_1_-Sheet_6: 1894040248
-      boss_attack_1_-Sheet_7: -1535299887
+      knight_jump-Sheet_1_0: 954739070
+      knight_jump-Sheet_1_1: -37913785
+      knight_jump-Sheet_1_10: -452153409
+      knight_jump-Sheet_1_11: 301436672
+      knight_jump-Sheet_1_12: -1101753053
+      knight_jump-Sheet_1_2: 1229949111
+      knight_jump-Sheet_1_3: -1515662981
+      knight_jump-Sheet_1_4: -292344614
+      knight_jump-Sheet_1_5: 398793025
+      knight_jump-Sheet_1_6: -178725942
+      knight_jump-Sheet_1_7: -1091817590
+      knight_jump-Sheet_1_8: 535680490
+      knight_jump-Sheet_1_9: 1159019967
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -60,6 +60,7 @@ public abstract class BossMonster : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("시작시작시작");
         StartCoroutine(SkillTriger(3f));
         state = BossState.fight;
         player = Physics2D.OverlapCircle(transform.position, 100, playerLayer).gameObject;
@@ -77,9 +78,7 @@ public abstract class BossMonster : MonoBehaviour
                 LookPlayer();
                 break;
             case BossState.useSkill:
-                int lIndex = Random.Range(0, 10);
-                StartCoroutine(UseSkill(lIndex));
-                state = BossState.usingSkill;
+                StartCoroutine(UseSkill());
                 break;
             case BossState.usingSkill:
 
@@ -121,7 +120,7 @@ public abstract class BossMonster : MonoBehaviour
         rigid.velocity = velocity;
     }
 
-    protected abstract IEnumerator UseSkill(int skillNum);
+    protected abstract IEnumerator UseSkill();
 
     protected abstract IEnumerator SkillTriger(float time);
     

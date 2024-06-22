@@ -12,8 +12,8 @@ public class VampireBoss : BossMonster
     [SerializeField] private Transform useShotSkillPos;
 
     [Header("SkillObject")]
-    [SerializeField] private GameManager slashEffect;
-    [SerializeField] private GameManager firePillar;
+    [SerializeField] private GameObject slashEffect;
+    [SerializeField] private GameObject firePillar;
 
     [Header("Animation")]
     ///<summary>
@@ -29,32 +29,53 @@ public class VampireBoss : BossMonster
     /// </summary>
     protected readonly int hashSkill3 = Animator.StringToHash("Skill3");
 
-    protected override IEnumerator UseSkill(int skillNum)
+    protected override IEnumerator UseSkill()
     {
+        state = BossState.usingSkill;
+        int skillNum = Random.Range(0, 2);
+        Debug.Log(skillNum);
         if(skillNum == 0)
         {
+            Instantiate(slashEffect, useShotSkillPos.position, Quaternion.Euler(0, 180 *gameObject.transform.rotation.y, 0));
             animator.SetTrigger(hashSkill1);
-            Instantiate(slashEffect, useShotSkillPos.position, Quaternion.Euler(0, transform.rotation.y, 0));
         }
-        else if (skillIndex == 1)
+        if (skillNum == 1)
         {
-            animator.SetTrigger(hashSkill2);
-            Instantiate(firePillar, player.transform.position, Quaternion.identity);
+            yield return StartCoroutine(FirePillarAttack());
         }
-        else if(skillIndex == 2)
-        {
-            animator.SetTrigger(hashSkill3);
-            transform.position = player.transform.position;
-        }
+        //if(skillIndex == 2)
+        //{
+        //    animator.SetTrigger(hashSkill3);
+        //    transform.position = player.transform.position;
+        //}
 
         state = BossState.fight;
         StartCoroutine(SkillTriger(skillTrigerTime));
         yield return null;
     }
 
+    private IEnumerator FirePillarAttack()
+    {
+        Debug.Log("ºÒ±âµÕ ½ºÅ³");
+        for (int i = 0; i < 3; i++)
+        {
+            animator.SetTrigger(hashSkill2);
+            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        }
+        animator.SetTrigger(hashSkill3);
+    }
+
+
+    public void FireSkill()
+    {
+        Instantiate(firePillar, player.transform.position, Quaternion.identity);
+    }
+    
     protected override IEnumerator SkillTriger(float time)
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(time);
+        state = BossState.useSkill;
     }
 
     protected override void Die()
