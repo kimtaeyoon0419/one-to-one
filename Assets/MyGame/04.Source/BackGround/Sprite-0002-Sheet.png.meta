@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6eb02bc95ded07f478fbebb476fd2bcf
+guid: 21496f34b015567428a4bac2b97f1bc4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,101 +101,173 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_bat1_0
+      name: Sprite-0002-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31bece148bcf2e84f936a58dc01039e6
-      internalID: 190208736
+      spriteID: b1950eee194f97348a464084ea302c49
+      internalID: 1729668200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_1
+      name: Sprite-0002-Sheet_1
       rect:
         serializedVersion: 2
-        x: 100
+        x: 400
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c300ecca7cd7c74bba98775e03adc6e
-      internalID: 1351671251
+      spriteID: 6369736e7dcc2ad47acf6207571dd2bb
+      internalID: -324363585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_2
+      name: Sprite-0002-Sheet_2
       rect:
         serializedVersion: 2
-        x: 200
+        x: 800
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6ddd2571771f614fb6429a6f0ceb44b
-      internalID: 623408874
+      spriteID: 605a30cf55d5bd4479f4799c607fdb77
+      internalID: -1693148754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_3
+      name: Sprite-0002-Sheet_3
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1200
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d56f9618d7c5c80409c46fa457dde158
-      internalID: -1112413727
+      spriteID: 78d35f3a2f6b64245acbd7482b3b2aa0
+      internalID: -1200556734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0002-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1fbf322406075d41be82f07e74709f4
+      internalID: -1901814228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0002-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac85f1c6ead66f04a9125ba8e27f12e3
+      internalID: -93912832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0002-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29257bcb453b91541b5d4c89567cbb4f
+      internalID: 850444110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0002-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81eef1846f5268c42bab8428210ad6b8
+      internalID: 725517030
       vertices: []
       indices: 
       edges: []
@@ -211,10 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss1_bat1_0: 190208736
-      boss1_bat1_1: 1351671251
-      boss1_bat1_2: 623408874
-      boss1_bat1_3: -1112413727
+      Sprite-0002-Sheet_0: 1729668200
+      Sprite-0002-Sheet_1: -324363585
+      Sprite-0002-Sheet_2: -1693148754
+      Sprite-0002-Sheet_3: -1200556734
+      Sprite-0002-Sheet_4: -1901814228
+      Sprite-0002-Sheet_5: -93912832
+      Sprite-0002-Sheet_6: 850444110
+      Sprite-0002-Sheet_7: 725517030
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

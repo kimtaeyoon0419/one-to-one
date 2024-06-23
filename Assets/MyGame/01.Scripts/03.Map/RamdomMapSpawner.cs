@@ -38,7 +38,7 @@ public class RamdomMapSpawner : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //bossStageGround.SetActive(true);
+            GameManager.instance.curGameState = CurGameState.bossSpawn;
         }
     }
 }

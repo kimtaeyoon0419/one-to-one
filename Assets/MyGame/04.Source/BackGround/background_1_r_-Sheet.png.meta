@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6eb02bc95ded07f478fbebb476fd2bcf
+guid: 02c75eeacc20ebb4eba1ac749ce614ac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,101 +101,173 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_bat1_0
+      name: background_1_r_-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31bece148bcf2e84f936a58dc01039e6
-      internalID: 190208736
+      spriteID: 0896e0a8e9d7eab4aba0b2b63906fc58
+      internalID: -1827710049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_1
+      name: background_1_r_-Sheet_1
       rect:
         serializedVersion: 2
-        x: 100
+        x: 400
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c300ecca7cd7c74bba98775e03adc6e
-      internalID: 1351671251
+      spriteID: b8418d2a82e81434181a8d0aeaa14273
+      internalID: 579313052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_2
+      name: background_1_r_-Sheet_2
       rect:
         serializedVersion: 2
-        x: 200
+        x: 800
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6ddd2571771f614fb6429a6f0ceb44b
-      internalID: 623408874
+      spriteID: 5fc6e87f8e42b7f4b860c7a470eee644
+      internalID: -1379960335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_bat1_3
+      name: background_1_r_-Sheet_3
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1200
         y: 0
-        width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.3, y: 0.5}
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d56f9618d7c5c80409c46fa457dde158
-      internalID: -1112413727
+      spriteID: 602a8f78a8b157147b1ec46e250cdf10
+      internalID: -1764346443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_1_r_-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb14d378bb1b4d46af4e6d38c824096
+      internalID: 1347686177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_1_r_-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4e298ef982ad2448217bfa4ba0cd2a
+      internalID: 1948743004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_1_r_-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7893d8546b1d66b43bf4cdd3ef478126
+      internalID: -733606388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: background_1_r_-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 400
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bcde82c486482449bcfb8d57ad23357
+      internalID: 571446115
       vertices: []
       indices: 
       edges: []
@@ -211,10 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      boss1_bat1_0: 190208736
-      boss1_bat1_1: 1351671251
-      boss1_bat1_2: 623408874
-      boss1_bat1_3: -1112413727
+      background_1_r_-Sheet_0: -1827710049
+      background_1_r_-Sheet_1: 579313052
+      background_1_r_-Sheet_2: -1379960335
+      background_1_r_-Sheet_3: -1764346443
+      background_1_r_-Sheet_4: 1347686177
+      background_1_r_-Sheet_5: 1948743004
+      background_1_r_-Sheet_6: -733606388
+      background_1_r_-Sheet_7: 571446115
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

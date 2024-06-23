@@ -14,6 +14,7 @@ TagManager:
   - Camera
   - Gun
   - Boss
+  - BossAttack
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Gun
   - BaseGround
   - Boss
-  - 
+  - BossAttack
   - 
   - 
   - 

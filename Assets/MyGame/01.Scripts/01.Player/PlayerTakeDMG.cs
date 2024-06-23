@@ -74,6 +74,14 @@ public class PlayerTakeDMG : MonoBehaviour
                 TakeDMG();
             }
         }
+        if (collision.gameObject.CompareTag("BossAttack"))
+        {
+            if (isHit == false)
+            {
+                isHit = true;
+                TakeDMG();
+            }
+        }
     }
     #endregion
 
@@ -91,7 +99,7 @@ public class PlayerTakeDMG : MonoBehaviour
         else
         {
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss")); // 몬스터와 충돌무시
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossAttack")); // 몬스터와 충돌무시
             Die();
         }
     }
@@ -115,7 +123,7 @@ public class PlayerTakeDMG : MonoBehaviour
     IEnumerator Co_isHit()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss")); // 몬스터와 충돌무시
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossAttack")); // 몬스터와 충돌무시
         for (int i = 0; i < 3; i++)
         {
             yield return waitForSeconds;
@@ -124,7 +132,7 @@ public class PlayerTakeDMG : MonoBehaviour
             sr.color = fullA;
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), false); // 몬스터와 충돌무시 해제
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossAttack"), false); // 몬스터와 충돌무시 해제
     }
     #endregion
 }

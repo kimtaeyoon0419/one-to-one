@@ -13,9 +13,9 @@ public class SlashSkill : MonoBehaviour
         transform.Translate(Vector3.right * -speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }

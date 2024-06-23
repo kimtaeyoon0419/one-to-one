@@ -47,6 +47,13 @@ public class SlimeBoss : BossMonster
         SizeDown();
     }
 
+    protected override void Move()
+    {
+        velocity.x = movespeed * isRight;
+        velocity.y = rigid.velocity.y;
+
+        rigid.velocity = velocity;
+    }
 
     #region АјАн
     protected override IEnumerator UseSkill()

@@ -14,6 +14,8 @@ public enum CurGameState
 {
     title,
     getReady,
+    bossSpawn,
+    fightBoss,
     stageClear,
     gameClear,
     gameOver
@@ -55,6 +57,15 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
+
+    private void Update()
+    {
+        if(curGameState == CurGameState.bossSpawn)
+        {
+            curGameState = CurGameState.fightBoss;
+        }
+    }
+
     public void StageClear()
     {
         _SpawnClearItem();

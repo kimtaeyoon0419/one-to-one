@@ -105,20 +105,7 @@ public abstract class BossMonster : MonoBehaviour
         }
     }
 
-    protected virtual void Move()
-    {
-        //Vector2 currentPosition = transform.position;
-
-        //movePos = Vector2.MoveTowards(currentPosition, new Vector2(player.transform.position.x, currentPosition.y), movespeed * Time.deltaTime);
-
-        //// 새로운 위치를 설정합니다
-        //transform.position = new Vector2(movePos.x, currentPosition.y);
-
-        velocity.x = movespeed * isRight;
-        velocity.y = rigid.velocity.y;
-
-        rigid.velocity = velocity;
-    }
+    protected abstract void Move();
 
     protected abstract IEnumerator UseSkill();
 
