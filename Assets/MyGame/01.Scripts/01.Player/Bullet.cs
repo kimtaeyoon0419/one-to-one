@@ -21,12 +21,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Ground"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Monster") || collision.CompareTag("Ground") || collision.CompareTag("Boss"))
         {
             if (collision.CompareTag("Monster")) // 만약 몬스터와 부딪혔다면
             {
                 Debug.Log(PlayerStats.attackPower);
                 collision.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
+            }
+            if (collision.CompareTag("Boss"))
+            {
+                collision.GetComponent<BossMonster>().TakeDamage(PlayerStats.attackPower);
             }
             ObjectPool.ReturnToPool("Bullet", gameObject);
         }

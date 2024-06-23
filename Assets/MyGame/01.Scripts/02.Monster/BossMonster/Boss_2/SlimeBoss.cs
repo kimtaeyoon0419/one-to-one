@@ -59,28 +59,26 @@ public class SlimeBoss : BossMonster
     protected override IEnumerator UseSkill()
     {
         int skillNum = Random.Range(0, 10);
+        state = BossState.usingSkill;
 
         if (skillNum >= 0 &&  skillNum <= 6) // 대쉬
         {
             animator.SetTrigger(hashSkill1);
             isDash = true;
-            rigid.velocity = new Vector2(rigid.velocity.x, 0f);
-            rigid.AddForce(new Vector2(dashDistance * isRight, 0f), ForceMode2D.Impulse);
             float gravity = rigid.gravityScale;
             rigid.gravityScale = 0f;
+            rigid.velocity = new Vector2(rigid.velocity.x, 0f);
+            rigid.AddForce(new Vector2(dashDistance * isRight, 0f), ForceMode2D.Impulse);
             yield return new WaitForSeconds(dashTime);
             isDash = false;
             rigid.gravityScale = gravity;
         }
-
         else if (skillNum >= 7 && skillNum <= 9) // 점프
         {
             animator.SetTrigger(hashSkill2);
             isJump = true;
             Move();
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            //rigid.velocity = Vector2.right * jumpPower;
-            //rigid.velocity = Vector2.up * jumpPower;
             while (isJump)
             {
                 animator.SetBool(hashDown, true);

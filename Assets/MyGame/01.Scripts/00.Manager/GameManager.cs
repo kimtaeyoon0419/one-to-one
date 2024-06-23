@@ -58,14 +58,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(curGameState == CurGameState.bossSpawn)
-        {
-            curGameState = CurGameState.fightBoss;
-        }
-    }
-
     public void StageClear()
     {
         _SpawnClearItem();

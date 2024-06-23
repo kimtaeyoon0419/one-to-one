@@ -1511,6 +1511,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f3f57c211c4e0244fbafdee375fa54e4, type: 3}
   - name: GameOver
     clip: {fileID: 8300000, guid: 95ffd1c9a061f80439cf88b039c74be4, type: 3}
+  - name: VampireSlash
+    clip: {fileID: 8300000, guid: 66c2fc0b7e33ab543b18e2cc1cff93c5, type: 3}
   musicSource: {fileID: 1930186948}
   sfxSource: {fileID: 560714036}
 --- !u!4 &331237373
@@ -4545,6 +4547,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Stage_1BossSpawned: 0
+  Stage_2BossSpawned: 0
+  Stage_3BossSpawned: 0
 --- !u!4 &1663252106
 Transform:
   m_ObjectHideFlags: 0

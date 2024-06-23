@@ -14,9 +14,9 @@ public class PlayerAttacks : WeaponManager
                 curWeapon();
                 AudioManager.instance.PlaySFX("Shot");
             }
-            else if(curBulletCount == 0)
+            else if(curBulletCount <= 0)
             {
-
+                DestroyGun();
             }
         }
         if (bulletshotCurTime >= 0)

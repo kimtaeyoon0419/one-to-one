@@ -20,6 +20,7 @@ public class GetItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin")) // ÄÚÀÎ°ú ºÎµúÇûÀ»¶§
         {
             CoinManager.instance.coin += 100;
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("Gun")) // ÃÑ°ú ºÎµúÇûÀ» ¶§
         {
@@ -35,6 +36,7 @@ public class GetItem : MonoBehaviour
             {
                 playerAttacks.CurWeaponShotGun();
             }
+            Destroy(collision.gameObject);
             AudioManager.instance.PlaySFX("Gun_Reload");
         }
     }

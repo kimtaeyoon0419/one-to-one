@@ -56,6 +56,7 @@ public class VampireBoss : BossMonster
         if(skillNum == 0)
         {
             int index = Random.Range(0, slashEffect.Length);
+            AudioManager.instance.PlaySFX("VampireSlash");
             Instantiate(slashEffect[index], useShotSkillPos.position, Quaternion.Euler(0, 180 *gameObject.transform.rotation.y, 0));
             animator.SetTrigger(hashSkill1);
         }
@@ -182,7 +183,17 @@ public class VampireBoss : BossMonster
     {
         if (!findFact)
         {
-            if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                findFact = true;
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!findFact)
+        {
+            if (collision.gameObject.CompareTag("Bullet"))
             {
                 findFact = true;
             }

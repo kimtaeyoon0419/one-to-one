@@ -134,12 +134,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   skillIndex: 2
+  skillTrigerTime: 5
+  delayTime: 0.1
   dashDistance: 5
   dashTime: 1
   isDash: 0
   jumpPower: 10
   isJump: 0
-  skillTrigerTime: 1
   initialScale: {x: 2, y: 2, z: 2}
   minScale: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!70 &6766287052735496882

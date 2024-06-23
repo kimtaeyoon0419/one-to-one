@@ -52,10 +52,19 @@ public abstract class BossMonster : MonoBehaviour
     [Header("Diraction")]
     protected int isRight;
 
+    [Header("TakeDamageColor")]
+    [SerializeField] protected float delayTime; // WaitForSeconds 값
+    SpriteRenderer sr;
+    WaitForSeconds waitForSeconds; // 웨잇포세컨드
+    Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
+    Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        waitForSeconds = new WaitForSeconds(delayTime);
     }
 
     protected virtual void Start()
@@ -88,7 +97,6 @@ public abstract class BossMonster : MonoBehaviour
                     Die();
                 break;
         }
-
     }
 
     protected virtual void LookPlayer()
@@ -113,11 +121,23 @@ public abstract class BossMonster : MonoBehaviour
     
 
     public void TakeDamage(int damage)
-    {
+    {   
         curHp -= damage;
-        if(curHp <= 0)
+        StartCoroutine(Co_isHit());
+        if (curHp <= 0)
         {
             Die();
+        }
+    }
+
+    protected IEnumerator Co_isHit() // 맞았을 때 색전환
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return waitForSeconds;
+            sr.color = hafpA;
+            yield return waitForSeconds;
+            sr.color = fullA;
         }
     }
 

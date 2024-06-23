@@ -13,6 +13,8 @@ public class Gunstat
 
     public int maxBullet;
 
+    public GameObject gun;
+
     public float bulletShotCool;
 }
 
@@ -34,6 +36,8 @@ public class WeaponManager : MonoBehaviour
     [Header("Gun")]
     [SerializeField] private float defDistanceRay = 100;
     public LineRenderer lineRenderer;
+    [SerializeField] private GameObject curGun;
+    [SerializeField] private Transform gunPos;
 
     [Header("Rotation List")]
     List<float> shootGunRot = new List<float>() { -2f, -1f , 0 , 1f , 2f }; // 샷건 탄퍼짐 방향
@@ -49,6 +53,12 @@ public class WeaponManager : MonoBehaviour
     #region Private_Function
     private void SetGunStat(string name)
     {
+        if (curGun != null)
+        {
+            Destroy(curGun);
+        }
+
+        curGun = gunDictionary[name].gun;
         maxBublletCount = gunDictionary[name].maxBullet;
         bulletshotCoolTime = gunDictionary[name].bulletShotCool;
     }
@@ -114,6 +124,8 @@ public class WeaponManager : MonoBehaviour
             curWeapon = () => { };
         }
         SetGunStat("HandGun");
+        SetCurGun();
+
         curBulletCount = maxBublletCount;
         curWeapon = () => { HandGunAttack(); };  
     }
@@ -125,19 +137,42 @@ public class WeaponManager : MonoBehaviour
             curWeapon = () => { };
         }
         SetGunStat("Rifle");
+        SetCurGun();
+
         curBulletCount = maxBublletCount;
         curWeapon = () => {RifleGunAttack(); };
     }
 
     public virtual void CurWeaponShotGun() // 현재 무기를 샷건으로 교체
     {
+
         if (curWeapon != null)
         {
             curWeapon = () => { };
         }
         SetGunStat("ShotGun");
+        SetCurGun();
+
         curBulletCount = maxBublletCount;
         curWeapon = () => { ShotGunAttack(); };
+    }
+    public void SetCurGun()
+    {
+        curGun = Instantiate(curGun, attackPos.position, Quaternion.identity);
+        curGun.transform.SetParent(gunPos.transform, false); // 부모 설정, 로컬 위치/회전 유지
+        curGun.transform.localPosition = Vector3.zero; // 로컬 위치를 attackPos의 위치로 설정
+        curGun.transform.localRotation = Quaternion.identity; // 로컬 회전을 초기화
+    }
+
+    protected void DestroyGun()
+    {
+        if(curBulletCount <= 0)
+        {
+            if(curGun != null)
+            {
+                Destroy(curGun);
+            }
+        }
     }
     #endregion
 }
