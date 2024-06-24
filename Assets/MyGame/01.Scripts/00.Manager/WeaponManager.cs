@@ -53,7 +53,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
     #endregion
+
     #region Private_Function
+    /// <summary>
+    /// 총 변경
+    /// </summary>
+    /// <param name="name">변경할 총의 이름</param>
     private void SetGunStat(string name)
     {
         if (curGun != null)
@@ -66,6 +71,9 @@ public class WeaponManager : MonoBehaviour
         bulletshotCoolTime = gunDictionary[name].bulletShotCool;
     }
 
+    /// <summary>
+    /// 권총 공격
+    /// </summary>
     private void HandGunAttack() // 권총
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
@@ -73,6 +81,10 @@ public class WeaponManager : MonoBehaviour
         curBulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
+    
+    /// <summary>
+    /// 샷건 공격
+    /// </summary>
     private void ShotGunAttack() // 샷건
     {
         for (int i = 0; i < 5; i++)
@@ -92,6 +104,10 @@ public class WeaponManager : MonoBehaviour
         }
         curBulletCount--;
     }
+
+    /// <summary>
+    /// 소총 공격
+    /// </summary>
     private void RifleGunAttack() // 소총
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
@@ -100,23 +116,24 @@ public class WeaponManager : MonoBehaviour
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
 
-    private void LaserGunAttack()
-    {
-        if(Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x))
-        {
-            RaycastHit2D _hit = Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x);
-            Draw2Ray(attackPos.position, _hit.point);
-        }
-        else
-        {
-            Draw2Ray(attackPos.position, attackPos.transform.right * defDistanceRay);
-        }
-    }
-    private void Draw2Ray(Vector2 startPos, Vector2 endPos)
-    {
-        lineRenderer.SetPosition(0, startPos);
-        lineRenderer.SetPosition(1, endPos);
-    }
+    //private void LaserGunAttack()
+    //{
+    //    if(Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x))
+    //    {
+    //        RaycastHit2D _hit = Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x);
+    //        Draw2Ray(attackPos.position, _hit.point);
+    //    }
+    //    else
+    //    {
+    //        Draw2Ray(attackPos.position, attackPos.transform.right * defDistanceRay);
+    //    }
+    //}
+
+    //private void Draw2Ray(Vector2 startPos, Vector2 endPos)
+    //{
+    //    lineRenderer.SetPosition(0, startPos);
+    //    lineRenderer.SetPosition(1, endPos);
+    //}
     #endregion
 
     #region Public_Action
@@ -159,6 +176,10 @@ public class WeaponManager : MonoBehaviour
         curBulletCount = maxBublletCount;
         curWeapon = () => { ShotGunAttack(); };
     }
+
+    /// <summary>
+    /// 현재 장착한 총을 들기
+    /// </summary>
     public void SetCurGun()
     {
         curGun = Instantiate(curGun, attackPos.position, Quaternion.identity);
@@ -167,6 +188,9 @@ public class WeaponManager : MonoBehaviour
         curGun.transform.localRotation = Quaternion.identity; // 로컬 회전을 초기화
     }
 
+    /// <summary>
+    /// 총알이 없다면 장착한 총 삭제
+    /// </summary>
     protected void DestroyGun()
     {
         if(curBulletCount <= 0)
