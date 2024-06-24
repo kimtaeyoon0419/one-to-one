@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 // # Unity
 using UnityEngine;
@@ -41,6 +42,8 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Rotation List")]
     List<float> shootGunRot = new List<float>() { -2f, -1f , 0 , 1f , 2f }; // º¶∞« ≈∫∆€¡¸ πÊ«‚
+
+    public TextMeshProUGUI bulletUi;
     #region Unity_Function
     private void Start()
     {

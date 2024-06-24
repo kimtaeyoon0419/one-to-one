@@ -14,9 +14,23 @@ public class RamdomMapSpawner : MonoBehaviour
 
     private  List<int> randomIndex = new List<int>(); // 맵 개수를 담을 리스트
 
+    [Header("아이템 스폰")]
+    public Transform[] itemSpawnPos;
+    private bool itemspawned;
+    public List<GameObject> clearItem;
+
     void Start()
     {
         RandomMapSpawn();
+    }
+
+    private void Update()
+    {
+        if(!itemspawned && GameManager.instance.curGameState == CurGameState.stageClear)
+        {
+            itemspawned = false;
+            _SpawnClearItem();
+        }
     }
 
     void RandomMapSpawn()
@@ -34,6 +48,16 @@ public class RamdomMapSpawner : MonoBehaviour
             randomIndex.RemoveAt(index); // 중복 막기
         }
     }
+
+    private void _SpawnClearItem()
+    {
+        itemspawned = true;
+        int itemIndex;
+            itemIndex = Random.Range(0, clearItem.Count);
+            Instantiate(clearItem[itemIndex], itemSpawnPos[1]);
+            clearItem.RemoveAt(itemIndex);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

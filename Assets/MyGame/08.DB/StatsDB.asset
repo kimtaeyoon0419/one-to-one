@@ -18,7 +18,7 @@ MonoBehaviour:
     speed: 7
     jumppower: 15
     armordurability: 2
-    attackpower: 2
+    attackpower: 5
   - branch: 2
     name: rogue
     speed: 10

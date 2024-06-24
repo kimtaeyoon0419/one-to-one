@@ -30,6 +30,7 @@ public class CoinSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.instance.coin += 100;
             ObjectPool.ReturnToPool("Coin", gameObject);
             AudioManager.instance.PlaySFX("Coin_Get");
         }

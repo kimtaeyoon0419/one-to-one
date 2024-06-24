@@ -23,6 +23,8 @@ public class PlayerAttacks : WeaponManager
         {
             bulletshotCurTime -= Time.deltaTime;
         }
+
+        bulletUi.text = ": "+ curBulletCount.ToString();
     }
     #endregion
 

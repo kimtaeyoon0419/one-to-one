@@ -43,6 +43,14 @@ public class GameManager : MonoBehaviour
     public bool Stage_2BossSpawned;
     public bool Stage_3BossSpawned;
 
+    [Header("NextStage?")]
+    public bool nextSceneCheck;
+
+    [Header("Coin")]
+    public float coin = 0;
+
+    [Header("ItemSpawned")]
+    private bool itemspawned;
 
     #region Unity_Function
     void Awake()
@@ -57,6 +65,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
+
 
     public void StageClear()
     {

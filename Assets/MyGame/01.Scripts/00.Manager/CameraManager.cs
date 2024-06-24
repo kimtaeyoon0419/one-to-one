@@ -25,6 +25,11 @@ public class CameraManager : MonoBehaviour
     private float shakeTime; // 흔들리는 시간
     private float shakeIntensity; // 흔들리는 세기
 
+    [Header("BossCamera")]
+    [SerializeField] private Transform BossCameraPos;
+    [SerializeField] private float targetSize = 5.7f;
+    [SerializeField] private float speed;
+
     #region Unity_Function
     private void Start()
     {
@@ -37,7 +42,13 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (target.gameObject != null)
+        if(GameManager.instance.curGameState == CurGameState.bossSpawn || GameManager.instance.curGameState == CurGameState.fightBoss || GameManager.instance.curGameState == CurGameState.stageClear)
+        {
+            theCamera.transform.position = Vector3.Lerp(theCamera.transform.position, BossCameraPos.position, Time.deltaTime * speed);
+            theCamera.orthographicSize = Mathf.Lerp(theCamera.orthographicSize, targetSize, Time.deltaTime * speed);
+        }
+
+        if (target.gameObject != null && GameManager.instance.curGameState != CurGameState.bossSpawn || GameManager.instance.curGameState != CurGameState.fightBoss)
         {
             targetPosition.Set(this.gameObject.transform.position.x, target.transform.position.y, this.gameObject.transform.position.z);
 
@@ -49,10 +60,8 @@ public class CameraManager : MonoBehaviour
                                                           // 수정 : 해당 카메라의 x 값이 움직일 필요가 없기에 움직이지 않게 수정
             this.transform.position = new Vector3(clampedX, clampedY, this.transform.position.z);
         }
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            OnShakeCamera();
-        }
+        
+
     }
     #endregion
 

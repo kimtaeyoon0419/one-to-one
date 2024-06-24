@@ -48,6 +48,10 @@ public class VampireBoss : BossMonster
     [SerializeField] private List<GameObject> alteregos = new List<GameObject>();
     [SerializeField] private bool findFact = false;
 
+    /// <summary>
+    /// 스킬 실행해주는 스크립트
+    /// </summary>
+    /// <returns></returns>
     protected override IEnumerator UseSkill()
     {
         state = BossState.usingSkill;
@@ -73,6 +77,9 @@ public class VampireBoss : BossMonster
         yield return null;
     }
 
+    /// <summary>
+    /// 정해진 위치로 랜덤으로 이동
+    /// </summary>
     protected override void Move()
     {
         if(curMoveTime <= 0)
@@ -89,7 +96,11 @@ public class VampireBoss : BossMonster
         }
     }
 
-
+    #region Skill
+    /// <summary>
+    /// 불기둥 공격 총 3번 공격 후 휴식
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FirePillarAttack()
     {
         Debug.Log("불기둥 스킬");
@@ -104,6 +115,10 @@ public class VampireBoss : BossMonster
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
     }
 
+    /// <summary>
+    /// 은신 공격 총 6마리로 나눠지며 진짜 찾기
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator StealthAttack()
     {
         yield return null;
@@ -162,23 +177,26 @@ public class VampireBoss : BossMonster
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
-
+    /// <summary>
+    /// 애니메이터에서 이벤트로 실행할 불기둥 생성 함수
+    /// </summary>
     public void FireSkill()
     {
         Instantiate(firePillar, player.transform.position, Quaternion.identity);
     }
-    
+    /// <summary>
+    /// 일정 시간 뒤에 스킬 발동
+    /// </summary>
+    /// <param name="time">기다릴 시간</param>
+    /// <returns></returns>
     protected override IEnumerator SkillTriger(float time)
     {
         yield return new WaitForSeconds(time);
         state = BossState.useSkill;
     }
+    #endregion
 
-    protected override void Die()
-    {
-        GameManager.instance.curGameState = CurGameState.stageClear;
-    }
-
+    #region 피격 처리
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!findFact)
@@ -199,4 +217,5 @@ public class VampireBoss : BossMonster
             }
         }
     }
+    #endregion
 }

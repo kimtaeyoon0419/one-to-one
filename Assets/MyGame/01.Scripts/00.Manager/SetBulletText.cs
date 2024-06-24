@@ -1,41 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+//using tmpro;
+//using unityengine;
+//using unityengine.ui;
+//using UnityEngine;
 
-public class SetBulletText : MonoBehaviour
-{
-    //[SerializeField] private TextMeshProUGUI BulletCount;
-    //public int index;
+//public class setbullettext : MonoBehaviour
+//{
+//    [serializefield] private textmeshprougui bulletcount;
 
-    //#region Unity_Function
-    //void Start()
-    //{
-        
-    //}
+//    #region unity_function
+//    void start()
+//    {
 
-    //void Update()
-    //{
-    //    if (index == 0)
-    //    {
-    //        SetText();
-    //    }
-    //    else if (index == 1)
-    //    {
-    //        SetText22();
-    //    }
-    //}
-    //#endregion
+//    }
 
-    //#region Public_Function
-    //public void SetText()
-    //{
-    //    BulletCount.text = "≥≤¿∫ ≈∫»Ø :" + PlayerStatManager.instance.curBulletCount;
-    //}
-    //public void SetText22()
-    //{
-    //    BulletCount.text = "»πµÊ«— ƒ⁄¿Œ :" + CoinManager.instance.coin;
-    //}
-    //#endregion
-}
+//    void update()
+//    {
+//        else if (index == 1)
+//        {
+//            settext22();
+//        }
+//    }
+//    #endregion
+
+//    #region public_function
+//    public void settext22()
+//    {
+//        bulletcount.text = "»πµÊ«— ƒ⁄¿Œ :" + coinmanager.instance.coin;
+//    }
+//    #endregion
+//}

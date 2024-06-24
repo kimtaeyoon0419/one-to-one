@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private float isFacingRight = 1; // Flip ¿ëµµ
     private Vector2 velocity;
     private bool isJumping;
+    private bool isPortal;
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
@@ -51,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     private void Start()
@@ -64,6 +64,14 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         hor = Input.GetAxisRaw("Horizontal");
+
+        if(isPortal)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                GameManager.instance.nextSceneCheck = true;
+            }
+        }
 
         SetAnim();
         _Jump();
@@ -88,17 +96,25 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawCube(groundChk.position, raybox);
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Monster"))
-    //    {
-    //        if (rb.velocity.y > 0 && transform.position.y > collision.transform.position.y)
-    //        {
-    //            collision.gameObject.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
-    //        }
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Portal"))
+        {
+            isPortal = true;
+        }
+        else
+        {
+            isPortal = false;
+        }
+        if (collision.CompareTag("Item"))
+        {
+            stats.armorDurability += collision.GetComponent<clearItem>().armor;
+            stats.speed += collision.GetComponent<clearItem>().speed;
+            PlayerStats.attackPower += collision.GetComponent<clearItem>().attack;
 
+            Destroy(collision.gameObject);
+        }
+    }
     #endregion
 
     #region Private_Function

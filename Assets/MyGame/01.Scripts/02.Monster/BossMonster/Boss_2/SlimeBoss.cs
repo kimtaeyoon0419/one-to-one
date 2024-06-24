@@ -47,6 +47,9 @@ public class SlimeBoss : BossMonster
         SizeDown();
     }
 
+    /// <summary>
+    /// 플레이어 방향으로 이동
+    /// </summary>
     protected override void Move()
     {
         velocity.x = movespeed * isRight;
@@ -55,7 +58,11 @@ public class SlimeBoss : BossMonster
         rigid.velocity = velocity;
     }
 
-    #region 공격
+    #region SKill
+    /// <summary>
+    /// 스킬 발동 해주는 함수
+    /// </summary>
+    /// <returns></returns>
     protected override IEnumerator UseSkill()
     {
         int skillNum = Random.Range(0, 10);
@@ -95,6 +102,11 @@ public class SlimeBoss : BossMonster
         yield return null;
     }
 
+    /// <summary>
+    /// 일정 시간 뒤에 스킬 발동
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
     protected override IEnumerator SkillTriger(float time)
     {
         yield return new WaitForSeconds(time);
@@ -110,11 +122,9 @@ public class SlimeBoss : BossMonster
 
     #endregion
 
-    protected override void Die()
-    {
-
-    }
-
+    /// <summary>
+    /// 체력 비례해서 크기가 작아지는 함수
+    /// </summary>
     private void SizeDown()
     {
         float healthRatio = (float)curHp / maxHp;
