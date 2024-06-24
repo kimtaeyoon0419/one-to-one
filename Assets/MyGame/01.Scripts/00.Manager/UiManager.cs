@@ -29,6 +29,13 @@ public class UiManager : MonoBehaviour
     [Header("Fade")]
     public GameObject fadePanel;
 
+    [Header("NextScene?")]
+    public GameObject nextSecnePanel;
+
+    [Header("HowToPlay")]
+    public GameObject htpPanel;
+    private bool htpToggle = false;
+
     #region Unity_Function
     private void Start()
     {
@@ -43,6 +50,10 @@ public class UiManager : MonoBehaviour
         if (GameOverUI != null)
         {
             Gameover();
+        }
+        if(GameManager.instance.nextSceneCheck)
+        {
+            nextSecnePanel.SetActive(true);
         }
     }
     #endregion
@@ -61,7 +72,9 @@ public class UiManager : MonoBehaviour
 
     public static void LoadScene(string sceneName) // ¾À ·Îµå
     {
+        GameManager.instance.curGameState = CurGameState.getReady;
         GameManager.instance.loadingNextScene = sceneName;
+        GameManager.instance.nextSceneCheck = false;
         SceneManager.LoadScene("99_LoadingScene");
     }
 
@@ -79,6 +92,18 @@ public class UiManager : MonoBehaviour
     public void CharSelect(int selectNum)
     {
         GameManager.instance.selectChar = selectNum;
+    }
+
+    public void HowToPlayToggle()
+    {
+        htpToggle = !htpToggle;
+        htpPanel.SetActive(htpToggle);
+    }
+
+    public void MoreThink()
+    {
+        GameManager.instance.nextSceneCheck = false;
+        GameManager.instance.curGameState = CurGameState.stageClear;
     }
 
     public void ReTryButton()

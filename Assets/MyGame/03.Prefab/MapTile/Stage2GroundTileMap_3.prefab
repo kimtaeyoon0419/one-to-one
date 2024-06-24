@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 542015502087002938}
   - component: {fileID: 542015502087002939}
   - component: {fileID: 542015502087002916}
+  - component: {fileID: 5939994773470002613}
   m_Layer: 6
   m_Name: Stage2GroundTileMap_3
   m_TagString: Ground
@@ -608,3 +609,16 @@ CompositeCollider2D:
       - {x: -1.2499707, y: -3.11}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &5939994773470002613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542015502087002918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b52432da1ad53746b4708005e40e027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: []

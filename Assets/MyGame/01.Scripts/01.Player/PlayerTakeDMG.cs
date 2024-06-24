@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ public class PlayerTakeDMG : MonoBehaviour
     [Header("FootPos")]
     [SerializeField] private Transform footPos;
 
+    [Header("Text")]
+    [SerializeField] private TextMeshProUGUI armorText;
+
     //public Vector2 test_Vec2;
 
     #region Unity_Function
@@ -44,6 +48,11 @@ public class PlayerTakeDMG : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Boss"), false); // 몬스터와 충돌무시 해제
+    }
+
+    private void Update()
+    {
+        armorText.text = ": " + stat.armorDurability.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +72,7 @@ public class PlayerTakeDMG : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Boss"))
         {
-            if(transform.position.y > collision.transform.position.y && rb.velocity.y != 0)
+            if(transform.position.y + 0.5f > collision.transform.position.y && rb.velocity.y != 0)
             {
                 collision.gameObject.GetComponent<BossMonster>().TakeDamage(PlayerStats.attackPower);
                 rb.velocity = Vector2.up * 10f;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3947050211882260492}
   m_Layer: 0
   m_Name: Item 1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,9 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  jumpPower: 0
   armor: 0
-  attack: 2
+  attack: 10
 --- !u!61 &3947050211882260492
 BoxCollider2D:
   m_ObjectHideFlags: 0

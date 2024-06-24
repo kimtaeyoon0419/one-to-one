@@ -70,12 +70,15 @@ public abstract class BossMonster : MonoBehaviour
     protected virtual void Start()
     {
         Debug.Log("시작시작시작");
-        StartCoroutine(SkillTriger(3f));
         state = BossState.fight;
+        StartCoroutine(SkillTriger(3f));
         player = Physics2D.OverlapCircle(transform.position, 100, playerLayer).gameObject;
         curHp = maxHp;
     }
 
+    /// <summary>
+    /// 상태에 따라서 state를 업데이트 해줌
+    /// </summary>
     protected virtual void Update()
     {
         switch (state)
@@ -97,8 +100,16 @@ public abstract class BossMonster : MonoBehaviour
                     Die();
                 break;
         }
+
+        if(curHp <= 0)
+        {
+            state = BossState.die;
+        }
     }
 
+    /// <summary>
+    /// 플레이어 바라보는 함수
+    /// </summary>
     protected virtual void LookPlayer()
     {
         if (player.transform.position.x - transform.position.x > 0)
@@ -113,12 +124,13 @@ public abstract class BossMonster : MonoBehaviour
         }
     }
 
+    #region abstract
     protected abstract void Move();
 
     protected abstract IEnumerator UseSkill();
 
     protected abstract IEnumerator SkillTriger(float time);
-    
+    #endregion
 
     public void TakeDamage(int damage)
     {   
@@ -141,5 +153,9 @@ public abstract class BossMonster : MonoBehaviour
         }
     }
 
-    protected abstract void Die();
+    protected void Die()
+    {
+        isDie = true;
+        GameManager.instance.curGameState = CurGameState.stageClear;
+    }
 }
