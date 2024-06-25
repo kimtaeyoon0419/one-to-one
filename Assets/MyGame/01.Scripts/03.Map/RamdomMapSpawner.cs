@@ -49,6 +49,9 @@ public class RamdomMapSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 클리어 아이템 스폰 
+    /// </summary>
     private void _SpawnClearItem()
     {
         itemspawned = true;

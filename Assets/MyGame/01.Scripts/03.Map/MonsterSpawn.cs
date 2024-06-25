@@ -5,12 +5,9 @@ using System.Collections.Generic;
 // # Unity
 using UnityEngine;
 
-
 public class MonsterSpawn : MonoBehaviour
 {
     public Transform[] spawnPos;
-
-
 
     private void Start()
     {
@@ -19,7 +16,6 @@ public class MonsterSpawn : MonoBehaviour
         {
             if(monster.stage == GameManager.instance.curStage)
             {
-                Debug.Log("½ÇÇàµµ¤Ã¤Ó¤±");
                 foreach(Transform t in spawnPos)
                 {
                     int r = Random.Range(0, monster.monsters.Length);

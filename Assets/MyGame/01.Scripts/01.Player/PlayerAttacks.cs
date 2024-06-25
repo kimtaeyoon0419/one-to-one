@@ -24,12 +24,12 @@ public class PlayerAttacks : WeaponManager
             bulletshotCurTime -= Time.deltaTime;
         }
 
-        bulletUi.text = ": "+ curBulletCount.ToString();
+        bulletUi.text = ": "+ curBulletCount.ToString(); // ÅºÈ¯ ¼ö
     }
     #endregion
 
     #region Public_Function
-    public override void CurWeaponHandGun()
+    public override void CurWeaponHandGun() 
     {
         base.CurWeaponHandGun();
     }

@@ -157,5 +157,6 @@ public abstract class BossMonster : MonoBehaviour
     {
         isDie = true;
         GameManager.instance.curGameState = CurGameState.stageClear;
+        Destroy(gameObject);
     }
 }

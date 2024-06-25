@@ -113,7 +113,11 @@ public abstract class Monster : MonoBehaviour
     {
         nextMove *= -1;
     }
-    private void FollowPlayer()
+
+    /// <summary>
+    /// 플레이어 따라가기
+    /// </summary>
+    private void FollowPlayer() 
     {
         //Debug.Log("따라가는중~~");
         if (target_Player.transform.position.x - transform.position.x < 0.2f)

@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 [InitializeOnLoad]
 public class DefaultSceneLoad
 {
-    static DefaultSceneLoad()
+    static DefaultSceneLoad() // 로딩창 로드
     {
         var pathOfFirstScene = EditorBuildSettings.scenes[0].path;
         var sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(pathOfFirstScene);

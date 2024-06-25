@@ -18,7 +18,7 @@ public class portal : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.instance.curGameState == CurGameState.stageClear)
+        if(GameManager.instance.curGameState == CurGameState.stageClear) // 스테이지 클리어 시 포탈 개방
         {
             animator.SetBool("Open", true);
             capsuleCollider.enabled = true;

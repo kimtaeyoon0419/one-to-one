@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 아이템 생성 함수 실행해주는 함수
+    /// </summary>
     public void StageClear()
     {
         _SpawnClearItem();
@@ -74,6 +76,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Private_Function
+    /// <summary>
+    /// 스테이지 클리어하면 아이템 생성
+    /// </summary>
     private void _SpawnClearItem()
     {
         int itemIndex;

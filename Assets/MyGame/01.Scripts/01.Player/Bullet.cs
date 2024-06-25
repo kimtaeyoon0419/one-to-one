@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.right * Speed * Time.deltaTime);
+        transform.Translate(Vector3.right * Speed * Time.deltaTime); // 총알 움직임
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
                 Debug.Log(PlayerStats.attackPower);
                 collision.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
             }
-            if (collision.CompareTag("Boss"))
+            if (collision.CompareTag("Boss")) // 만약 보스와 부딪혔다면
             {
                 collision.GetComponent<BossMonster>().TakeDamage(PlayerStats.attackPower);
             }

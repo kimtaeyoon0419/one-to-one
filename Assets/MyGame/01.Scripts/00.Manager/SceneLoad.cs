@@ -33,7 +33,7 @@ public class SceneLoad : MonoBehaviour
     #endregion
 
     #region Corountine_Function
-    IEnumerator LoadScene()
+    IEnumerator LoadScene() // 씬 로드 및 로딩 비례 로딩바 세팅
     {
         yield return null;
         AsyncOperation operation = SceneManager.LoadSceneAsync(GameManager.instance.loadingNextScene);
@@ -63,7 +63,7 @@ public class SceneLoad : MonoBehaviour
             }
         }
     }
-    IEnumerator lodingSet()
+    IEnumerator lodingSet() // 로딩 텍스트
     {
         while (isLoding == false)
         {

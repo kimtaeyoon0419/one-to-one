@@ -12,6 +12,6 @@ public class CoinText : MonoBehaviour
 
     private void Update()
     {
-        coinText.text = "Coin : " + GameManager.instance.coin.ToString();
+        coinText.text = "Coin : " + GameManager.instance.coin.ToString(); // »πµÊ«— ƒ⁄¿Œ∑Æ
     }
 }

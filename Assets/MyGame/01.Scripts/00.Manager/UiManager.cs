@@ -78,46 +78,71 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("99_LoadingScene");
     }
 
+    /// <summary>
+    /// 게임 종료
+    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
     }
 
+    /// <summary>
+    /// 크레딧
+    /// </summary>
     public void credit()
     {
         craftPnl = !craftPnl;
         craftdeveloperPnl.SetActive(craftPnl);
     }
 
+    /// <summary>
+    /// 캐릭터 선택
+    /// </summary>
+    /// <param name="selectNum">선택할 캐릭터 이름</param>
     public void CharSelect(int selectNum)
     {
         GameManager.instance.selectChar = selectNum;
     }
 
+    /// <summary>
+    /// HTP 버튼
+    /// </summary>
     public void HowToPlayToggle()
     {
         htpToggle = !htpToggle;
         htpPanel.SetActive(htpToggle);
     }
 
+    /// <summary>
+    /// 더 생각해볼게요 버튼
+    /// </summary>
     public void MoreThink()
     {
         GameManager.instance.nextSceneCheck = false;
         GameManager.instance.curGameState = CurGameState.stageClear;
     }
 
+    /// <summary>
+    /// 재시작 버튼
+    /// </summary>
     public void ReTryButton()
     {
         GameManager.instance.curGameState = CurGameState.getReady;
         LoadScene("Stage_1");
     }
 
+    /// <summary>
+    /// 메인화면 돌아가기 버튼
+    /// </summary>
     public void ReturnTitle()
     {
         GameManager.instance.curGameState = CurGameState.title;
         LoadScene("Main");
     }
 
+    /// <summary>
+    /// 게임오버 패널 on
+    /// </summary>
     public void Gameover()
     {
         if (!GameOverUI.activeSelf && GameManager.instance.curGameState == CurGameState.gameOver)
@@ -148,7 +173,7 @@ public class UiManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ButtonSfx()
+    public void ButtonSfx() // 버튼 효과음
     {
         AudioManager.instance.PlaySFX("Button");
     }

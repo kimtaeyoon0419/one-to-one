@@ -148,6 +148,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 점프가 끝났는지 확인
+    /// </summary>
+    /// <returns></returns>
     IEnumerator JumpEndCheck()
     {
         yield return new WaitForSeconds(0.2f);

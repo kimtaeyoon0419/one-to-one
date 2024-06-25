@@ -14,6 +14,7 @@ public class CoinSystem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // 생성 되면 튀어오름
     private void OnEnable()
     {
         float dir = Random.Range(-1f, 1f);
@@ -26,6 +27,7 @@ public class CoinSystem : MonoBehaviour
         StopAllCoroutines();
     }
 
+    // 플레이어랑 부딪히면 코인이 올라가고 효과음 발생
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

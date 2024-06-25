@@ -126,6 +126,9 @@ public class VampireBoss : BossMonster
         findFact = false;
         animator.SetBool(hashSkill4, true);
         transform.position = movePoss[tr].position;
+        float originalHP = curHp;
+        
+
         for(int i = 0; i < movePoss.Length; i++)
         {
             if (i != tr)
@@ -151,7 +154,7 @@ public class VampireBoss : BossMonster
 
             yield return null;
 
-            if (alteregos.Count <= 0)
+            if (alteregos.Count <= 0 || originalHP > curHp)
             {
                 findFact = true;
             }
@@ -197,25 +200,25 @@ public class VampireBoss : BossMonster
     #endregion
 
     #region 피격 처리
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!findFact)
-        {
-            if(collision.gameObject.CompareTag("Player"))
-            {
-                findFact = true;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!findFact)
-        {
-            if (collision.gameObject.CompareTag("Bullet"))
-            {
-                findFact = true;
-            }
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (!findFact)
+    //    {
+    //        if(collision.gameObject.CompareTag("Player"))
+    //        {
+    //            findFact = true;
+    //        }
+    //    }
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (!findFact)
+    //    {
+    //        if (collision.gameObject.CompareTag("Bullet"))
+    //        {
+    //            findFact = true;
+    //        }
+    //    }
+    //}
     #endregion
 }

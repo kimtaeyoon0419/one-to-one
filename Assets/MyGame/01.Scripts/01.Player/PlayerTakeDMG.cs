@@ -44,6 +44,7 @@ public class PlayerTakeDMG : MonoBehaviour
         cameraManager = p_Camera.GetComponent<CameraManager>();
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster"), false); // 몬스터와 충돌무시 해제
@@ -96,6 +97,9 @@ public class PlayerTakeDMG : MonoBehaviour
     #endregion
 
     #region Private_Function
+    /// <summary>
+    /// 피해를 입는 함수
+    /// </summary>
     private void TakeDMG() // 플레이어 갑옷 감소 갑옷이 없다면 사망
     {
         if (stat.armorDurability > 0)
@@ -113,7 +117,10 @@ public class PlayerTakeDMG : MonoBehaviour
             Die();
         }
     }
-
+    
+    /// <summary>
+    /// 사망 처리 함수
+    /// </summary>
     private void Die()
     {
         GameManager.instance.curGameState = CurGameState.gameOver;
@@ -124,12 +131,20 @@ public class PlayerTakeDMG : MonoBehaviour
     #endregion
 
     #region Corutine_Function
+    /// <summary>
+    /// 피해 이후 피해 무시 시간
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Co_OnHit()
     {
         yield return new WaitForSeconds(delayTime * 6);
         isHit = false;
     }
 
+    /// <summary>
+    /// 피해를 입으면 반짝거리게 해주는 함수
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Co_isHit()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("monster")); // 몬스터와 충돌무시

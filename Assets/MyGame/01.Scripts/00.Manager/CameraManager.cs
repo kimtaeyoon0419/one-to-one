@@ -85,6 +85,11 @@ public class CameraManager : MonoBehaviour
     #endregion
 
     #region Public_Function
+    /// <summary>
+    /// 카메라 흔들림
+    /// </summary>
+    /// <param name="shakeTime">흔들리는 시간</param>
+    /// <param name="shakeIntensity">흔들리는 범위</param>
     public void OnShakeCamera(float shakeTime = 0.2f, float shakeIntensity  = 0.1f)
     {
         this.shakeTime = shakeTime;

@@ -19,7 +19,7 @@ public class Slime : Monster
     float rayLookDir; // 몬스터의 방향과 맞는 레이 방향
 
     #region Unity_Function
-    protected override void OnEnable()
+    protected override void OnEnable() // 랜덤 색 ( 초록, 분홍 ) 
     {
         base.OnEnable();
         int randomColor = Random.Range(0, 2);
@@ -79,7 +79,9 @@ public class Slime : Monster
         }
     }
 
-
+    /// <summary>
+    /// 공격
+    /// </summary>
     private void Attack()
     {
         if (isGround)
