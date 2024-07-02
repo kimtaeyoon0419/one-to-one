@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform groundChk;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask defaultGroandLayer;
     [SerializeField] private LayerMask monsterLayer;
     private Vector2 raybox = new Vector2(0.7f, 0);
 
@@ -197,10 +198,14 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     private bool _IsGround()
     {
-        //RaycastHit2D rayhit = Physics2D.Raycast(groundChk.position, Vector2.down, 0.15f, groundLayer);
-        //return rayhit.collider != null;
-
-        return Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer);
+        if (Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer) != null || Physics2D.OverlapBox(groundChk.position, raybox, 1, defaultGroandLayer) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>

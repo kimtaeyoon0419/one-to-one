@@ -1,10 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class GunList
+{
+    public string gunName;
+    public GameObject gunObj;
+}
+
 public class DropItem : MonoBehaviour
 {
-    public GameObject[] gunList;
+    public GameObject[] gunList1;
+    public List<GunList> gunList;
+
+    private void OnDestroy()
+    {
+        if (this != null)
+        {
+            DropCoin();
+            DropGun();
+        }
+    }
+
 
     #region Public_Function
     /// <summary>
@@ -12,6 +31,7 @@ public class DropItem : MonoBehaviour
     /// </summary>
     public void DropCoin()
     {
+        if(ObjectPool.instance != null)
         ObjectPool.SpawnFromPool("Coin", gameObject.transform.position);
     }
 
@@ -20,13 +40,19 @@ public class DropItem : MonoBehaviour
     /// </summary>
     public void DropGun()
     {
-        int gunDropPercent = Random.Range(0, 5);
+        if (gunList == null || gunList.Count == 0)
+        {
+            Debug.LogError("gunList가 비어 있습니다.");
+            return;
+        }
+
+        int gunDropPercent = UnityEngine.Random.Range(0, 1); // 0 또는 1을 반환
         Debug.Log(gunDropPercent);
-        if(gunDropPercent == 0)
+        if (gunDropPercent == 0)
         {
             Debug.Log("총 생성");
-            int selectGun = Random.Range(1, gunList.Length);
-            Instantiate(gunList[selectGun], gameObject.transform.position, Quaternion.identity);
+            int selectGun = UnityEngine.Random.Range(0, gunList.Count); // 0부터 gunList.Length-1까지 반환
+            ObjectPool.SpawnFromPool(gunList[selectGun].gunName, gameObject.transform.position);
         }
     }
     #endregion

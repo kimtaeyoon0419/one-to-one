@@ -36,7 +36,7 @@ public class GetItem : MonoBehaviour
             {
                 playerAttacks.CurWeaponShotGun();
             }
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             AudioManager.instance.PlaySFX("Gun_Reload");
         }
     }

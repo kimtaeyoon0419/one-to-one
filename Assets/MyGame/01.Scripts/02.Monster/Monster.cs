@@ -100,8 +100,6 @@ public abstract class Monster : MonoBehaviour
         {
             isDie = true;
             StopAllCoroutines();
-            itemdrop.DropCoin();
-            itemdrop.DropGun();
             gameObject.SetActive(false);
         }
     }
