@@ -15,16 +15,6 @@ public class DropItem : MonoBehaviour
     public GameObject[] gunList1;
     public List<GunList> gunList;
 
-    private void OnDestroy()
-    {
-        if (this != null)
-        {
-            DropCoin();
-            DropGun();
-        }
-    }
-
-
     #region Public_Function
     /// <summary>
     /// 아이템 떨구기

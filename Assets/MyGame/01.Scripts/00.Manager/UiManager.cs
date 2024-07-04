@@ -36,6 +36,9 @@ public class UiManager : MonoBehaviour
     public GameObject htpPanel;
     private bool htpToggle = false;
 
+    [Header("BossHpBar")]
+    public GameObject bossHpBar;
+
     #region Unity_Function
     private void Start()
     {
@@ -51,9 +54,9 @@ public class UiManager : MonoBehaviour
         {
             Gameover();
         }
-        if(GameManager.instance.nextSceneCheck)
+        if(GameManager.instance.curGameState == CurGameState.bossSpawn)
         {
-            nextSecnePanel.SetActive(true);
+            bossHpBar.SetActive(true);
         }
     }
     #endregion

@@ -22,10 +22,10 @@ public enum BossState
 public abstract class BossMonster : MonoBehaviour
 {
     [Header("Stat")]
-    [SerializeField] protected int maxHp;
-    [SerializeField] protected int curHp;
+    public string bossName;
+    public int maxHp;
+    public int curHp { get; protected set; }
     [SerializeField] protected int movespeed;
-    [SerializeField] protected string bossName;
     [SerializeField] protected BossState state;
     [SerializeField] protected bool isDie;
 

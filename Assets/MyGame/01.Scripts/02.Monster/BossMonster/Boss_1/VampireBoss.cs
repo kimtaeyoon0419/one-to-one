@@ -48,6 +48,12 @@ public class VampireBoss : BossMonster
     [SerializeField] private List<GameObject> alteregos = new List<GameObject>();
     [SerializeField] private bool findFact = false;
 
+    protected override void Start()
+    {
+        base.Start();
+        curMoveTime = maxMoveTime;
+    }
+
     /// <summary>
     /// 스킬 실행해주는 스크립트
     /// </summary>

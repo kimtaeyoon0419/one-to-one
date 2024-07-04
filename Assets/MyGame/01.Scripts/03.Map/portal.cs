@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 // # Unity
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class portal : MonoBehaviour
 {
     Animator animator;
     CapsuleCollider2D capsuleCollider;
+    [SerializeField] private string nextSceneName;
 
     private void Awake()
     {
@@ -22,6 +24,12 @@ public class portal : MonoBehaviour
         {
             animator.SetBool("Open", true);
             capsuleCollider.enabled = true;
+            if (GameManager.instance.nextSceneCheck)
+            {
+                GameManager.instance.curGameState = CurGameState.getReady;
+                GameManager.instance.nextSceneCheck = false;
+                SceneManager.LoadScene(nextSceneName);
+            }
         }
     }
 }
