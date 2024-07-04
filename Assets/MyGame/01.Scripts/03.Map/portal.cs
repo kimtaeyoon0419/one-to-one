@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class portal : MonoBehaviour
 {
+    [Header("Component")]
     Animator animator;
     CapsuleCollider2D capsuleCollider;
     [SerializeField] private string nextSceneName;

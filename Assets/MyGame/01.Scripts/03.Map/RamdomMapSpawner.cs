@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RamdomMapSpawner : MonoBehaviour
 {
+    [Header("Component")]
+    public BoxCollider2D boxCollider2D;
+
     [Header("스폰 위치")]
     public Transform[] spawnPos;
     public Transform grid;
@@ -19,6 +22,11 @@ public class RamdomMapSpawner : MonoBehaviour
     private bool itemspawned;
     public List<GameObject> clearItem;
 
+    private void Awake()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
+
     void Start()
     {
         RandomMapSpawn();
@@ -30,6 +38,11 @@ public class RamdomMapSpawner : MonoBehaviour
         {
             itemspawned = false;
             _SpawnClearItem();
+        }
+
+        if(GameManager.instance.curGameState == CurGameState.fightBoss)
+        {
+            boxCollider2D.enabled = false;
         }
     }
 

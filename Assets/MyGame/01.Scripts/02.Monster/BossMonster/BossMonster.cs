@@ -107,6 +107,11 @@ public abstract class BossMonster : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        GameManager.instance.curGameState = CurGameState.stageClear;
+    }
+
     /// <summary>
     /// 플레이어 바라보는 함수
     /// </summary>

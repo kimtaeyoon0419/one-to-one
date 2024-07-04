@@ -54,7 +54,7 @@ public class UiManager : MonoBehaviour
         {
             Gameover();
         }
-        if(GameManager.instance.curGameState == CurGameState.bossSpawn)
+        if(GameManager.instance.curGameState == CurGameState.fightBoss)
         {
             bossHpBar.SetActive(true);
         }

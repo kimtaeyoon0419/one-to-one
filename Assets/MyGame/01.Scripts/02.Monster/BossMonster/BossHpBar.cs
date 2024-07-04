@@ -12,7 +12,7 @@ public class BossHpBar : MonoBehaviour
 
     private void Start()
     {
-        bossName.text = bossMonster.name;
+        bossName.text = bossMonster.bossName;
     }
 
     private void Update()
@@ -20,10 +20,10 @@ public class BossHpBar : MonoBehaviour
         if (bossMonster != null)
         {
             hpBar.value = (float)bossMonster.curHp / bossMonster.maxHp;
-            if (GameManager.instance.curGameState == CurGameState.stageClear)
-            {
-                gameObject.SetActive(false);
-            }
+        }
+        if (GameManager.instance.curGameState == CurGameState.stageClear)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
