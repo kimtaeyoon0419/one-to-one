@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MusicChanger : MonoBehaviour
 {
+    public string chagemusicName;
+
     #region Unity_Function
     void Start()
     {
-        AudioManager.instance.PlayMusic("Stage_1");
+        AudioManager.instance.PlayMusic(chagemusicName);
     }
     #endregion
 }
