@@ -23,7 +23,6 @@ public class Slime : Monster
     {
         base.OnEnable();
         int randomColor = Random.Range(0, 2);
-        Debug.Log(randomColor);
         if(randomColor == 0)
         {
             library.spriteLibraryAsset = defultAsset;

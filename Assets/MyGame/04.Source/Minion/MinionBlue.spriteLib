@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: MinionRed_Idle
+    m_Hash: 181435171
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: MONSTER_7_red_-Sheet_0
+      m_Hash: 670484429
+      m_Sprite: {fileID: -307846347, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1561896576, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 1
+  - m_Name: MinionRed_Move
+    m_Hash: 969603406
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: MONSTER_7_red_-Sheet_1
+      m_Hash: 284292955
+      m_Sprite: {fileID: 1582669451, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1194072563, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_2
+      m_Hash: 167290593
+      m_Sprite: {fileID: -528983073, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 633094421, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_3
+      m_Hash: 1056937591
+      m_Sprite: {fileID: -2004447573, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1742654994, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_4
+      m_Hash: 547029972
+      m_Sprite: {fileID: -209561825, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1514151198, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_5
+      m_Hash: 396112706
+      m_Sprite: {fileID: -1415314019, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 689590531, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_6
+      m_Hash: 244671224
+      m_Sprite: {fileID: 1051706064, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1482858414, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    - m_Name: MONSTER_7_red_-Sheet_7
+      m_Hash: 965890670
+      m_Sprite: {fileID: 1777459139, guid: cb17f4300595b5a4b908a833d8b935c0, type: 3}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 1383154643, guid: e7107d5f8e1fa884bb03f708cb6bcfc4, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 7
+  m_PrimaryLibraryGUID: cb6f00e31f9ba1947921a77a500c1217

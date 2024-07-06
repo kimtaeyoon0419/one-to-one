@@ -12,7 +12,6 @@ public class GunList
 
 public class DropItem : MonoBehaviour
 {
-    public GameObject[] gunList1;
     public List<GunList> gunList;
 
     #region Public_Function

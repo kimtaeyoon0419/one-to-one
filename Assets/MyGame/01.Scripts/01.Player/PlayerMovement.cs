@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity;
     private bool isJumping;
     private bool isPortal;
+    private bool isPortalteleport;
 
     [Header("Coroutine")]
     private Coroutine Co_StopWallJumping;
@@ -64,21 +65,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        hor = Input.GetAxisRaw("Horizontal");
-
-        if(isPortal)
+        if (!isPortalteleport)
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                GameManager.instance.nextSceneCheck = true;
-            }
-        }
+            hor = Input.GetAxisRaw("Horizontal");
 
-        SetAnim();
-        _Jump();
-        _wallSlide();
-        _WallJump();
-        //stepAttack();
+            if (isPortal)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    GameManager.instance.nextSceneCheck = true;
+                    isPortalteleport = true;
+                    AudioManager.instance.PlaySFX("Portal");
+                }
+            }
+
+            SetAnim();
+            _Jump();
+            _wallSlide();
+            _WallJump();
+            //stepAttack();
+        }
     }
     private void FixedUpdate()
     {

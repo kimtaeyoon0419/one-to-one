@@ -73,13 +73,7 @@ public class PlayerTakeDMG : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Boss"))
         {
-            if(transform.position.y + 0.5f > collision.transform.position.y && rb.velocity.y != 0)
-            {
-                collision.gameObject.GetComponent<BossMonster>().TakeDamage(PlayerStats.attackPower);
-                rb.velocity = Vector2.up * 10f;
-            }
-
-            else if (isHit == false)
+            if (isHit == false)
             {
                 isHit = true;
                 TakeDMG();
