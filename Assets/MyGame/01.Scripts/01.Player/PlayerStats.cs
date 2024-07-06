@@ -29,22 +29,30 @@ public class PlayerStats : MonoBehaviour
     #region Unity_Funtion
     private void Start()
     {
-        if (stage_1 == true)
+        StartCoroutine(Co_GetStat());
+    }
+
+    IEnumerator Co_GetStat()
+    {
+        yield return null;
+        if (GameManager.instance.curGameStage == CurStage.stage1)
         {
             GetStat(); // 처음 스테이지라면 선택한 캐릭터 스텟 불러오기
-            stage_1 = false;    
+            stage_1 = false;
         }
-        else SaveStatLoad();
+        else if (GameManager.instance.curGameStage == CurStage.stage2 || GameManager.instance.curGameStage == CurStage.stage3)
+        {
+            SaveStatLoad();
+        }
     }
 
     private void OnDisable()
     {
-        //if (stage_1 == false)
-        //{
+        if (GameManager.instance.curGameState != CurGameState.gameOver)
+        {
+            SaveStat(); // 씬 넘어거갈 때 스텟 저장
             Debug.Log("스텟이 저장되었습니다");
-            if (GameManager.instance.curGameState != CurGameState.gameOver)
-                SaveStat(); // 씬 넘어거갈 때 스텟 저장
-        //}
+        }
     }
     #endregion
 

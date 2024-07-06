@@ -21,6 +21,15 @@ public enum CurGameState
     gameOver
 }
 
+public enum CurStage
+{
+    title,
+    stage1,
+    stage2,
+    stage3,
+    gameClear
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -30,9 +39,10 @@ public class GameManager : MonoBehaviour
     //public bool stageClear = false;
     //public bool gameOver = false;
 
-    public int selectChar;
     public int curStage;
+    public int selectChar;
     public CurGameState curGameState;
+    public CurStage curGameStage;
 
     public List<GameObject> clearItem;
     public List<stageMonsterType> monsterType;
