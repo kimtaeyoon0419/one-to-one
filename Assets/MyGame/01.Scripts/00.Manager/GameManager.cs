@@ -44,9 +44,7 @@ public class GameManager : MonoBehaviour
     public CurGameState curGameState;
     public CurStage curGameStage;
 
-    public List<GameObject> clearItem;
     public List<stageMonsterType> monsterType;
-    public Transform[] itemSpawnPos;
 
     [Header("BossSpawned")]
     public bool Stage_1BossSpawned;
@@ -76,28 +74,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 아이템 생성 함수 실행해주는 함수
-    /// </summary>
-    public void StageClear()
-    {
-        _SpawnClearItem();
-    }
     #endregion
 
-    #region Private_Function
-    /// <summary>
-    /// 스테이지 클리어하면 아이템 생성
-    /// </summary>
-    private void _SpawnClearItem()
-    {
-        int itemIndex;
-        for (int i = 0; i < 3; i++)
-        {
-            itemIndex = Random.Range(0, clearItem.Count);
-            Instantiate(clearItem[itemIndex], itemSpawnPos[i]);
-            clearItem.RemoveAt(itemIndex);
-        }
-    }
-    #endregion
 }

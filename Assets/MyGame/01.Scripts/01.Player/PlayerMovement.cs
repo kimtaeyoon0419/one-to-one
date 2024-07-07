@@ -189,11 +189,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 isJumping = false;
                 animator.SetTrigger(hashJumpEnd);
-                break;
-            }
-            if (_IsWalled() || _IsWallGround())
-            {
-                break;
             }
             yield return null;
         }
@@ -211,12 +206,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //private void stepAttack()
-    //{
-    //    Collider2D collider2D = Physics2D.OverlapBox(groundChk.position, raybox, 0, monsterLayer);
-    //    collider2D.GetComponent<Monster>().TakeDmg(PlayerStats.attackPower);
-    //}
-
 
     /// <summary>
     /// 땅에 붙어있는지 체크
@@ -226,6 +215,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer) != null || Physics2D.OverlapBox(groundChk.position, raybox, 1, defaultGroandLayer) != null)
         {
+            if (isJumping)
+            {
+                isJumping = false;
+                animator.SetTrigger(hashJumpEnd);
+            }
             return true;
         }
         else

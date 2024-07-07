@@ -35,7 +35,7 @@ public class DropItem : MonoBehaviour
             return;
         }
 
-        int gunDropPercent = UnityEngine.Random.Range(0, 1); // 0 또는 1을 반환
+        int gunDropPercent = UnityEngine.Random.Range(0, 3); // 0 또는 1을 반환
         Debug.Log(gunDropPercent);
         if (gunDropPercent == 0)
         {

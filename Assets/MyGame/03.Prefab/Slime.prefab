@@ -244,6 +244,9 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 256
+  ground:
+    serializedVersion: 2
+    m_Bits: 18432
   library: {fileID: 675931444}
   defultAsset: {fileID: 7108339969198208228, guid: d12748124e3f9484e9271bce43a6de0c, type: 3}
   secondAsset: {fileID: 7108339969198208228, guid: 90656aec6fda214458743993d3eb7cb2, type: 3}

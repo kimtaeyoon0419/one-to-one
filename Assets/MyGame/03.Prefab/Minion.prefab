@@ -199,6 +199,9 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 256
+  ground:
+    serializedVersion: 2
+    m_Bits: 18432
   library: {fileID: 0}
   spriteLibraries:
   - {fileID: 7108339969198208228, guid: cb6f00e31f9ba1947921a77a500c1217, type: 3}

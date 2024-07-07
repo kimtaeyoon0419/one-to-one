@@ -183,6 +183,9 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 256
+  ground:
+    serializedVersion: 2
+    m_Bits: 18432
 --- !u!114 &3020784175604466338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00baae2a4198b2499cb449fc9348fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunList1: []
   gunList:
   - gunName: HandGun
     gunObj: {fileID: 7744404063388701911, guid: 149fbed38edc2bd468b1e4cc968a679e, type: 3}

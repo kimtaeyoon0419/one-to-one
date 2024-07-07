@@ -2,7 +2,7 @@ public enum MonsterUnitCode // 몬스터 리스트
 {
     Vampire,
     slime,
-    필원
+    Minion
 }
 
 public enum PlayerCharCode // 플레이어 리스트
