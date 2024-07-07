@@ -17,6 +17,7 @@ TagManager:
   - BossAttack
   - Portal
   - Item
+  - Box
   layers:
   - Default
   - TransparentFX

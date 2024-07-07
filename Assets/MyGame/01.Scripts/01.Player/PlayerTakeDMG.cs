@@ -43,6 +43,7 @@ public class PlayerTakeDMG : MonoBehaviour
         p_Camera = GameObject.FindGameObjectWithTag("Camera");
         cameraManager = p_Camera.GetComponent<CameraManager>();
         rb = GetComponent<Rigidbody2D>();
+        stat = GetComponent<PlayerStats>();
     }
 
     private void Start()

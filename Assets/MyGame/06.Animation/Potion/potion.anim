@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OpenBox
+  m_Name: potion
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -229240221, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+      value: {fileID: 2113153132, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
     - time: 0.083333336
-      value: {fileID: 1337626096, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+      value: {fileID: 1720348889, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
     - time: 0.16666667
-      value: {fileID: 325645094, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+      value: {fileID: -343148316, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
     - time: 0.25
-      value: {fileID: 2119416626, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+      value: {fileID: 1279396754, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
     - time: 0.33333334
-      value: {fileID: -663690250, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+      value: {fileID: 1693433583, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - time: 0.41666666
+      value: {fileID: 115388756, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - time: 0.5
+      value: {fileID: 740283763, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +52,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -229240221, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
-    - {fileID: 1337626096, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
-    - {fileID: 325645094, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
-    - {fileID: 2119416626, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
-    - {fileID: -663690250, guid: 86487b8f7959ba94996c47cc41ff493e, type: 3}
+    - {fileID: 2113153132, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: 1720348889, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: -343148316, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: 1279396754, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: 1693433583, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: 115388756, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
+    - {fileID: 740283763, guid: 3a573539dcea96c4984f52c91418a4e0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.4166667
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -77,11 +83,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.25
-    functionName: OpenBox
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerStats stats;
     [SerializeField] private Animator animator;
+    private Box curBox;
 
     [Header("LayCast")]
     [SerializeField] private Transform wallChk;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity;
     private bool isJumping;
     private bool isPortal;
+    private bool isBox;
     private bool isPortalteleport;
 
     [Header("Coroutine")]
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<PlayerStats>();
     }
 
     private void Start()
@@ -69,13 +72,17 @@ public class PlayerMovement : MonoBehaviour
         {
             hor = Input.GetAxisRaw("Horizontal");
 
-            if (isPortal)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (isPortal)
                 {
                     GameManager.instance.nextSceneCheck = true;
                     isPortalteleport = true;
                     AudioManager.instance.PlaySFX("Portal");
+                }
+                if (isBox)
+                {
+                    curBox.OpenBoxAnim();
                 }
             }
 
@@ -109,9 +116,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isPortal = true;
         }
-        else
+        if (collision.CompareTag("Box"))
         {
-            isPortal = false;
+            isBox = true;
+            curBox = collision.GetComponent<Box>();
         }
         if (collision.CompareTag("Item"))
         {
@@ -120,6 +128,19 @@ public class PlayerMovement : MonoBehaviour
             PlayerStats.attackPower += collision.GetComponent<clearItem>().attack;
 
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Portal"))
+        {
+            isPortal = false;
+        }
+        if (collision.CompareTag("Box"))
+        {
+            isBox = false;
+            curBox = null;
         }
     }
     #endregion
@@ -161,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     IEnumerator JumpEndCheck()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         while (isJumping)
         {
             if (isJumping && _IsGround())
@@ -172,7 +193,6 @@ public class PlayerMovement : MonoBehaviour
             }
             if (_IsWalled() || _IsWallGround())
             {
-                animator.SetTrigger(hashJumpEnd);
                 break;
             }
             yield return null;
@@ -272,8 +292,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallJumping = false; // 벽점프 활성화
             wallJumpingCounter = wallJumpingTime; // 벽에서 점프할 수 있는 시간
-            
-            
+
+
 
             if (Co_StopWallJumping != null) StopCoroutine(Co_StopWallJumping);
         }

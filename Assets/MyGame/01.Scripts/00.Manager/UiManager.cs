@@ -39,9 +39,11 @@ public class UiManager : MonoBehaviour
     [Header("BossHpBar")]
     public GameObject bossHpBar;
 
+
     #region Unity_Function
     private void Start()
     {
+        FadeOut();
         if (GameOverUI != null)
         {
             GameOverUI.SetActive(false);
@@ -73,8 +75,14 @@ public class UiManager : MonoBehaviour
         SelectPnl.SetActive(SelectPaneltogge);
     }
 
-    public static void LoadScene(string sceneName) // ¾À ·Îµå
+    public void LoadScene(string sceneName) // ¾À ·Îµå
     {
+        StartCoroutine(Co_LoadScene(sceneName));
+    }
+
+    IEnumerator Co_LoadScene(string sceneName)
+    {
+        yield return StartCoroutine(Co_FadeIn());
         GameManager.instance.curGameState = CurGameState.getReady;
         GameManager.instance.loadingNextScene = sceneName;
         GameManager.instance.nextSceneCheck = false;
@@ -215,7 +223,6 @@ public class UiManager : MonoBehaviour
             if(tempColor.a >= 1f) tempColor.a = 1f;
         }
         image.color = tempColor;
-        fadePanel.SetActive(false);
     }
 
     IEnumerator Co_FadeOut()
