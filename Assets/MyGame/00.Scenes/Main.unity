@@ -5137,18 +5137,12 @@ MonoBehaviour:
   selectChar: 0
   curGameState: 0
   curGameStage: 1
-  clearItem:
-  - {fileID: 163506665888292857, guid: c2a054e994b675f4bb4f8dafb93a0691, type: 3}
   monsterType:
   - stage: 1
     monsters:
     - {fileID: 3020784175604466362, guid: b78d3433cb97b9047a1756628000a84a, type: 3}
     - {fileID: 7170344866362892089, guid: 6559bb9b0c9b58c4a9c478546745f8dc, type: 3}
     - {fileID: 4356565804948623507, guid: c08491eb93b365a468a5197fcd3cbf94, type: 3}
-  itemSpawnPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   Stage_1BossSpawned: 0
   Stage_2BossSpawned: 0
   Stage_3BossSpawned: 0

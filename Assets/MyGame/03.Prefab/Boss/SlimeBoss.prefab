@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6688f1db133a3a4eb18dc22e43e7b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossName: 
+  bossName: "\uC2AC\uB77C\uC784\uD0B9"
   maxHp: 600
   movespeed: 3
   state: 0

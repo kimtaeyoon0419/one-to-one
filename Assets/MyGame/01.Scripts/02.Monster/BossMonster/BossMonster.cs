@@ -48,6 +48,7 @@ public abstract class BossMonster : MonoBehaviour
     [Header("Animation")]
     //protected readonly int hashMove = Animator.StringToHash("IsMove");
     //protected readonly int hashDie = Animator.StringToHash("Die");
+    protected readonly int hashSpawn = Animator.StringToHash("Spawn");
 
     [Header("Diraction")]
     protected int isRight;
@@ -59,6 +60,9 @@ public abstract class BossMonster : MonoBehaviour
     Color hafpA = new Color(1, 1, 1, 0.5f); // 피격 색전환 1번 ( 반투명 )
     Color fullA = new Color(1, 1, 1, 1); // 피격 색전환 2번 ( 원본색 )
 
+    [Header("Spawn")]
+    private bool isSpawn;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -67,13 +71,28 @@ public abstract class BossMonster : MonoBehaviour
         waitForSeconds = new WaitForSeconds(delayTime);
     }
 
-    protected virtual void Start()
+    protected void OnEnable()
     {
+        animator.SetTrigger(hashSpawn);
+    }
+
+    protected virtual void Start()
+    { 
         Debug.Log("시작시작시작");
-        state = BossState.fight;
-        StartCoroutine(SkillTriger(3f));
+        state = BossState.spawn;
         player = Physics2D.OverlapCircle(transform.position, 100, playerLayer).gameObject;
         curHp = maxHp;
+    }
+
+
+
+    protected virtual IEnumerator spawnAnim()
+    {
+        yield return null;
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        state = BossState.fight;
+        isSpawn = false;
+        StartCoroutine(SkillTriger(3f));
     }
 
     /// <summary>
@@ -84,6 +103,11 @@ public abstract class BossMonster : MonoBehaviour
         switch (state)
         {
             case BossState.spawn:
+                if (!isSpawn)
+                {
+                    isSpawn = true;
+                    StartCoroutine(spawnAnim());
+                }
                 break;
             case BossState.fight:
                 Move();
@@ -138,12 +162,15 @@ public abstract class BossMonster : MonoBehaviour
     #endregion
 
     public void TakeDamage(int damage)
-    {   
-        curHp -= damage;
-        StartCoroutine(Co_isHit());
-        if (curHp <= 0)
+    {
+        if (!isSpawn)
         {
-            Die();
+            curHp -= damage;
+            StartCoroutine(Co_isHit());
+            if (curHp <= 0)
+            {
+                Die();
+            }
         }
     }
 

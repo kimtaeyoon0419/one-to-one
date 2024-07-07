@@ -52,6 +52,7 @@ public class VampireBoss : BossMonster
     {
         base.Start();
         curMoveTime = maxMoveTime;
+        //yield return null;
     }
 
     /// <summary>

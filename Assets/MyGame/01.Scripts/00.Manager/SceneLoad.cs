@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class SceneLoad : MonoBehaviour
     private WaitForSeconds waitForSeconds;
     public float delayTime; // waitForSeconds 딜레이 타임
     private int lodingTextCount = 0; // 로딩 텍스트 카운트
+    public GameObject fadePanel;
 
     //operation; <- 비동기식 실행
     //operation.progress; <- 진행률
@@ -59,6 +61,7 @@ public class SceneLoad : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space) && progressbar.value >= 1f)
             {
+                yield return StartCoroutine(Co_FadeIn());
                 operation.allowSceneActivation = true;
             }
         }
@@ -82,6 +85,22 @@ public class SceneLoad : MonoBehaviour
             }
             lodingTextCount++;
         }
+    }
+
+    IEnumerator Co_FadeIn()
+    {
+        Debug.Log("페이드인");
+        fadePanel.SetActive(true);
+        Image image = fadePanel.GetComponent<Image>();
+        Color tempColor = image.color;
+        while (image.color.a < 1)
+        {
+            yield return null;
+            tempColor.a += Time.deltaTime;
+            image.color = tempColor;
+            if (tempColor.a >= 1f) tempColor.a = 1f;
+        }
+        image.color = tempColor;
     }
     #endregion
 }

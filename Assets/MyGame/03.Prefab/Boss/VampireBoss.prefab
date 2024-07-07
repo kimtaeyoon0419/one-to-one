@@ -143,10 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4a975cc6413f14f98318bbb502c849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossName: "\uBC40\uD30C\uC774\uC5B4"
   maxHp: 200
-  curHp: 0
   movespeed: 0
-  bossName: 
   state: 0
   isDie: 0
   rigid: {fileID: 0}

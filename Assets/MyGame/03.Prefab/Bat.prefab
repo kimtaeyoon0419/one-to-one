@@ -185,7 +185,7 @@ MonoBehaviour:
     m_Bits: 256
   ground:
     serializedVersion: 2
-    m_Bits: 18432
+    m_Bits: 18496
 --- !u!114 &3020784175604466338
 MonoBehaviour:
   m_ObjectHideFlags: 0

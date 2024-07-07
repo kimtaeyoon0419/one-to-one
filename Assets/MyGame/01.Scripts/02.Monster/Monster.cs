@@ -70,7 +70,7 @@ public abstract class Monster : MonoBehaviour
         }
         if (!isAttack)
         {
-            frontVec = new Vector2(rb.position.x + nextMove, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
+            frontVec = new Vector2(rb.position.x + nextMove * 0.5f, rb.position.y); // frontVec = 몬스터의 현재위치 + nextMove
             Debug.DrawRay(frontVec, Vector2.down, new Color(0, 1, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector2.down, 1f, ground); // frontVec만큼의 거리에 바닥이 있는지 검사
             if (rayHit.collider == null && !_IsFollow()) // forntVec만큼 떨어진 거리에 땅이 없다면 회전
@@ -139,7 +139,7 @@ public abstract class Monster : MonoBehaviour
     }
     private bool _IsFollow()
     {
-        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 2.5f, Player);
+        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 2f, Player);
     }
     #endregion
 
