@@ -56,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        stats = GetComponent<PlayerStats>();
     }
 
     private void Start()
     {
+        stats = GetComponent<PlayerStats>();
         Debug.Log("name: " + stats.charName);
         Debug.Log("speed : " + stats.speed);
         Debug.Log("Jumppower: " + stats.jumpPoawer);
@@ -84,6 +84,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     curBox.OpenBoxAnim();
                 }
+            }
+
+            if(GameManager.instance.curGameState == CurGameState.bossSpawn)
+            {
+                rb.velocity = Vector2.up * 10f;
             }
 
             SetAnim();

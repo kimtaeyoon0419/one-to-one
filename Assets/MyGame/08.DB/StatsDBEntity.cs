@@ -7,4 +7,5 @@ public class StatsDBEntity // 스텟 데이터베이스 엔티티
     public float jumppower;
     public int armordurability;
     public int attackpower;
+    public int curGun;
 }

@@ -85,6 +85,18 @@ public class UiManager : MonoBehaviour
         yield return StartCoroutine(Co_FadeIn());
         GameManager.instance.curGameState = CurGameState.getReady;
         GameManager.instance.loadingNextScene = sceneName;
+        if(sceneName == "Stage_1")
+        {
+            GameManager.instance.curGameStage = CurStage.stage1;
+        }
+        else if(sceneName == "Stage_2")
+        {
+            GameManager.instance.curGameStage = CurStage.stage2;
+        }
+        else if(sceneName == "Stage_3")
+        {
+            GameManager.instance.curGameStage = CurStage.stage3;
+        }
         GameManager.instance.nextSceneCheck = false;
         SceneManager.LoadScene("99_LoadingScene");
     }

@@ -63,6 +63,14 @@ public class portal : MonoBehaviour
         }
 
         lensDistortion.intensity.value = targetIntensity;
+        if(nextSceneName == "Stage_2")
+        {
+            GameManager.instance.curGameStage = CurStage.stage2;
+        }
+        else if (nextSceneName == "Stage_3")
+        {
+            GameManager.instance.curGameStage = CurStage.stage3;
+        }
         SceneManager.LoadScene(nextSceneName);
     }
 }

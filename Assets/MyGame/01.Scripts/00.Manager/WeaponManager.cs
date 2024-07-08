@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 // # Unity
 using UnityEngine;
@@ -11,6 +12,8 @@ using UnityEngine;
 public class Gunstat
 {
     public string gunName;
+
+    public int curGunIndex;
 
     public int maxBullet;
 
@@ -41,18 +44,48 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Transform gunPos;
 
     [Header("Rotation List")]
-    List<float> shootGunRot = new List<float>() { -2f, -1f , 0 , 1f , 2f }; // ¼¦°Ç ÅºÆÛÁü ¹æÇâ
+    List<float> shootGunRot = new List<float>() { -2f, -1f, 0, 1f, 2f }; // ¼¦°Ç ÅºÆÛÁü ¹æÇâ
 
     public TextMeshProUGUI bulletUi;
-    #region Unity_Function
-    private void Start()
+
+    [SerializeField] private PlayerStats stats;
+
+    protected void Awake()
     {
+    }
+    #region Unity_Function
+    protected void Start()
+    {
+        stats = GetComponent<PlayerStats>();
+        Debug.Log("ÇöÀç ÃÑ ¹øÈ£ : " + stats.curGunIndex);
+        StartCoroutine(Co_GetGun());
         foreach (Gunstat gunstat in gunStatList)
         {
             gunDictionary.Add(gunstat.gunName, gunstat);
         }
     }
     #endregion
+
+    IEnumerator Co_GetGun()
+    {
+        yield return null;
+        if (stats.curGunIndex == 0)
+        {
+        }
+        else if (stats.curGunIndex == 1)
+        {
+            CurWeaponHandGun();
+        }
+        else if (stats.curGunIndex == 2)
+        {
+            CurWeaponShotGun();
+        }
+        else if (stats.curGunIndex == 3)
+        {
+            CurWeaponRifle();
+        }
+    }
+
 
     #region Private_Function
     /// <summary>
@@ -66,6 +99,7 @@ public class WeaponManager : MonoBehaviour
             Destroy(curGun);
         }
 
+        stats.curGunIndex = gunDictionary[name].curGunIndex;
         curGun = gunDictionary[name].gun;
         maxBublletCount = gunDictionary[name].maxBullet;
         bulletshotCoolTime = gunDictionary[name].bulletShotCool;
@@ -81,7 +115,7 @@ public class WeaponManager : MonoBehaviour
         curBulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
-    
+
     /// <summary>
     /// ¼¦°Ç °ø°Ý
     /// </summary>
@@ -115,25 +149,6 @@ public class WeaponManager : MonoBehaviour
         curBulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
-
-    //private void LaserGunAttack()
-    //{
-    //    if(Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x))
-    //    {
-    //        RaycastHit2D _hit = Physics2D.Raycast(attackPos.position, transform.right * attackPos.rotation.x);
-    //        Draw2Ray(attackPos.position, _hit.point);
-    //    }
-    //    else
-    //    {
-    //        Draw2Ray(attackPos.position, attackPos.transform.right * defDistanceRay);
-    //    }
-    //}
-
-    //private void Draw2Ray(Vector2 startPos, Vector2 endPos)
-    //{
-    //    lineRenderer.SetPosition(0, startPos);
-    //    lineRenderer.SetPosition(1, endPos);
-    //}
     #endregion
 
     #region Public_Action
@@ -147,7 +162,7 @@ public class WeaponManager : MonoBehaviour
         SetCurGun();
 
         curBulletCount = maxBublletCount;
-        curWeapon = () => { HandGunAttack(); };  
+        curWeapon = () => { HandGunAttack(); };
     }
 
     public virtual void CurWeaponRifle() // ÇöÀç ¹«±â¸¦ ¼ÒÃÑÀ¸·Î ±³Ã¼
@@ -160,7 +175,7 @@ public class WeaponManager : MonoBehaviour
         SetCurGun();
 
         curBulletCount = maxBublletCount;
-        curWeapon = () => {RifleGunAttack(); };
+        curWeapon = () => { RifleGunAttack(); };
     }
 
     public virtual void CurWeaponShotGun() // ÇöÀç ¹«±â¸¦ ¼¦°ÇÀ¸·Î ±³Ã¼
@@ -193,11 +208,12 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     protected void DestroyGun()
     {
-        if(curBulletCount <= 0)
+        if (curBulletCount <= 0)
         {
-            if(curGun != null)
+            if (curGun != null)
             {
                 Destroy(curGun);
+                stats.curGunIndex = 0;
             }
         }
     }

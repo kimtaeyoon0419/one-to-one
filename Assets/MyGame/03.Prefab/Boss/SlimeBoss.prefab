@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossName: "\uC2AC\uB77C\uC784\uD0B9"
-  maxHp: 600
+  maxHp: 400
   movespeed: 3
   state: 0
   isDie: 0

@@ -139,7 +139,7 @@ public abstract class Monster : MonoBehaviour
     }
     private bool _IsFollow()
     {
-        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 2f, Player);
+        return Physics2D.OverlapCircle(findPlayerPos.transform.position, 2.5f, Player);
     }
     #endregion
 

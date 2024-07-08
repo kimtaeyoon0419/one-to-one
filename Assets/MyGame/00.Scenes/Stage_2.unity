@@ -2146,7 +2146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66c3bd5246b9f54dba819d9e3810715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMonster: {fileID: 0}
+  bossMonster: {fileID: 1533244226}
   bossName: {fileID: 1913646597}
   hpBar: {fileID: 335666800}
 --- !u!1001 &343574408
@@ -3057,8 +3057,10 @@ MonoBehaviour:
   mapPerfab:
   - {fileID: 2295928078048877672, guid: b9f5acd801c4cd74185b84f331b1f248, type: 3}
   - {fileID: 1510368799876604300, guid: cc0d90b8dd6fef042b4d31edc2e15784, type: 3}
-  - {fileID: 7681113296318443009, guid: cc4dbb6ea7ff8884b8200eedc15691f3, type: 3}
-  - {fileID: 5040001766602563122, guid: 0829ea3ba75199c4cb9c7bf3b9757c54, type: 3}
+  - {fileID: 164424829609980050, guid: c58e6031e047c6a4d86083531f93861b, type: 3}
+  - {fileID: 5070320892069692781, guid: f13fe8650e54b50459f1e7057dbaba4e, type: 3}
+  - {fileID: 542015502087002918, guid: e8182c5f3bf334046b9e755fb8989588, type: 3}
+  - {fileID: 4183451805653308741, guid: d9712ddaade60c3479cc55a887adbd49, type: 3}
   bossStageGround: {fileID: 1164739372}
   itemSpawnPos:
   - {fileID: 1975198693}
@@ -4444,7 +4446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15594073, g: 0, b: 0.3019608, a: 1}
+  m_Color: {r: 0, g: 0.3019608, b: 0.007756965, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5891,6 +5893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeStage: 1
+  changeState: 2
 --- !u!4 &1110088316
 Transform:
   m_ObjectHideFlags: 0
@@ -7213,6 +7216,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6766287052735496887, guid: d3e7881a31c82ca49bebb5fca12e0d5b, type: 3}
   m_PrefabInstance: {fileID: 1533244224}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1533244226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6766287052735496883, guid: d3e7881a31c82ca49bebb5fca12e0d5b, type: 3}
+  m_PrefabInstance: {fileID: 1533244224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533244225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6688f1db133a3a4eb18dc22e43e7b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1565204167
 GameObject:
   m_ObjectHideFlags: 0
@@ -7919,7 +7933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49575615, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.16154456, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10672,14 +10686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2478292337078288393, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.3333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 2478292337078288393, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.3333334
-      objectReference: {fileID: 0}
     - target: {fileID: 2478292337078289396, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}
       propertyPath: bulletUi
       value: 
@@ -10735,10 +10741,6 @@ PrefabInstance:
     - target: {fileID: 2478292337078289406, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2478292337387533227, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.758
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be0c9f518fd40f4b86c2a21716f5e8e, type: 3}

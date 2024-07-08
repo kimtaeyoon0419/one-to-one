@@ -15,25 +15,29 @@ MonoBehaviour:
   Stats:
   - branch: 1
     name: knight
-    speed: 7
-    jumppower: 15
-    armordurability: 2
-    attackpower: 5
+    speed: 10
+    jumppower: 14
+    armordurability: 3
+    attackpower: 4
+    curGun: 0
   - branch: 2
     name: rogue
-    speed: 10
-    jumppower: 10
+    speed: 13
+    jumppower: 16
     armordurability: 1
-    attackpower: 1
+    attackpower: 6
+    curGun: 0
   - branch: 3
     name: dog
     speed: 5
     jumppower: 5
     armordurability: 0
     attackpower: 3
+    curGun: 0
   - branch: 4
     name: 
     speed: 0
     jumppower: 0
     armordurability: 0
     attackpower: 0
+    curGun: 0

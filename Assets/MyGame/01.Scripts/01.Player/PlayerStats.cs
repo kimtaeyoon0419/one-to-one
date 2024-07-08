@@ -26,15 +26,12 @@ public class PlayerStats : MonoBehaviour
     [Header("플레이어 공격스텟")]
     public static int attackPower; // 캐릭터 공격력
 
-    #region Unity_Funtion
-    private void Start()
-    {
-        StartCoroutine(Co_GetStat());
-    }
+    [Header("현재 총")]
+    public int curGunIndex;
 
-    IEnumerator Co_GetStat()
+    #region Unity_Funtion
+    private void Awake()
     {
-        yield return null;
         if (GameManager.instance.curGameStage == CurStage.stage1)
         {
             GetStat(); // 처음 스테이지라면 선택한 캐릭터 스텟 불러오기
@@ -44,6 +41,11 @@ public class PlayerStats : MonoBehaviour
         {
             SaveStatLoad();
         }
+    }
+
+    IEnumerator Co_GetStat()
+    {
+        yield return null;
     }
 
     private void OnDisable()
@@ -69,6 +71,7 @@ public class PlayerStats : MonoBehaviour
                 jumpPoawer = statDB.Stats[i].jumppower;                                    // 점프력 초기화
                 armorDurability = statDB.Stats[i].armordurability;                        // 방어력 초기화
                 attackPower = statDB.Stats[i].attackpower;                                // 공격력 초기화
+                curGunIndex = statDB.Stats[i].curGun;
             }
         }
     }
@@ -84,6 +87,7 @@ public class PlayerStats : MonoBehaviour
                 jumpPoawer = statDB.Stats[i].jumppower;                                    // 저장한 점프력 불러오기
                 armorDurability = statDB.Stats[i].armordurability;                        // 저장한 방어력 불러오기
                 attackPower = statDB.Stats[i].attackpower;                                // 저장한 공격력 불러오기
+                curGunIndex = statDB.Stats[i].curGun;
             }
         }
     }
@@ -99,6 +103,8 @@ public class PlayerStats : MonoBehaviour
                 statDB.Stats[i].jumppower = jumpPoawer;                                    // 엑셀 점프력 초기화
                 statDB.Stats[i].armordurability = armorDurability;                        // 엑셀 방어력 초기화
                 statDB.Stats[i].attackpower = attackPower;                               // 엑셀 공격력 초기화
+                statDB.Stats[i].curGun = curGunIndex;
+
             }
         }
     }
