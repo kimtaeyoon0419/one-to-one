@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2478292337078289406
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   curGun: {fileID: 0}
   gunPos: {fileID: 2478292337698855546}
   bulletUi: {fileID: 0}
-  stats: {fileID: 0}
+  stats: {fileID: 1351111164}
 --- !u!114 &2478292337078289397
 MonoBehaviour:
   m_ObjectHideFlags: 0

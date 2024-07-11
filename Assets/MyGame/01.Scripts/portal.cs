@@ -1,7 +1,5 @@
 // # System
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
 
 // # Unity
 using UnityEngine;
@@ -18,6 +16,7 @@ public class portal : MonoBehaviour
     [SerializeField] private Volume postProcessVolume;
     private LensDistortion lensDistortion;
     private bool isDistortionIncreasing = false;
+    private bool isDistortionDecreasing = false;
 
     private void Awake()
     {
@@ -28,6 +27,16 @@ public class portal : MonoBehaviour
         {
             // 초기값 설정
             lensDistortion.intensity.value = 0f;
+        }
+    }
+
+    private void Start()
+    {
+        if (GameManager.instance.curGameStage == CurStage.stage2 || GameManager.instance.curGameStage == CurStage.stage3)
+        {
+            // 씬이 로드될 때 왜곡을 감소시키는 코루틴 실행
+            lensDistortion.intensity.value = -1f; // 최대 왜곡 값으로 초기화
+            StartCoroutine(DecreaseLensDistortion(2f, -1f));
         }
     }
 
@@ -63,7 +72,7 @@ public class portal : MonoBehaviour
         }
 
         lensDistortion.intensity.value = targetIntensity;
-        if(nextSceneName == "Stage_2")
+        if (nextSceneName == "Stage_2")
         {
             GameManager.instance.curGameStage = CurStage.stage2;
         }
@@ -72,5 +81,24 @@ public class portal : MonoBehaviour
             GameManager.instance.curGameStage = CurStage.stage3;
         }
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    private IEnumerator DecreaseLensDistortion(float duration, float maxIntensity)
+    {
+        isDistortionDecreasing = true;
+        lensDistortion.intensity.value = maxIntensity;
+        float startIntensity = lensDistortion.intensity.value;
+        float targetIntensity = 0f; // 정상적인 화면의 강도
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            lensDistortion.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, elapsedTime / duration);
+            yield return null;
+        }
+
+        lensDistortion.intensity.value = targetIntensity;
+        isDistortionDecreasing = false;
     }
 }

@@ -70,6 +70,10 @@ public class PlayerTakeDMG : MonoBehaviour
             {   
                 isHit = true;
                 TakeDMG();
+                if(stat.item1 == 1)
+                {
+                    collision.gameObject.GetComponent<Monster>().TakeDmg(5);
+                }
             }
         }
         if (collision.gameObject.CompareTag("Boss"))
@@ -78,6 +82,7 @@ public class PlayerTakeDMG : MonoBehaviour
             {
                 isHit = true;
                 TakeDMG();
+                collision.gameObject.GetComponent<BossMonster>().TakeDamage(10);
             }
         }
         if (collision.gameObject.CompareTag("BossAttack"))

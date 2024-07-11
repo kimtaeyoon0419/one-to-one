@@ -20,6 +20,9 @@ MonoBehaviour:
     armordurability: 3
     attackpower: 4
     curGun: 0
+    item1: 0
+    item2: 0
+    bulletCount: 0
   - branch: 2
     name: rogue
     speed: 13
@@ -27,6 +30,9 @@ MonoBehaviour:
     armordurability: 1
     attackpower: 6
     curGun: 0
+    item1: 0
+    item2: 0
+    bulletCount: 0
   - branch: 3
     name: dog
     speed: 5
@@ -34,6 +40,9 @@ MonoBehaviour:
     armordurability: 0
     attackpower: 3
     curGun: 0
+    item1: 0
+    item2: 0
+    bulletCount: 0
   - branch: 4
     name: 
     speed: 0
@@ -41,3 +50,6 @@ MonoBehaviour:
     armordurability: 0
     attackpower: 0
     curGun: 0
+    item1: 0
+    item2: 0
+    bulletCount: 0

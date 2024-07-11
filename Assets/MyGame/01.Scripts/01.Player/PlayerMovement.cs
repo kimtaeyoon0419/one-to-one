@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Profiling.Memory.Experimental;
+//using System.Collections.Generic;
+//using TMPro;
+//using Unity.VisualScripting;
+//using UnityEditor;
+//using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
-using UnityEngine.VFX;
+//using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -80,8 +80,9 @@ public class PlayerMovement : MonoBehaviour
                     isPortalteleport = true;
                     AudioManager.instance.PlaySFX("Portal");
                 }
-                if (isBox)
+                if (isBox && GameManager.instance.coin >= 20)
                 {
+                    GameManager.instance.coin -= 20;
                     curBox.OpenBoxAnim();
                 }
             }

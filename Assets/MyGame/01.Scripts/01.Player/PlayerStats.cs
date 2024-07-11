@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 // # Unity
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class PlayerStats : MonoBehaviour
 
     [Header("현재 총")]
     public int curGunIndex;
+    public int bulletCount;
+
+    [Header("Item")]
+    public int item1 = 0;
+    public int item2 = 0;
 
     #region Unity_Funtion
     private void Awake()
@@ -72,6 +78,9 @@ public class PlayerStats : MonoBehaviour
                 armorDurability = statDB.Stats[i].armordurability;                        // 방어력 초기화
                 attackPower = statDB.Stats[i].attackpower;                                // 공격력 초기화
                 curGunIndex = statDB.Stats[i].curGun;
+                item1 = statDB.Stats[i].item1;
+                item2 = statDB.Stats[i].item2;
+                bulletCount = statDB.Stats[i].bulletCount;
             }
         }
     }
@@ -88,6 +97,9 @@ public class PlayerStats : MonoBehaviour
                 armorDurability = statDB.Stats[i].armordurability;                        // 저장한 방어력 불러오기
                 attackPower = statDB.Stats[i].attackpower;                                // 저장한 공격력 불러오기
                 curGunIndex = statDB.Stats[i].curGun;
+                item1 = statDB.Stats[i].item1;
+                item2 = statDB.Stats[i].item2;
+                bulletCount = statDB.Stats[i].bulletCount;
             }
         }
     }
@@ -104,9 +116,26 @@ public class PlayerStats : MonoBehaviour
                 statDB.Stats[i].armordurability = armorDurability;                        // 엑셀 방어력 초기화
                 statDB.Stats[i].attackpower = attackPower;                               // 엑셀 공격력 초기화
                 statDB.Stats[i].curGun = curGunIndex;
-
+                statDB.Stats[i].item1 = item1;
+                statDB.Stats[i].item2 = item2;
+                statDB.Stats[i].bulletCount = bulletCount;
             }
         }
     }
     #endregion
+
+    public void AllStatUp()
+    {
+        speed += 1f;
+        jumpPoawer += 0.5f;
+        attackPower += 1;
+    }
+
+    public void RandomStat()
+    {
+        speed = Random.Range(speed - 5f, speed + 5f);
+        jumpPoawer = Random.Range(jumpPoawer - 5f, jumpPoawer +5f);
+        armorDurability = Random.Range(0, armorDurability + 5);
+        attackPower = Random.Range(attackPower - 5, attackPower + 5);
+    }
 }

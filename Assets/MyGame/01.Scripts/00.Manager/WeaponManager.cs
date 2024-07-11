@@ -46,13 +46,13 @@ public class WeaponManager : MonoBehaviour
     [Header("Rotation List")]
     List<float> shootGunRot = new List<float>() { -2f, -1f, 0, 1f, 2f }; // 샷건 탄퍼짐 방향
 
+    [Header("GetGun?")]
+    private bool startGetGun = true;
+
     public TextMeshProUGUI bulletUi;
 
-    [SerializeField] private PlayerStats stats;
+    protected PlayerStats stats;
 
-    protected void Awake()
-    {
-    }
     #region Unity_Function
     protected void Start()
     {
@@ -84,6 +84,7 @@ public class WeaponManager : MonoBehaviour
         {
             CurWeaponRifle();
         }
+        startGetGun = false;
     }
 
 
@@ -112,7 +113,7 @@ public class WeaponManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
         bulletshotCurTime = bulletshotCoolTime; // 공격 속도 초기화
-        curBulletCount--;
+        stats.bulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
 
@@ -136,7 +137,8 @@ public class WeaponManager : MonoBehaviour
                                                            zRot);
             ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, bulletRotation);
         }
-        curBulletCount--;
+        stats.bulletCount--;
+
     }
 
     /// <summary>
@@ -146,7 +148,7 @@ public class WeaponManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
         bulletshotCurTime = bulletshotCoolTime * 0.03f; // 공격 속도 초기화
-        curBulletCount--;
+        stats.bulletCount--;
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
     #endregion
@@ -161,8 +163,11 @@ public class WeaponManager : MonoBehaviour
         SetGunStat("HandGun");
         SetCurGun();
 
-        curBulletCount = maxBublletCount;
-        curWeapon = () => { HandGunAttack(); };
+        if (!startGetGun)
+        {
+            stats.bulletCount = maxBublletCount;
+            curWeapon = () => { HandGunAttack(); };
+        }
     }
 
     public virtual void CurWeaponRifle() // 현재 무기를 소총으로 교체
@@ -174,8 +179,11 @@ public class WeaponManager : MonoBehaviour
         SetGunStat("Rifle");
         SetCurGun();
 
-        curBulletCount = maxBublletCount;
-        curWeapon = () => { RifleGunAttack(); };
+        if (!startGetGun)
+        {
+            stats.bulletCount = maxBublletCount;
+            curWeapon = () => { RifleGunAttack(); };
+        }
     }
 
     public virtual void CurWeaponShotGun() // 현재 무기를 샷건으로 교체
@@ -188,8 +196,11 @@ public class WeaponManager : MonoBehaviour
         SetGunStat("ShotGun");
         SetCurGun();
 
-        curBulletCount = maxBublletCount;
-        curWeapon = () => { ShotGunAttack(); };
+        if (!startGetGun)
+        {
+            stats.bulletCount = maxBublletCount;
+            curWeapon = () => { ShotGunAttack(); };
+        }
     }
 
     /// <summary>
@@ -208,7 +219,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     protected void DestroyGun()
     {
-        if (curBulletCount <= 0)
+        if (stats.bulletCount <= 0)
         {
             if (curGun != null)
             {
@@ -216,6 +227,11 @@ public class WeaponManager : MonoBehaviour
                 stats.curGunIndex = 0;
             }
         }
+    }
+
+    public void ReroadBullet()
+    {
+        stats.bulletCount = maxBublletCount;
     }
     #endregion
 }

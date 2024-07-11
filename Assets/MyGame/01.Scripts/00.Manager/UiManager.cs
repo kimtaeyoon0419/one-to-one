@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-using UnityEditor.Purchasing;
-using System.Security.Cryptography;
+//using Unity.VisualScripting;
+//using UnityEditor.Purchasing;
+//using System.Security.Cryptography;
 
 public class UiManager : MonoBehaviour
 {
