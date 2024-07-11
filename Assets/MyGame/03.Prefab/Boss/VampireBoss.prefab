@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossName: "\uBC40\uD30C\uC774\uC5B4"
-  maxHp: 100
+  maxHp: 350
   movespeed: 0
   state: 0
   isDie: 0

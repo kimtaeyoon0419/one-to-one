@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
     // 생성 되면 튀어오름
     private void OnEnable()
     {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Item"), LayerMask.NameToLayer("Player"), true);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Item"), LayerMask.NameToLayer("Player"), true);
         StartCoroutine(Co_WaitCol());
         float dir = Random.Range(-1f, 1f);
         rb.velocity = JumpPower;
@@ -37,7 +37,7 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         isPhysics = true;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Item"), LayerMask.NameToLayer("Player"), false);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Item"), LayerMask.NameToLayer("Player"), false);
     }
 
     IEnumerator velocityReset()
@@ -49,7 +49,7 @@ public class Item : MonoBehaviour
     #region Unity_Function
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && isPhysics == true)
+        if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
         }

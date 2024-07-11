@@ -149,7 +149,7 @@ MonoBehaviour:
     m_Bits: 16384
   monsterLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 12416
 --- !u!114 &2478292337078289396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,17 +165,17 @@ MonoBehaviour:
   gunStatList:
   - gunName: HandGun
     curGunIndex: 1
-    maxBullet: 50
+    maxBullet: 8
     gun: {fileID: 7744404063388701911, guid: 28b12264670c7e14dbde5edb10f6d0f5, type: 3}
-    bulletShotCool: 0.5
+    bulletShotCool: 0.3
   - gunName: Rifle
     curGunIndex: 3
-    maxBullet: 100
+    maxBullet: 30
     gun: {fileID: 865747604453606612, guid: 946ac3a32c0c2d94db1269d1a83cb97e, type: 3}
     bulletShotCool: 0.2
   - gunName: ShotGun
     curGunIndex: 2
-    maxBullet: 25
+    maxBullet: 5
     gun: {fileID: 9182844134303797973, guid: 75642741234d39e4689ab96fb667a60b, type: 3}
     bulletShotCool: 1
   attackPos: {fileID: 2478292338345545577}
@@ -184,7 +184,6 @@ MonoBehaviour:
   curGun: {fileID: 0}
   gunPos: {fileID: 2478292337698855546}
   bulletUi: {fileID: 0}
-  stats: {fileID: 1351111164}
 --- !u!114 &2478292337078289397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +381,9 @@ MonoBehaviour:
   jumpPoawer: 0
   armorDurability: 0
   curGunIndex: 0
+  bulletCount: 0
+  item1: 0
+  item2: 0
 --- !u!1 &2478292337387533226
 GameObject:
   m_ObjectHideFlags: 0

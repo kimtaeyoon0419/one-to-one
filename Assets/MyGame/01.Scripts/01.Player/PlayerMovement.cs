@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 //using System.Collections.Generic;
 //using TMPro;
 //using Unity.VisualScripting;
@@ -85,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
                     GameManager.instance.coin -= 1500;
                     curBox.OpenBoxAnim();
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                stats.armorDurability = 10000;
             }
 
             if(GameManager.instance.curGameState == CurGameState.bossSpawn)
@@ -219,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     private bool _IsGround()
     {
-        if (Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer) != null || Physics2D.OverlapBox(groundChk.position, raybox, 1, defaultGroandLayer) != null)
+        if (Physics2D.OverlapBox(groundChk.position, raybox, 1, groundLayer) != null || Physics2D.OverlapBox(groundChk.position, raybox, 1, defaultGroandLayer) != null || Physics2D.OverlapBox(groundChk.position, raybox, 1, monsterLayer) != null)
         {
             if (isJumping)
             {

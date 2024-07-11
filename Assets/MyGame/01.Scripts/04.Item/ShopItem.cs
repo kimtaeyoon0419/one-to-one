@@ -21,6 +21,7 @@ public class ShopItem : MonoBehaviour
             {
                 Item1();
                 playerStats.AllStatUp();
+                playerStats.armorDurability--;
             }
             else if(itemCode == 2)
             {
@@ -124,7 +125,7 @@ public class ShopItem : MonoBehaviour
     /// </summary>
     private void Item8()
     {
-        playerStats.jumpPoawer += 0.5f;
+        playerStats.jumpPoawer += 2f;
     }
 
     /// <summary>

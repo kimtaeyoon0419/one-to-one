@@ -13,7 +13,7 @@ public class PlayerAttacks : WeaponManager
             if (Input.GetKeyDown(KeyCode.X) && bulletshotCurTime <= 0 && stats.bulletCount > 0) // x키 누르면 공격
             {
                 curWeapon();
-                AudioManager.instance.PlaySFX("Shot");
+                //AudioManager.instance.PlaySFX("Shot");
                 Debug.Log("탕탕후루후루");
             }
             else if(stats.bulletCount <= 0)

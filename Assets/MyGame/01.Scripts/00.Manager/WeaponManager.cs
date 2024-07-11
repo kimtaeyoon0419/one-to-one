@@ -117,7 +117,10 @@ public class WeaponManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
         bulletshotCurTime = bulletshotCoolTime; // 공격 속도 초기화
-        stats.bulletCount--;
+        if (GameManager.instance.curGameState != CurGameState.fightBoss)
+        {
+            stats.bulletCount--;
+        }
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
 
@@ -129,7 +132,7 @@ public class WeaponManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             Debug.Log(i);
-            AudioManager.instance.PlaySFX("Shot"); // 총소리
+            AudioManager.instance.PlaySFX("ShotGun"); // 총소리
             bulletshotCurTime = bulletshotCoolTime; // 공격 속도 초기화
 
             int rotIndex = i % shootGunRot.Count; // shootGunRot 리스트의 인덱스를 순환하도록 인덱스 계산
@@ -141,8 +144,10 @@ public class WeaponManager : MonoBehaviour
                                                            zRot);
             ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, bulletRotation);
         }
+        if(GameManager.instance.curGameState != CurGameState.fightBoss)
+        {
         stats.bulletCount--;
-
+        }
     }
 
     /// <summary>
@@ -152,7 +157,10 @@ public class WeaponManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Shot"); // 총소리
         bulletshotCurTime = bulletshotCoolTime * 0.03f; // 공격 속도 초기화
-        stats.bulletCount--;
+        if (GameManager.instance.curGameState != CurGameState.fightBoss)
+        {
+            stats.bulletCount--;
+        }
         ObjectPool.SpawnFromPool("Bullet", attackPos.transform.position, gameObject.transform.rotation);
     }
     #endregion
