@@ -84,6 +84,10 @@ public class WeaponManager : MonoBehaviour
         {
             CurWeaponRifle();
         }
+        if(GameManager.instance.curGameStage == CurStage.stage3)
+        {
+            stats.bulletCount = 100000000;
+        }
         startGetGun = false;
     }
 
@@ -179,10 +183,10 @@ public class WeaponManager : MonoBehaviour
         SetGunStat("Rifle");
         SetCurGun();
 
+        curWeapon = () => { RifleGunAttack(); };
         if (!startGetGun)
         {
             stats.bulletCount = maxBublletCount;
-            curWeapon = () => { RifleGunAttack(); };
         }
     }
 
@@ -196,10 +200,10 @@ public class WeaponManager : MonoBehaviour
         SetGunStat("ShotGun");
         SetCurGun();
 
+        curWeapon = () => { ShotGunAttack(); };
         if (!startGetGun)
         {
             stats.bulletCount = maxBublletCount;
-            curWeapon = () => { ShotGunAttack(); };
         }
     }
 

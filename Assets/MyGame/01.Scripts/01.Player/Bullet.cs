@@ -30,7 +30,8 @@ public class Bullet : MonoBehaviour
             }
             if (collision.CompareTag("Boss")) // ¸¸¾à º¸½º¿Í ºÎµúÇû´Ù¸é
             {
-                collision.GetComponent<BossMonster>().TakeDamage(PlayerStats.attackPower);
+                collision.GetComponent<BossMonster>()?.TakeDamage(PlayerStats.attackPower);
+                collision.GetComponent<MainBossHand>()?.TkDamage();
             }
             ObjectPool.ReturnToPool("Bullet", gameObject);
         }

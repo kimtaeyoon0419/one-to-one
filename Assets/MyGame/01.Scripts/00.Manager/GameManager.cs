@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class stageMonsterType
@@ -75,6 +76,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //private void Update()
+    //{
+    //    if (GameManager.instance.curGameState == CurGameState.gameClear)
+    //    {
+    //        curGameStage = CurStage.title;
+    //        Debug.Log("게임 클리어");
+    //        SceneManager.LoadScene("GameClear");
+    //    }
+    //}
     #endregion
 
 }

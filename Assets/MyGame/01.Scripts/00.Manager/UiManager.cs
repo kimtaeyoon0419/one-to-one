@@ -39,6 +39,10 @@ public class UiManager : MonoBehaviour
     [Header("BossHpBar")]
     public GameObject bossHpBar;
 
+    [Header("KeyPnl")]
+    public GameObject keypnl;
+    public bool isKey;
+
 
     #region Unity_Function
     private void Start()
@@ -116,6 +120,12 @@ public class UiManager : MonoBehaviour
     {
         craftPnl = !craftPnl;
         craftdeveloperPnl.SetActive(craftPnl);
+    }
+
+    public void keyPtnOnOff()
+    {
+        isKey = !isKey;
+        keypnl.SetActive(isKey);
     }
 
     /// <summary>

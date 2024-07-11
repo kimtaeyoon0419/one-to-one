@@ -10,6 +10,10 @@ public class MusicChanger : MonoBehaviour
     void Start()
     {
         AudioManager.instance.PlayMusic(chagemusicName);
+        if(GameManager.instance.curGameStage == CurStage.title)
+        {
+            GameManager.instance.coin = 0;
+        }
     }
     #endregion
 }

@@ -80,9 +80,9 @@ public class PlayerMovement : MonoBehaviour
                     isPortalteleport = true;
                     AudioManager.instance.PlaySFX("Portal");
                 }
-                if (isBox && GameManager.instance.coin >= 20)
+                if (isBox && GameManager.instance.coin >= 1500)
                 {
-                    GameManager.instance.coin -= 20;
+                    GameManager.instance.coin -= 1500;
                     curBox.OpenBoxAnim();
                 }
             }

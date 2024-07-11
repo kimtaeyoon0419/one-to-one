@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitCode: 0
-  delayTime: 0
+  delayTime: 0.1
   nextMove: 0
   isAttack: 0
   findPlayerPos: {fileID: 2406992863721718235}
